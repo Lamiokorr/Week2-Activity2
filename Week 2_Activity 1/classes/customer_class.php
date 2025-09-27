@@ -50,7 +50,7 @@ class Customer extends db_connection
     public function createCustomer($name, $email, $password, $country, $city, $phone_number, $role)
     {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $this->db->prepare("INSERT INTO customer (customer_name, customer_email, customer_pass, customer_country, customer_city, customer_contact, user_role) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $this->db->prepare("INSERT INTO customer (customer_name, customer_email, customer_pass, customer_country, customer_city, customer_contact, user_role) VALUES (?, ?, ?, ?, ?,?, ?)");
         $stmt->bind_param("ssssi", $name, $email, $hashed_password, $country, $city, $phone_number, $role);
         if ($stmt->execute()) {
             return $this->db->insert_id;
@@ -67,7 +67,7 @@ class Customer extends db_connection
     }
 
     public function loginCustomer($email, $password) {
-        $sql = "SELECT * FROM customers WHERE email = ?";
+        $sql = "SELECT * FROM customer WHERE email = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$email]);
         $customer = $stmt->fetch();
@@ -80,10 +80,12 @@ class Customer extends db_connection
 
     public function deleteCustomer($customer_id)
      {
-        $stmt = $this->db->prepare("DELETE FROM customers WHERE customer_id = ?");
+        $stmt = $this->db->prepare("DELETE FROM customer WHERE customer_id = ?");
         $stmt ->bind_param("i", $customer_id);
         $stmt ->execute();
         return $stmt->get_result()->fetch_assoc();
     }
 
 }
+
+?>

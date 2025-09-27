@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (result === "success") {
                 //Redirects to landing page
-                window.location.href = "index.php";
+                window.location.href = "../admin/category.php";
             } else {
                 // Show error with SweetAlert2
                 Swal.fire({
