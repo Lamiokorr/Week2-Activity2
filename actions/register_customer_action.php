@@ -20,7 +20,7 @@ require_once '../controllers/customer_controller.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Collect inputs safely
-    $customer_name     = trim($_POST['customer_name'] ?? '');
+    $customer_name     = trim($_POST['name'] ?? '');
     $email        = trim($_POST['customer_email'] ?? '');
     $password_raw = $_POST['customer_pass'] ?? '';
     $country      = trim($_POST['customer_country'] ?? '');
