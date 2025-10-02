@@ -303,7 +303,7 @@
                         <form method="POST" action="" class="mt-4" id="register-form">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Full Name <i class="fa fa-user"></i></label>
-                                <input type="text" class="form-control animate__animated animate__fadeInUp" id="name" name="name" required>
+                                <input type="text" class="form-control animate__animated animate__fadeInUp" id="customer_name" name="customer_name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email <i class="fa fa-envelope"></i></label>

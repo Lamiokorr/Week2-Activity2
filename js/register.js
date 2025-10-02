@@ -33,11 +33,11 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 name: customer_name,
-                email: email,
-                password: password,
-                country: country,
-                city: city,
-                phone_number: phone_number,
+                customer_email: email,
+                customer_pass: password,
+                customer_country: country,
+                customer_city: city,
+                customer_contact: phone_number,
                 role: role
             },
             success: function(response) {

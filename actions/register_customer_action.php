@@ -20,16 +20,16 @@ require_once '../controllers/customer_controller.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Collect inputs safely
-    $name         = trim($_POST['name'] ?? '');
-    $email        = trim($_POST['email'] ?? '');
-    $password_raw = $_POST['password'] ?? '';
-    $country      = trim($_POST['country'] ?? '');
-    $city         = trim($_POST['city'] ?? '');
-    $phone_number = trim($_POST['phone_number'] ?? '');
+    $customer_name     = trim($_POST['customer_name'] ?? '');
+    $email        = trim($_POST['customer_email'] ?? '');
+    $password_raw = $_POST['customer_pass'] ?? '';
+    $country      = trim($_POST['customer_country'] ?? '');
+    $city         = trim($_POST['customer_city'] ?? '');
+    $phone_number = trim($_POST['customer_contact'] ?? '');
     $role         = 1;
 
     // === VALIDATION ===
-    if (empty($name) || strlen($name) < 3) {
+    if (empty($customer_name) || strlen($customer_name) < 3) {
         $response['status'] = 'error';
         $response['message'] = 'Name must be at least 3 characters long';
         echo json_encode($response);
