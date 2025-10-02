@@ -47,11 +47,10 @@ class Customer extends db_connection
         }
     }
 
-    public function createCustomer($name, $email, $password, $country, $city, $phone_number, $role)
+    public function createCustomer($customer_name, $email, $password, $country, $city, $phone_number, $role)
     {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $this->db->prepare("INSERT INTO customer (customer_name, customer_email, customer_pass, customer_country, customer_city, customer_contact, user_role) VALUES (?, ?, ?, ?, ?,?, ?)");
-        $stmt->bind_param("ssssi", $name, $email, $hashed_password, $country, $city, $phone_number, $role);
+        $stmt->bind_param("ssssssi", $customer_name, $email, $password, $country, $city, $phone_number, $role);
         if ($stmt->execute()) {
             return $this->db->insert_id;
         }

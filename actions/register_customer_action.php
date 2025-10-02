@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $country      = trim($_POST['customer_country'] ?? '');
     $city         = trim($_POST['customer_city'] ?? '');
     $phone_number = trim($_POST['customer_contact'] ?? '');
-    $role         = 1;
+    $role         = 2;
 
     // === VALIDATION ===
     if (empty($customer_name) || strlen($customer_name) < 3) {
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Try registering
     try {
-        $customer_id = register_user_ctr($name, $email, $password, $country, $city, $phone_number, $role);
+        $customer_id = register_user_ctr($customer_name, $email, $password, $country, $city, $phone_number, $role);
 
         if ($customer_id) {
             $response['status'] = 'success';

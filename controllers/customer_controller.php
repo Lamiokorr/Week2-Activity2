@@ -3,10 +3,10 @@
 require_once '../classes/customer_class.php';
 
 
-function register_user_ctr($name, $email, $password, $phone_number, $role)
+function register_user_ctr($customer_name, $email, $password, $country, $city, $phone_number, $role)
 {
     $customer = new Customer();
-    $customer_id = $customer->createCustomer($name, $email, $password, $phone_number, $role);
+    $customer_id = $customer->createCustomer($customer_name, $email, $password, $country, $city, $phone_number, $role);
     if ($customer_id) {
         return $customer_id;
     }
