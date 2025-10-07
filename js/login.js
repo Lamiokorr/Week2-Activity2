@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let formData = new FormData(form);
 
         try {
-            let response = await fetch("actions/login_customer_action.php", {
+            let response = await fetch("../actions/login_customer_action.php", {
                 method: "POST",
                 body: formData
             });
