@@ -66,12 +66,12 @@ class Customer extends db_connection
     }
 
     public function loginCustomer($email, $password) {
-        $sql = "SELECT * FROM customer WHERE email = ?";
+        $sql = "SELECT * FROM customer WHERE customer_email = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$email]);
         $customer = $stmt->fetch();
 
-        if ($customer && password_verify($password, $customer['password'])) {
+        if (password_verify($password, $customer['password'])) {
             return $customer; // returns user info
         }
         return false;
