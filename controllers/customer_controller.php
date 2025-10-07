@@ -16,7 +16,7 @@ function register_user_ctr($customer_name, $email, $password, $country, $city, $
 function get_user_by_email_ctr($email)
 {
     $customer = new Customer();
-    return $user->getCustomerByEmail($email);
+    return $customer->getCustomerByEmail($email);
 }
 
 function login_customer_ctr($email, $password) {

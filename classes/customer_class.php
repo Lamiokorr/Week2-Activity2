@@ -21,7 +21,7 @@ class Customer extends db_connection
     {
         parent::db_connect();
         if ($customer_id) {
-            $this->user_id = $customer_id;
+            $this->customer_id = $customer_id;
             $this->loadCustomer();
         }
     }

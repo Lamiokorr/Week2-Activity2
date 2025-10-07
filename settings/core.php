@@ -22,7 +22,7 @@ function isLoggedIn() {
 function isAdmin() {
     if (isLoggedIn() && isset($_SESSION['user_role'])) {
         // assuming role "2" means admin (you can adjust this)
-        return $_SESSION['user_role'] == 2;
+        return $_SESSION['user_role'] == 1;
     }
     return false;
 }

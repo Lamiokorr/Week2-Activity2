@@ -3,7 +3,7 @@ require_once("../settings/core.php");
 require_once("../controllers/category_controller.php");
 
 if (!isLoggedIn() || !isAdmin()) {
-    header("Location: ../login.php");
+    header("Location: ../login/login.php");
     exit();
 }
 
