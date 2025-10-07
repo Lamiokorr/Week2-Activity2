@@ -11,7 +11,7 @@ ob_start();
  * @return bool
  */
 function isLoggedIn() {
-    return isset($_SESSION['id']); // or use another session key you set at login
+    return isset($_SESSION['customer_id']); // or use another session key you set at login
 }
 
 /**
@@ -21,8 +21,7 @@ function isLoggedIn() {
  */
 function isAdmin() {
     if (isLoggedIn() && isset($_SESSION['user_role'])) {
-        // assuming role "2" means admin (you can adjust this)
-        return $_SESSION['user_role'] == 1;
+                return $_SESSION['user_role'] == 1;
     }
     return false;
 }
