@@ -21,7 +21,7 @@ function isLoggedIn() {
  */
 function isAdmin() {
     if (isLoggedIn()) {
-        return $_SESSION['user_role'] == 1;
+        return $_SESSION['role'] == 1;
     }
     return false;
 }
