@@ -65,17 +65,18 @@ class Customer extends db_connection
         return $stmt->get_result()->fetch_assoc();
     }
 
-    public function loginCustomer($email, $password) {
-        $sql = "SELECT * FROM customer WHERE customer_email = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$email]);
-        $customer = $stmt->fetch();
 
-        if (password_verify($password, $customer['password'])) {
-            return $customer; // returns user info
-        }
-        return false;
+public function loginCustomer($email, $password) {
+    $stmt = $this->db->prepare("SELECT * FROM customer WHERE customer_email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $customer = $stmt->get_result()->fetch_assoc();
+
+    if ($customer && password_verify($password, $customer['customer_pass'])) {
+        return $customer; // returns user info
     }
+    return false;
+}
 
     public function deleteCustomer($customer_id)
      {
