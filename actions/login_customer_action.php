@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if($customer){
         $_SESSION['customer_id'] = $customer['customer_id'];
-        $_SESSION['fullname']    = $customer['fullname'];
-        $_SESSION['email']       = $customer['email'];
+        $_SESSION['fullname']    = $customer['customer_name'];
+        $_SESSION['email']       = $customer['customer_email'];
         $_SESSION['role']        = $customer['user_role'];
 
          echo "success";  
