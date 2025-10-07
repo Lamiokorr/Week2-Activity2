@@ -20,8 +20,8 @@ function isLoggedIn() {
  * @return bool
  */
 function isAdmin() {
-    if (isLoggedIn() && isset($_SESSION['user_role'])) {
-                return $_SESSION['user_role'] == 1;
+    if (isLoggedIn()) {
+        return $_SESSION['user_role'] == 1;
     }
     return false;
 }
