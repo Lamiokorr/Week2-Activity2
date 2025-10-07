@@ -8,7 +8,7 @@ if (!isLoggedIn() || !isAdmin()) {
 }
 
 $user_id = $_SESSION['customer_id'];
-$categories = get_categories_ctr($user_id); // fetch categories for current user
+$categories = get_all_categories_ctr($user_id); // fetch categories for current user
 ?>
 <!DOCTYPE html>
 <html lang="en">
