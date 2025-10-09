@@ -10,23 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST",
             body: formData
         })
-        .then(res => res.text())
-        .then(msg => {
-            alert(msg);
-            fetchCategories();
-        });
+            .then(res => res.text())
+            .then(msg => {
+                alert(msg);
+                fetchCategories();
+            });
     });
 });
 
 // Fetch categories
 function fetchCategories() {
     fetch("../actions/fetch_category_action.php")
-    .then(res => res.json())
-    .then(data => {
-        let output = "";
-        if (data.length > 0) {
-            data.forEach(cat => {
-                output += `
+        .then(res => res.json())
+        .then(data => {
+            let output = "";
+            if (data.length > 0) {
+                data.forEach(cat => {
+                    output += `
                     <tr>
                         <td>${cat.cat_id}</td>
                         <td>${cat.cat_name}</td>
@@ -36,12 +36,12 @@ function fetchCategories() {
                         </td>
                     </tr>
                 `;
-            });
-        } else {
-            output = `<tr><td colspan="3">No categories found.</td></tr>`;
-        }
-        document.getElementById("categoryList").innerHTML = output;
-    });
+                });
+            } else {
+                output = `<tr><td colspan="3">No categories found.</td></tr>`;
+            }
+            document.getElementById("categoryList").innerHTML = output;
+        });
 }
 
 // Delete category
@@ -53,13 +53,12 @@ function deleteCategory(id) {
         method: "POST",
         body: formData
     })
-    .then(res => res.text())
-    .then(msg => {
-        alert(msg);
-        fetchCategories();
-    });
+        .then(res => res.json())
+        .then(response => {
+            alert(response.message);
+            fetchCategories();
+        });
 }
-
 // Update category
 function updateCategory(id, oldName) {
     let newName = prompt("Enter new name:", oldName);
@@ -73,9 +72,9 @@ function updateCategory(id, oldName) {
         method: "POST",
         body: formData
     })
-    .then(res => res.json())
-    .then(response => {
-        alert(response.message);
-        fetchCategories();
-    });
+        .then(res => res.json())
+        .then(response => {
+            alert(response.message);
+            fetchCategories();
+        });
 }

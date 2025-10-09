@@ -85,7 +85,9 @@ class Category extends db_connection
     {
         $stmt = $this->db->prepare("DELETE FROM categories WHERE cat_id = ?");
         $stmt->bind_param("i", $category_id);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        if ($stmt->execute() && $stmt->affected_rows > 0) {
+            return true;
+        }
+        return false;
     }
 }
