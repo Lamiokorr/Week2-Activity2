@@ -54,7 +54,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
                         <td><?php echo htmlspecialchars($cat['cat_id']); ?></td>
                         <td><?php echo htmlspecialchars($cat['cat_name']); ?></td>
                         <td>
-                            <button onclick="updateCategory(<?php echo $cat['cat_id']; ?>, '<?php echo $cat['name']; ?>')">Update</button>
+                            <button onclick="updateCategory(<?php echo $cat['cat_id']; ?>, '<?php echo $cat['cat_name']; ?>')">Update</button>
                             <button onclick="deleteCategory(<?php echo $cat['cat_id']; ?>)">Delete</button>
                         </td>
                     </tr>

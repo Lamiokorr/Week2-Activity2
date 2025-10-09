@@ -28,8 +28,8 @@ function fetchCategories() {
             output += `
                 <li>
                     ${cat.name} 
-                    <button onclick="deleteCategory(${cat.id})">Delete</button>
-                    <button onclick="updateCategory(${cat.id}, '${cat.name}')">Update</button>
+                    <button onclick="deleteCategory(${cat.cat_id})">Delete</button>
+                    <button onclick="updateCategory(${cat.cat_id}, '${cat.cat_name}')">Update</button>
                 </li>`;
         });
         output += "</ul>";
