@@ -23,16 +23,23 @@ function fetchCategories() {
     fetch("../actions/fetch_category_action.php")
     .then(res => res.json())
     .then(data => {
-        let output = "<ul>";
-        data.forEach(cat => {
-            output += `
-                <li>
-                    ${cat.cat_name} 
-                    <button onclick="deleteCategory(${cat.cat_id})">Delete</button>
-                    <button onclick="updateCategory(${cat.cat_id}, '${cat.cat_name}')">Update</button>
-                </li>`;
-        });
-        output += "</ul>";
+        let output = "";
+        if (data.length > 0) {
+            data.forEach(cat => {
+                output += `
+                    <tr>
+                        <td>${cat.cat_id}</td>
+                        <td>${cat.cat_name}</td>
+                        <td>
+                            <button onclick="updateCategory(${cat.cat_id}, '${cat.cat_name}')">Update</button>
+                            <button onclick="deleteCategory(${cat.cat_id})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        } else {
+            output = `<tr><td colspan="3">No categories found.</td></tr>`;
+        }
         document.getElementById("categoryList").innerHTML = output;
     });
 }
