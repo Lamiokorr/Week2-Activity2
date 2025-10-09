@@ -27,7 +27,7 @@ function fetchCategories() {
         data.forEach(cat => {
             output += `
                 <li>
-                    ${cat.name} 
+                    ${cat.cat_name} 
                     <button onclick="deleteCategory(${cat.cat_id})">Delete</button>
                     <button onclick="updateCategory(${cat.cat_id}, '${cat.cat_name}')">Update</button>
                 </li>`;
