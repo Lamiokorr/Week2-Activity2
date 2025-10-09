@@ -66,9 +66,9 @@ function updateCategory(id, oldName) {
         method: "POST",
         body: formData
     })
-    .then(res => res.text())
-    .then(msg => {
-        alert(msg);
+    .then(res => res.json())
+    .then(response => {
+        alert(response.message);
         fetchCategories();
     });
 }
