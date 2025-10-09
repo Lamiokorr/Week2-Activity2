@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if($category){
          echo json_encode($category);  
         } else {
-            echo "error";  
+            echo json_encode("error");  
     }
 
 }

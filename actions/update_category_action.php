@@ -8,9 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $category_id = $_POST['id'];
     $category_name = $_POST['name'];
 
-
-
-
     $updated = update_category_ctr($category_id, $category_name);
 
     if ($updated) {
