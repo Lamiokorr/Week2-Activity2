@@ -51,11 +51,11 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
             <?php if (!empty($categories)): ?>
                 <?php foreach ($categories as $cat): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($cat['id']); ?></td>
-                        <td><?php echo htmlspecialchars($cat['name']); ?></td>
+                        <td><?php echo htmlspecialchars($cat['cat_id']); ?></td>
+                        <td><?php echo htmlspecialchars($cat['cat_name']); ?></td>
                         <td>
-                            <button onclick="updateCategory(<?php echo $cat['id']; ?>, '<?php echo $cat['name']; ?>')">Update</button>
-                            <button onclick="deleteCategory(<?php echo $cat['id']; ?>)">Delete</button>
+                            <button onclick="updateCategory(<?php echo $cat['cat_id']; ?>, '<?php echo $cat['name']; ?>')">Update</button>
+                            <button onclick="deleteCategory(<?php echo $cat['cat_id']; ?>)">Delete</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
