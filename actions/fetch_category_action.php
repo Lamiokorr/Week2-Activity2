@@ -12,3 +12,5 @@ if ($category) {
 } else {
     echo json_encode([]);
 }
+
+?>
