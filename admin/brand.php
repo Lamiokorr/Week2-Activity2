@@ -25,7 +25,7 @@ $brands = get_all_brands_ctr($user_id); // fetch categories for current user
 <div class="container py-5">
     <h2 class="text-center mb-4">Brand Management</h2>
 
-    <!-- CREATE FORM -->
+    <!-- CREATE -->
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-primary text-white">Add New Brand</div>
         <div class="card-body">
