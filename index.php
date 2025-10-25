@@ -253,13 +253,13 @@
 
     <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
         <!-- Logged in as admin -->
-        <a href="logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
+        <a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
         <a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Category</a>
         <a href="admin/brand.php" class="btn btn-sm btn-outline-secondary">Brand</a>
 
     <?php else: ?>
         <!-- Logged in as normal user -->
-        <a href="logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
+        <a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
     <?php endif; ?>
 	</div>
 
