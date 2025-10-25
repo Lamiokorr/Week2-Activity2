@@ -104,6 +104,7 @@ $brands = get_all_brands_ctr($user_id); // fetch categories for current user
         <div class="alert alert-warning">No brands found. Add one above!</div>
     <?php endif; ?>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/brand.js"></script>
 </body>
 </html>

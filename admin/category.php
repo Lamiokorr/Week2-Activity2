@@ -64,5 +64,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
             <?php endif; ?>
         </tbody>
     </table>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/category.js"></script>
 </body>
 </html>

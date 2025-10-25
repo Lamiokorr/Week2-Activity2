@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     fetchCategories();
 
-    // Handle Add
+    // Add Category
     document.getElementById("addCategoryForm").addEventListener("submit", e => {
         e.preventDefault();
         let formData = new FormData(e.target);
