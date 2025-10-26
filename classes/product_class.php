@@ -1,0 +1,85 @@
+<?php
+
+require_once '../settings/db_class.php';
+
+class Product extends db_connection {
+    private $product_id;
+    private $product_cat;
+    private $product_brand;
+    private $product_title;
+    private $product_price;
+    private $product_desc;
+    private $product_image;
+    private $product_keywords;
+    private $date_created;
+
+    public function __construct($product_id = null) 
+    {
+        parent::db_connect();
+        if ($product_id) {
+            $this->product_id = $product_id;
+            $this->loadProduct();
+        }
+    }
+
+    private function loadProduct($product_id = null) {
+        if ($product_id) {
+            $this->product_id = $product_id;
+        }
+        if (!$this->product_id) {
+            return false;
+        }
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_id = ?");
+        $stmt->bind_param("i", $this->product_id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        if ($result) {
+            $this->product_cat = $result['product_cat'];
+            $this->product_brand = $result['product_brand'];
+            $this->product_title = $result['product_title'];
+            $this->product_price = $result['product_price'];
+            $this->product_desc = $result['product_desc'];
+            $this->product_image = $result['product_image'];
+            $this->product_keywords = $result['product_keywords'];
+            $this->date_created = isset($result['date_created']) ? $result['date_created'] : null;
+        }
+    }
+
+    // Add new product
+    public function createProduct($product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords) {
+        $stmt = $this->db->prepare("INSERT INTO products (product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iisisss", $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords);
+        if ($stmt->execute()) {
+            return $this->db->insert_id;
+        }
+        return false;
+    }
+
+    // Get all products
+    public function getAllProducts() {
+        $stmt = $this->db->prepare("SELECT * FROM products");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+        return $products;
+    }
+    
+    // Update product
+    public function updateProduct($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords) {
+        $stmt = $this->db->prepare("UPDATE products SET product_cat = ?, product_brand = ?, product_title = ?, product_price = ?, product_desc = ?, product_image = ?, product_keywords = ? WHERE product_id = ?");
+        $stmt->bind_param("iisisssi", $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_id);
+        return $stmt->execute();
+    }
+
+    // Delete product
+    public function deleteProduct($product_id) {
+        $stmt = $this->db->prepare("DELETE FROM products WHERE product_id = ?");
+        $stmt->bind_param("i", $product_id);
+        return $stmt->execute();
+    }
+}
+
+?>
