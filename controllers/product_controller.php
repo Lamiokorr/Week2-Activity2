@@ -24,6 +24,16 @@ function add_product_ctr($product_cat, $product_brand, $product_title, $product_
         $product = new Product();
         return $product->deleteProduct($product_id);
     }
+
+    function get_last_inserted_product_id_ctr() {
+        $product = new Product();
+        return $product -> get_last_inserted_product_id();
+    }
+
+    function update_product_image_path_ctr($product_id, $image_path) {
+        $product = new Product();
+        return $product -> updateProductImagePath($product_id, $image_path);
+}
 }
 
 ?>

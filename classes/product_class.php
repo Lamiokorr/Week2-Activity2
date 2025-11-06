@@ -80,6 +80,16 @@ class Product extends db_connection {
         $stmt->bind_param("i", $product_id);
         return $stmt->execute();
     }
+
+    public function updateProductImagePath($product_id, $image_path) {
+        $stmt = $this->db->prepare("UPDATE products SET product_image = ? WHERE product_id = ?");
+        $stmt->bind_param("si", $image_path, $product_id);
+        return $stmt->execute();
+    }
+    
+    public function get_last_inserted_product_id() {
+        return $this->db->insert_id;
+    }
 }
 
 ?>
