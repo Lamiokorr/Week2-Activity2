@@ -204,10 +204,10 @@
                 </div>
                 <button type="submit" class="button">Login</button>
                 
-                <div class="links">
-                    <a href="#">Forgot Password?</a>
-                    <a href="#">Create Account</a>
-                </div>
+                <<div class="card-footer">
+                        New to KultureKart? <a href="register.php" class="highlight">Create an account</a>.
+                    </div>
+
             </form>
         </div>
     </div>
