@@ -26,7 +26,7 @@ if (!$deleted) {
 }
 
     // delete folder safely
-$folder = "uploads/u{$user_id}/p{$product_id}";
+$folder = "uploads/u{$customer_id}/p{$product_id}";
 if (is_inside_uploads($folder) && is_dir(__DIR__ . '/../' . $folder)) {
     rrmdir_uploads(__DIR__ . '/../' . $folder);
 }
