@@ -195,16 +195,19 @@
                 <p class="subtitle">Discover your next adventure</p>
             </div>
             
-            <form id="loginForm">
-                <div class="input-group">
-                    <input type="email" placeholder="Email Address" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Password" required>
-                </div>
-                <button type="submit" class="button">Login</button>
+            <form method="POST" action="" class="mt-4" id="login-form">
+                 <label for="email" class="form-label">Email Address <i class="fa fa-envelope"></i></label>
+                                <input type="email" class="form-control animate__animated animate__fadeInUp" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                <div class="mb-4">
+                                <label for="password" class="form-label">Password <i class="fa fa-lock"></i></label>
+                                <input type="password" class="form-control animate__animated animate__fadeInUp" id="password" name="password" placeholder="Enter your password" required>
+                            </div>
+                <button type="submit" class="btn btn-custom w-100 animate-pulse-custom">
+                                <i class="fas fa-rocket me-2"></i>Sign In to Your Account
+                            </button>
                 
-                <<div class="card-footer" style="margin-top: 15px; text-align: center; background: transparent; border: none; color: rgba(255, 255, 255, 0.9); font-size: 14px;">
+                <div class="card-footer" style="margin-top: 15px; text-align: center; background: transparent; border: none; color: rgba(255, 255, 255, 0.9); font-size: 14px;">
                         New to KultureKart? <a href="register.php" class="highlight">Create an account</a>.
                     </div>
 
@@ -212,11 +215,49 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/login.js"></script>
+
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Login functionality would be implemented here!');
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.form-control');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 25px rgba(255, 107, 107, 0.25)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 0 0 0.25rem rgba(255, 107, 107, 0.25)';
+                });
+
+                // Add typing effect
+                input.addEventListener('input', function() {
+                    if (this.value.length > 0) {
+                        this.style.borderColor = '#4CAF50';
+                        this.style.boxShadow = '0 0 0 0.25rem rgba(76, 175, 80, 0.25)';
+                    } else {
+                        this.style.borderColor = '#ff6b6b';
+                        this.style.boxShadow = '0 0 0 0.25rem rgba(255, 107, 107, 0.25)';
+                    }
+                });
+            });
+
+            // Add welcome message animation
+            const card = document.querySelector('.card');
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px) scale(1.01)';
+                setTimeout(() => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                }, 300);
+            }, 1000);
         });
     </script>
+
 </body>
 </html>
