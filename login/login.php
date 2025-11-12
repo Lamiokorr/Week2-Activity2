@@ -197,11 +197,12 @@
             
             <form method="POST" action="../actions/login_customer_action.php" class="mt-4" id="login-form">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email Address <i class="fa fa-envelope"></i></label>
-                    <input type="email" placeholder="Email Address" required>
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" placeholder="Enter your email address" required>
                 </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Password" required>
+                <div class="mb-4">
+                     <label for="password" class="form-label">Password</label>
+                    <input type="password" placeholder="Enter your password" required>
                 </div>
                 <button type="submit" class="button">Login</button>
                 
