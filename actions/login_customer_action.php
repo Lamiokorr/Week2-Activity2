@@ -9,7 +9,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-
+    if (empty($email) || empty($password)) {
+        echo json_encode(["status" => "error", "message" => "Email and password required"]);
+        exit;
+    }
+    
     $customer = login_customer_ctr($email, $password);
 
     if($customer){
@@ -18,10 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['email']       = $customer['customer_email'];
         $_SESSION['role']        = $customer['user_role'];
 
-         echo "success";  
-        } else {
-            echo "error";  
+         echo json_encode(["status" => "success", "message" => "Login successful"]);
+    } else {
+        echo json_encode(["status" => "error", "message" => "Invalid credentials"]);
     }
-
+    exit;
 }
+
+echo json_encode(["status" => "error", "message" => "Invalid request"]);
 ?>
