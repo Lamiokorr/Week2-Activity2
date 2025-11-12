@@ -204,7 +204,7 @@
                 </div>
                 <button type="submit" class="button">Login</button>
                 
-                <<div class="card-footer">
+                <<div class="card-footer" style="margin-top: 15px; text-align: center; background: transparent; border: none; color: rgba(255, 255, 255, 0.9); font-size: 14px;">
                         New to KultureKart? <a href="register.php" class="highlight">Create an account</a>.
                     </div>
 
