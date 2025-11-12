@@ -196,16 +196,13 @@
             </div>
             
             <form method="POST" action="" class="mt-4" id="login-form">
-                 <label for="email" class="form-label">Email Address <i class="fa fa-envelope"></i></label>
-                                <input type="email" class="form-control animate__animated animate__fadeInUp" id="email" name="email" placeholder="Enter your email" required>
-                            </div>
-                <div class="mb-4">
-                                <label for="password" class="form-label">Password <i class="fa fa-lock"></i></label>
-                                <input type="password" class="form-control animate__animated animate__fadeInUp" id="password" name="password" placeholder="Enter your password" required>
-                            </div>
-                <button type="submit" class="btn btn-custom w-100 animate-pulse-custom">
-                                <i class="fas fa-rocket me-2"></i>Sign In to Your Account
-                            </button>
+                <div class="input-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="button">Login</button>
                 
                 <div class="card-footer" style="margin-top: 15px; text-align: center; background: transparent; border: none; color: rgba(255, 255, 255, 0.9); font-size: 14px;">
                         New to KultureKart? <a href="register.php" class="highlight">Create an account</a>.
