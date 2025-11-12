@@ -1,415 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Login - Taste of Africa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KultureKart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
-        .btn-custom {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            border: none;
-            color: #fff;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-            padding: 12px 20px;
-            font-size: 1.1rem;
-        }
-
-        .btn-custom:hover {
-            background: linear-gradient(135deg, #ff5252, #ff7979);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-            color: #fff;
-        }
-
-        .highlight {
-            color: #ff6b6b;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .highlight:hover {
-            color: #ff5252;
-            text-decoration: none;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            overflow: hidden;
             position: relative;
-            overflow-x: hidden;
         }
 
-        /* Animated background elements */
-        body::before {
-            content: '';
-            position: fixed;
+        .background {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
-            animation: backgroundPulse 10s ease-in-out infinite;
-            pointer-events: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
         }
 
-        @keyframes backgroundPulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
-        }
-
-        .login-container {
-            margin-top: 80px;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .card {
-            border: none;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            transition: all 0.4s ease;
-            max-width: 450px;
-            margin: 0 auto;
-        }
-
-        .card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-header {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffb3ba);
-            color: #fff;
-            padding: 35px 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-header::before {
+        .background::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            animation: shimmer 4s infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(252, 176, 69, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(74, 144, 226, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .background::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
         }
 
-        .card-header h4 {
-            margin: 0;
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
             position: relative;
             z-index: 1;
-        }
-
-        .card-body {
-            padding: 45px 40px;
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .form-label {
-            color: #4a4a4a;
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .form-label i {
-            color: #ff6b6b;
-            margin-left: 10px;
-            animation: bounce 2s infinite;
-            font-size: 1rem;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-4px); }
-            60% { transform: translateY(-2px); }
-        }
-
-        .form-control {
-            border: 2px solid #e1e8ed;
-            border-radius: 15px;
-            padding: 15px 20px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
-            margin-bottom: 25px;
-        }
-
-        .form-control:focus {
-            border-color: #ff6b6b;
-            box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.25);
-            background: #fff;
-            transform: translateY(-2px);
-        }
-
-        .card-footer {
-            background: rgba(248, 249, 250, 0.8);
-            padding: 25px 30px;
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .animate-pulse-custom {
-            animation: pulseGlow 2.5s ease-in-out infinite;
-        }
-
-        @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
-                transform: scale(1.03);
-            }
-            100% {
-                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-                transform: scale(1);
-            }
-        }
-
-        /* Alert styling */
-        .alert-info {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            border: none;
-            color: white;
-            border-radius: 15px;
-            padding: 15px 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
-            animation: slideInDown 0.8s ease-out;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Floating elements */
-        .floating-element {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        .floating-element.chef-1 {
-            top: 15%;
-            left: 8%;
-            font-size: 2.5rem;
-            color: rgba(255, 255, 255, 0.3);
-            animation: float1 8s ease-in-out infinite;
-        }
-
-        .floating-element.chef-2 {
-            top: 65%;
-            right: 12%;
-            font-size: 2rem;
-            color: rgba(255, 107, 107, 0.3);
-            animation: float2 10s ease-in-out infinite;
-        }
-
-        .floating-element.chef-3 {
-            bottom: 15%;
-            left: 10%;
-            font-size: 2.2rem;
-            color: rgba(118, 75, 162, 0.3);
-            animation: float3 9s ease-in-out infinite;
-        }
-
-        @keyframes float1 {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(10deg); }
-        }
-
-        @keyframes float2 {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(-10deg); }
-        }
-
-        @keyframes float3 {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(15deg); }
-        }
-
-        /* Welcome back animation */
-        .welcome-icon {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            color: white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
-            animation: welcomePulse 3s ease-in-out infinite;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
         }
 
-        @keyframes welcomePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .login-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .card-body {
-                padding: 35px 30px;
-            }
-            
-            .login-container {
-                margin-top: 50px;
-            }
-            
-            .floating-element {
-                display: none;
-            }
-            
-            .card {
-                margin: 0 20px;
-            }
+        .logo-section {
+            text-align: left;
+            margin-bottom: 40px;
         }
 
-        @media (max-width: 480px) {
-            .card-header h4 {
-                font-size: 1.8rem;
-            }
-            
-            .form-control {
-                padding: 12px 15px;
-                font-size: 1rem;
-            }
+        .logo-text {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: white;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        input:focus {
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: white;
+            text-decoration: underline;
         }
     </style>
 </head>
-
 <body>
-    <!-- Floating decorative elements -->
-    <div class="floating-element chef-1">
-        <i class="fas fa-chef-hat"></i>
-    </div>
-    <div class="floating-element chef-2">
-        <i class="fas fa-cookie-bite"></i>
-    </div>
-    <div class="floating-element chef-3">
-        <i class="fas fa-wine-glass-alt"></i>
-    </div>
-
-    <div class="container login-container">
-        <div class="row justify-content-center animate__animated animate__fadeInDown">
-            <div class="col-md-8 col-lg-6">
-                <div class="card animate__animated animate__zoomIn">
-                    <div class="card-header">
-                        <div class="welcome-icon">
-                        </div>
-                        <h4></i>Welcome Back</h4>
-                    </div>
-                    <div class="card-body">
-                      
-
-                        <form method="POST" action="" class="mt-4" id="login-form">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address <i class="fa fa-envelope"></i></label>
-                                <input type="email" class="form-control animate__animated animate__fadeInUp" id="email" name="email" placeholder="Enter your email" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="password" class="form-label">Password <i class="fa fa-lock"></i></label>
-                                <input type="password" class="form-control animate__animated animate__fadeInUp" id="password" name="password" placeholder="Enter your password" required>
-                            </div>
-                            <button type="submit" class="btn btn-custom w-100 animate-pulse-custom">
-                                <i class="fas fa-rocket me-2"></i>Sign In to Your Account
-                            </button>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        New to Taste of Africa? <a href="register.php" class="highlight">Create an account</a>.
-                    </div>
-                </div>
+    <div class="background"></div>
+    
+    <div class="container">
+        <div class="login-box">
+            <div class="logo-section">
+                <div class="logo-text">KULTUREKART</div>
+                <h1>WELCOME<br>BACK</h1>
+                <p class="subtitle">Discover your next adventure</p>
             </div>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="button">Login</button>
+                
+                <div class="links">
+                    <a href="#">Forgot Password?</a>
+                    <a href="#">Create Account</a>
+                </div>
+            </form>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/login.js"></script>
-
     <script>
-        // Add interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const inputs = document.querySelectorAll('.form-control');
-            
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.style.transform = 'translateY(-3px)';
-                    this.style.boxShadow = '0 8px 25px rgba(255, 107, 107, 0.25)';
-                });
-                
-                input.addEventListener('blur', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = '0 0 0 0.25rem rgba(255, 107, 107, 0.25)';
-                });
-
-                // Add typing effect
-                input.addEventListener('input', function() {
-                    if (this.value.length > 0) {
-                        this.style.borderColor = '#4CAF50';
-                        this.style.boxShadow = '0 0 0 0.25rem rgba(76, 175, 80, 0.25)';
-                    } else {
-                        this.style.borderColor = '#ff6b6b';
-                        this.style.boxShadow = '0 0 0 0.25rem rgba(255, 107, 107, 0.25)';
-                    }
-                });
-            });
-
-            // Add welcome message animation
-            const card = document.querySelector('.card');
-            setTimeout(() => {
-                card.style.transform = 'translateY(-5px) scale(1.01)';
-                setTimeout(() => {
-                    card.style.transform = 'translateY(0) scale(1)';
-                }, 300);
-            }, 1000);
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality would be implemented here!');
         });
     </script>
 </body>
-
 </html>
