@@ -15,6 +15,8 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            padding: 12px 20px;
+            font-size: 1.1rem;
         }
 
         .btn-custom:hover {
@@ -28,6 +30,7 @@
             color: #ff6b6b;
             font-weight: 600;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .highlight:hover {
@@ -36,7 +39,9 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             min-height: 100vh;
             margin: 0;
             padding: 0;
@@ -45,7 +50,13 @@
             overflow-x: hidden;
         }
 
-        /* Animated background elements */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated background elements - enhanced for scenic effect */
         body::before {
             content: '';
             position: fixed;
@@ -54,16 +65,29 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 70%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
-            animation: backgroundPulse 8s ease-in-out infinite;
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(252, 176, 69, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(74, 144, 226, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
             pointer-events: none;
         }
 
-        @keyframes backgroundPulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); opacity: 0.7; }
+            50% { transform: translateY(-20px); opacity: 1; }
+        }
+
+        /* Add scenic overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+            pointer-events: none;
+            z-index: 1;
         }
 
         .register-container {
@@ -77,19 +101,22 @@
             border: none;
             border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
         }
 
         .card-header {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffb3ba);
+            background: rgba(255, 107, 107, 0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff;
             padding: 25px;
             text-align: center;
@@ -104,8 +131,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 3s infinite;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: shimmer 4s infinite;
         }
 
         @keyframes shimmer {
@@ -117,25 +144,27 @@
             margin: 0;
             font-size: 2rem;
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 1;
         }
 
         .card-body {
             padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
         }
 
         .form-label {
-            color: #4a4a4a;
+            color: rgba(255, 255, 255, 0.95);
             font-weight: 600;
             margin-bottom: 8px;
             font-size: 1rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         .form-label i {
-            color: #ff6b6b;
+            color: #fff;
             margin-left: 8px;
             animation: bounce 2s infinite;
         }
@@ -147,7 +176,7 @@
         }
 
         .form-control {
-            border: 2px solid #e1e8ed;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
             padding: 12px 15px;
             font-size: 1rem;
@@ -155,9 +184,13 @@
             background: rgba(255, 255, 255, 0.9);
         }
 
+        .form-control::placeholder {
+            color: #999;
+        }
+
         .form-control:focus {
             border-color: #ff6b6b;
-            box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.2);
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.3);
             background: #fff;
             transform: translateY(-1px);
         }
@@ -169,50 +202,58 @@
         .form-check-label {
             position: relative;
             padding: 12px 20px;
-            border: 2px solid #ff6b6b;
+            border: 2px solid rgba(255, 255, 255, 0.6);
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
-            color: #ff6b6b;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
             font-weight: 600;
             margin-right: 15px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         .form-check-input:checked + .form-check-label {
             background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
             color: white;
+            border-color: #ff6b6b;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
         .form-check-label:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .card-footer {
-            background: rgba(248, 249, 250, 0.8);
+            background: rgba(248, 249, 250, 0.15);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding: 20px;
             text-align: center;
             font-size: 1.1rem;
-            color: #666;
+            color: rgba(255, 255, 255, 0.95);
         }
 
         .animate-pulse-custom {
-            animation: pulseGlow 2s ease-in-out infinite;
+            animation: pulseGlow 2.5s ease-in-out infinite;
         }
 
         @keyframes pulseGlow {
             0% {
                 box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+                transform: scale(1);
             }
             50% {
-                box-shadow: 0 6px 25px rgba(255, 107, 107, 0.5);
-                transform: scale(1.02);
+                box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+                transform: scale(1.03);
             }
             100% {
                 box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+                transform: scale(1);
             }
         }
 
@@ -220,14 +261,14 @@
         .floating-element {
             position: absolute;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.4;
         }
 
         .floating-element.utensil-1 {
             top: 10%;
             left: 5%;
             font-size: 2rem;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.4);
             animation: float1 6s ease-in-out infinite;
         }
 
@@ -235,7 +276,7 @@
             top: 70%;
             right: 10%;
             font-size: 1.5rem;
-            color: rgba(255, 107, 107, 0.3);
+            color: rgba(255, 255, 255, 0.4);
             animation: float2 8s ease-in-out infinite;
         }
 
@@ -243,7 +284,7 @@
             bottom: 20%;
             left: 8%;
             font-size: 1.8rem;
-            color: rgba(118, 75, 162, 0.3);
+            color: rgba(255, 255, 255, 0.4);
             animation: float3 7s ease-in-out infinite;
         }
 
@@ -275,6 +316,10 @@
             
             .floating-element {
                 display: none;
+            }
+
+            .register-container {
+                margin-top: 20px;
             }
         }
     </style>
