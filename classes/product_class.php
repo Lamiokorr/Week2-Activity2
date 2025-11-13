@@ -90,6 +90,22 @@ class Product extends db_connection {
     public function get_last_inserted_product_id() {
         return $this->db->insert_id;
     }
+
+    //View all products
+    public function view_all_products(){
+        $stmt = $this->db->prepare("SELECT * FROM products");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+        return $products;
+    }
+
+    public function search_products(){
+        
+    }
 }
 
 ?>
