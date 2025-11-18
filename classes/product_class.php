@@ -103,9 +103,65 @@ class Product extends db_connection {
         return $products;
     }
 
-    public function search_products(){
-        
+    public function search_products($query){
+        $like_query = '%' . $query . '%';
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_title LIKE ? OR product_desc LIKE ? OR product_keywords LIKE ?");
+        $stmt->bind_param("sss", $like_query, $like_query, $like_query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+        return $products; 
     }
+
+    public function filter_products_by_category($cat_id){
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_cat = ?");
+        $stmt->bind_param("i", $cat_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+        return $products; 
+    }
+
+    public function filter_products_by_brand($brand_id){
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_brand = ?");
+        $stmt->bind_param("i", $brand_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+        return $products; 
+    }
+
+    public function view_single_product($id){
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc(); 
+    }
+
+    public function view_all_products_paginated($offset, $limit) {
+    $stmt = $this->db->prepare("SELECT * FROM products LIMIT ?, ?");
+    $stmt->bind_param("ii", $offset, $limit);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $products = [];
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+    return $products;
+}
 }
 
 ?>
