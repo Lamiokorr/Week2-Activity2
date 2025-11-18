@@ -55,17 +55,7 @@ class Product extends db_connection {
         return false;
     }
 
-    // Get all products
-    public function getAllProducts() {
-        $stmt = $this->db->prepare("SELECT * FROM products");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $products = [];
-        while ($row = $result->fetch_assoc()) {
-            $products[] = $row;
-        }
-        return $products;
-    }
+
     
     // Update product
     public function updateProduct($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords) {
