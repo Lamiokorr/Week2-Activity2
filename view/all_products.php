@@ -65,14 +65,14 @@ if ($search_query) {
 <div class="filters">
 
     <!-- SEARCH FORM -->
-    <form class="search-bar" method="GET" action="all_product.php">
+    <form class="search-bar" method="GET" action="../actions/product_actions.php">
         <input type="text" name="search" placeholder="Search products..." required>
-        <button type="submit">Search</button>
+        <button name ="search_btn" type="submit">Search</button>
     </form>
 
     <!-- CATEGORY FILTER -->
-    <form method="GET" action="all_product.php">
-        <select name="category" onchange="this.form.submit()">
+    <form method="GET" action="../actions/product_actions.php">
+        <select name="category_filter" onchange="this.form.submit()">
             <option disabled selected>Filter by Category</option>
             <?php
             require_once "../controllers/category_controller.php";
@@ -85,8 +85,8 @@ if ($search_query) {
     </form>
 
     <!-- BRAND FILTER -->
-    <form method="GET" action="all_product.php">
-        <select name="brand" onchange="this.form.submit()">
+    <form method="GET" action="../actions/product_actions.php">
+        <select name="brand_filter" onchange="this.form.submit()">
             <option disabled selected>Filter by Brand</option>
             <?php
             require_once "../controllers/brand_controller.php";
