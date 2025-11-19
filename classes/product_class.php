@@ -141,8 +141,8 @@ class Product extends db_connection {
     }
 
     public function view_all_products_paginated($offset, $limit) {
-    $stmt = $this->db->prepare("SELECT * FROM products LIMIT ?, ?");
-    $stmt->bind_param("ii", $offset, $limit);
+    $stmt = $this->db->prepare("SELECT * FROM products LIMIT ? OFFSET ?");
+    $stmt->bind_param("ii", $limit, $offset);
     $stmt->execute();
     $result = $stmt->get_result();
     
@@ -151,6 +151,13 @@ class Product extends db_connection {
         $products[] = $row;
     }
     return $products;
+}
+
+ public function count_all_products() {
+    $stmt = $this->db->prepare("SELECT COUNT(*) AS total FROM products");
+    $stmt->execute();
+    $result = $stmt->get_result()->fetch_assoc();
+    return $result['total'];
 }
 }
 

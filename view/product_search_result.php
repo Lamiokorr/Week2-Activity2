@@ -1,14 +1,14 @@
 <?php
 require_once "../controllers/product_controller.php";
 
-// --- GET SEARCH QUERY 
+// GET SEARCH QUERY 
 $search_query = isset($_GET['search']) ? trim($_GET['search']) : null;
 
 // Get Filters
 $cat_filter   = isset($_GET['category']) ? $_GET['category'] : null;
 $brand_filter = isset($_GET['brand']) ? $_GET['brand'] : null;
 
-// --- DETERMINE WHICH RESULTS TO SHOW ---
+// DETERMINE WHICH RESULTS TO SHOW 
 if ($search_query) {
     $products = search_products_ctr($search_query);
 
@@ -69,6 +69,127 @@ if ($search_query) {
             display: inline-block;
             margin-top: 20px;
         }
+
+        /* === PRODUCT GRID === */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* === PRODUCT CARD === */
+.product-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #eee;
+}
+
+/* Hover effect (smooth lift) */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 18px rgba(0,0,0,0.15);
+}
+
+/* Product image */
+.product-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* image zoom on hover */
+.product-card:hover img {
+    transform: scale(1.07);
+}
+
+/* Product title */
+.product-card h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+/* Price */
+.product-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Add to Cart Button */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #1e90ff;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.25s ease;
+}
+
+.btn:hover {
+    background: #0066cc;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pagination Styling */
+.pagination {
+    margin: 25px auto;
+    text-align: center;
+}
+
+.page-btn {
+    padding: 7px 15px;
+    border: none;
+    background: #1e90ff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 5px;
+    font-weight: 600;
+    transition: background 0.25s ease;
+}
+
+.page-btn:hover {
+    background: #0066cc;
+}
+
+/* Filter Dropdowns */
+.filters select {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: border 0.25s ease;
+}
+
+.filters select:hover {
+    border-color: #1e90ff;
+}
+
     </style>
 </head>
 <body>

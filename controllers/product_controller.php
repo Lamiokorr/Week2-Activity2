@@ -62,6 +62,15 @@ function add_product_ctr($product_cat, $product_brand, $product_title, $product_
     return $product->get_last_inserted_product_id();
 }
 
+function get_products_paginated_ctr($limit, $offset) {
+    $product = new Product();
+    return $product->view_all_products_paginated($limit, $offset);
+}
+function count_all_products_ctr() {
+    $product = new Product();
+    return $product->count_all_products();
+}
+
 
 ?>
 

@@ -19,7 +19,6 @@ $categories = get_all_categories_ctr($user_id);
 <head>
     <meta charset="UTF-8">
     <title>Product Management</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/product.js" defer></script>
     <style>
@@ -119,6 +118,9 @@ $categories = get_all_categories_ctr($user_id);
         .modal-content {
             text-align: center;
             font-size: 16px;
+        }
+        .product-grid {
+             animation: fadeIn 0.6s ease-in-out;
         }
 
     </style>
