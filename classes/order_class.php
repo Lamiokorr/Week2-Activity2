@@ -38,7 +38,7 @@ class Order extends db_connection {
     }
 
     // Create new order
-    public function createOrder($customer_id, $invoice_no, $order_status = 'Pending') {
+    public function createOrder($customer_id, $invoice_no, $order_date, $order_status = 'Pending') {
         $stmt = $this->db->prepare("INSERT INTO orders (customer_id, invoice_no, order_date, order_status) VALUES (?, ?, ?)");
         $stmt->bind_param("iiss", $customer_id, $invoice_no, $order_date, $order_status);
         if ($stmt->execute()) {

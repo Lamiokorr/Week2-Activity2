@@ -5,7 +5,7 @@ require_once '../settings/db_class.php';
 class Cart extends db_connection 
 {
     private $p_id;
-    private $ip_id;
+    private $ip_add;
     private $c_id;
     private $qty;
     private $date_created;
@@ -32,7 +32,8 @@ class Cart extends db_connection
         $result = $stmt->get_result()->fetch_assoc();
         if ($result) {
             $this->p_id = $result['p_id'];
-            $this->ip_id = $result['ip_add'];
+            $this->ip_add = $result['ip_add'];
+            $this->c_id = $result['c_id'];
             $this->qty = $result['qty'];
             $this->date_created = isset($result['date_created']) ? $result['date_created'] : null;
         }
@@ -94,19 +95,19 @@ class Cart extends db_connection
             $stmt->bind_param("ii", $p_id, $c_id);
         } else {
             $stmt = $this->db->prepare("DELETE FROM cart WHERE p_id = ? AND ip_id = ?");
-            $stmt->bind_param("is", $p_id, $ip_id);
+            $stmt->bind_param("is", $p_id, $ip_add);
         }
         return $stmt->execute();
     }
 
     // empty cart
-    public function empty_cart($ip_id) {
+     public function empty_cart($ip_add, $c_id = null) {
         if ($c_id) {
             $stmt = $this->db->prepare("DELETE FROM cart WHERE c_id = ?");
             $stmt->bind_param("i", $c_id);
         } else {
-            $stmt = $this->db->prepare("DELETE FROM cart WHERE ip_id = ?");
-            $stmt->bind_param("s", $ip_id);
+            $stmt = $this->db->prepare("DELETE FROM cart WHERE ip_add = ?");
+            $stmt->bind_param("s", $ip_add);
         }
         return $stmt->execute();
     }
