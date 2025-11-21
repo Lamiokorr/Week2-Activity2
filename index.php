@@ -1,12 +1,18 @@
+<?php
+if (!session_id()) {
+	session_start();
+} ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Home</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<style>
-	* {
+		* {
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
@@ -27,7 +33,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background-image: 
+			background-image:
 				repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(255, 107, 53, 0.015) 50px, rgba(255, 107, 53, 0.015) 100px),
 				repeating-linear-gradient(-45deg, transparent, transparent 50px, rgba(233, 30, 99, 0.015) 50px, rgba(233, 30, 99, 0.015) 100px);
 			z-index: 0;
@@ -61,7 +67,7 @@
 			font-style: oblique;
 		}
 
-		.menu-tray a { 
+		.menu-tray a {
 			margin-left: 8px;
 			border-radius: 10px;
 			transition: all 0.3s ease;
@@ -107,11 +113,11 @@
 			backdrop-filter: blur(10px);
 			border-radius: 20px;
 			padding: 60px 50px;
-			box-shadow: 
+			box-shadow:
 				0 10px 40px rgba(233, 30, 99, 0.15),
 				0 2px 8px rgba(255, 107, 53, 0.1);
 			border: 2px solid transparent;
-			background-image: 
+			background-image:
 				linear-gradient(white, white),
 				linear-gradient(135deg, #ff6b35, #e91e63);
 			background-origin: border-box;
@@ -122,7 +128,7 @@
 			position: relative;
 		}
 
-		.welcome-card > * {
+		.welcome-card>* {
 			position: relative;
 			z-index: 1;
 		}
@@ -132,6 +138,7 @@
 				opacity: 0;
 				transform: translateY(30px);
 			}
+
 			to {
 				opacity: 1;
 				transform: translateY(0);
@@ -153,8 +160,13 @@
 		}
 
 		@keyframes fadeIn {
-			from { opacity: 0; }
-			to { opacity: 1; }
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
 		}
 
 		.subtitle {
@@ -178,7 +190,7 @@
 			h1 {
 				font-size: 2.8rem;
 			}
-			
+
 			.welcome-card {
 				padding: 40px 30px;
 			}
@@ -199,27 +211,28 @@
 		}
 	</style>
 </head>
+
 <body>
-	
+
 	<div class="menu-tray">
 		<span class="me-2">Menu:</span>
 
-    <?php if (!isset($_SESSION['customer_id'])): ?>
-        <!-- Not logged in -->
-        <a href="login/register.php" class="btn btn-sm btn-outline-primary">Register</a>
-        <a href="login/login.php" class="btn btn-sm btn-outline-secondary">Login</a>
+		<?php if (!isset($_SESSION['customer_id'])): ?>
+			<!-- Not logged in -->
+			<a href="login/register.php" class="btn btn-sm btn-outline-primary">Register</a>
+			<a href="login/login.php" class="btn btn-sm btn-outline-secondary">Login</a>
 
-    <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-        <!-- Logged in as admin -->
-        <a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
-        <a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Category</a>
-        <a href="admin/brand.php" class="btn btn-sm btn-outline-secondary">Brand</a>
+		<?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+			<!-- Logged in as admin -->
+			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
+			<a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Category</a>
+			<a href="admin/brand.php" class="btn btn-sm btn-outline-secondary">Brand</a>
 
-    <?php else: ?>
-        <!-- Logged in as normal user -->
-        <a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
-		<a href="view/cart.php" class="btn btn-sm btn-outline-secondary">Cart</a>
-    <?php endif; ?>
+		<?php else: ?>
+			<!-- Logged in as normal user -->
+			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
+			<a href="view/cart.php" class="btn btn-sm btn-outline-secondary">Cart</a>
+		<?php endif; ?>
 	</div>
 
 	<div class="container">
@@ -233,4 +246,5 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
