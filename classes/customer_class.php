@@ -83,7 +83,7 @@ public function loginCustomer($email, $password) {
         $stmt = $this->db->prepare("DELETE FROM customer WHERE customer_id = ?");
         $stmt ->bind_param("i", $customer_id);
         $stmt ->execute();
-        return $stmt->get_result()->fetch_assoc();
+         return $stmt->affected_rows > 0;
     }
 
 }

@@ -94,7 +94,7 @@ class Cart extends db_connection
             $stmt = $this->db->prepare("DELETE FROM cart WHERE p_id = ? AND c_id = ?");
             $stmt->bind_param("ii", $p_id, $c_id);
         } else {
-            $stmt = $this->db->prepare("DELETE FROM cart WHERE p_id = ? AND ip_id = ?");
+            $stmt = $this->db->prepare("DELETE FROM cart WHERE p_id = ? AND ip_add = ?");
             $stmt->bind_param("is", $p_id, $ip_add);
         }
         return $stmt->execute();

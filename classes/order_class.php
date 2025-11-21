@@ -39,7 +39,7 @@ class Order extends db_connection {
 
     // Create new order
     public function createOrder($customer_id, $invoice_no, $order_date, $order_status = 'Pending') {
-        $stmt = $this->db->prepare("INSERT INTO orders (customer_id, invoice_no, order_date, order_status) VALUES (?, ?, ?)");
+        $stmt = $this->db->prepare("INSERT INTO orders (customer_id, invoice_no, order_date, order_status) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("iiss", $customer_id, $invoice_no, $order_date, $order_status);
         if ($stmt->execute()) {
             return $this->db->insert_id;
@@ -56,7 +56,7 @@ class Order extends db_connection {
 
     // Record payment
     public function record_payment($pay_id, $amt, $customer_id, $order_id, $currency = 'GHS', $payment_date) {
-        $stmt = $this->db->prepare("INSERT INTO payment (pay_id, amt, customer_id, order_id, currency, payment_date) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $this->db->prepare("INSERT INTO payment (pay_id, amt, customer_id, order_id, currency, payment_date) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("idiiss", $pay_id, $amt, $customer_id, $order_id, $currency, $payment_date);
         return $stmt->execute();
     }
