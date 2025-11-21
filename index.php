@@ -222,11 +222,12 @@ if (!session_id()) {
 			<a href="login/register.php" class="btn btn-sm btn-outline-primary">Register</a>
 			<a href="login/login.php" class="btn btn-sm btn-outline-secondary">Login</a>
 
-		<?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === '1'): ?>
+		<?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == '1'): ?>
 			<!-- Logged in as admin -->
 			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
 			<a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Category</a>
 			<a href="admin/brand.php" class="btn btn-sm btn-outline-secondary">Brand</a>
+			<a><?php echo "Hello, " . htmlspecialchars($_SESSION['role']); ?></a>
 
 		<?php else: ?>
 			<!-- Logged in as normal user -->
