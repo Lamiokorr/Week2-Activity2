@@ -149,6 +149,7 @@
 			letter-spacing: -2px;
 			animation: fadeIn 1s ease 0.2s both;
 			font-style: oblique;
+			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 		}
 
 		@keyframes fadeIn {
@@ -224,7 +225,7 @@
 	<div class="container">
 		<div class="text-center">
 			<div class="welcome-card">
-				<h1>Welcome to KultureKart</h1>
+				<h1>Connect With Authentic African Artisan Crafts</h1>
 				<p class="text-muted">Use the menu in the top-right to Register or Login.</p>
 			</div>
 		</div>

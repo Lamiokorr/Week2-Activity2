@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (result && result.status === "success") {
-                window.location.href = "../admin/category.php";
+                window.location.href = "../index.php";
             } else {
                 Swal.fire({
                     icon: "error",
