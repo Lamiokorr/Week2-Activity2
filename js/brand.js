@@ -1,42 +1,38 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // CREATE BRAND 
-    const brandForm = document.querySelector("form[action='../actions/add_brand_action.php']");
-    if (brandForm) {
-        brandForm.addEventListener("submit", async (e) => {
+$(function() {
+    // CREATE BRAND - uses jQuery and expects input name='name' in #addBrandForm
+    var $addForm = $('#addBrandForm');
+    if ($addForm.length) {
+        $addForm.on('submit', function(e) {
             e.preventDefault();
-
-            const brandName = document.getElementById("brand_name").value.trim();
-            const categoryId = document.getElementById("cat_id").value;
-
-            //Validate
-            if (brandName === "" || categoryId === "") {
-                Swal.fire("Error", "Please enter a brand name and select a category.", "error");
+            var name = $.trim($('#brand_name').val());
+            if (!name) {
+                Swal.fire('Validation error', 'Please enter a brand name', 'error');
                 return;
             }
 
-            // Send request
-            try {
-                const formData = new FormData(brandForm);
-                const response = await fetch("../actions/add_brand_action.php", {
-                    method: "POST",
-                    body: formData
-                });
-
-                if (response.ok) {
-                    const result = await response.text();
-                    Swal.fire("Success", "Brand added successfully!", "success").then(() => {
-                        location.reload();
-                    });
-                } else {
-                    Swal.fire("Error", "Failed to add brand.", "error");
+            $.ajax({
+                url: '../actions/add_brand_action.php',
+                method: 'POST',
+                dataType: 'json',
+                data: { name: name },
+                success: function(res) {
+                    if (res && res.status === 'success') {
+                        Swal.fire('Success', res.message || 'Brand added', 'success').then(function() {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire('Error', (res && res.message) || 'Unable to add brand', 'error');
+                    }
+                },
+                error: function() {
+                    Swal.fire('Error', 'Request failed', 'error');
                 }
-            } catch (err) {
-                Swal.fire("Error", "Something went wrong while adding the brand.", "error");
-            }
+            });
         });
     }
 
-    // UPDATE BRAND 
+    // Keep existing update/delete handlers (vanilla JS using fetch) for now
+    // UPDATE BRAND
     document.querySelectorAll("form[action='../actions/update_brand_action.php']").forEach(form => {
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -68,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // DELETE BRAND 
+    // DELETE BRAND
     document.querySelectorAll("form[action='../actions/delete_brand_action.php']").forEach(form => {
         form.addEventListener("submit", async (e) => {
             e.preventDefault();

@@ -32,28 +32,17 @@ $categories = get_all_categories_ctr($user_id);
         <!-- CREATE -->
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-primary text-white">Add New Brand</div>
-            <div class="card-body">
-                <form action="../actions/add_brand_action.php" method="POST" class="row g-3">
-                    <div class="col-md-6">
-                        <label for="brand_name" class="form-label">Brand Name</label>
-                        <input type="text" class="form-control" name="brand_name" id="brand_name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="category_id" class="form-label">Category</label>
-                        <select name="category_id" id="category_id" class="form-select" required>
-                            <option value="">Select Category</option>
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?= $category['cat_id']; ?>">
-                                    <?= htmlspecialchars($category['cat_name']); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Add Brand</button>
-                    </div>
-                </form>
-            </div>
+                <div class="card-body">
+                    <form id="addBrandForm" class="row g-3">
+                        <div class="col-md-6">
+                            <label for="brand_name" class="form-label">Brand Name</label>
+                            <input type="text" class="form-control" name="name" id="brand_name" required>
+                        </div>
+                        <div class="col-12">
+                            <button id="add-brand" type="submit" class="btn btn-primary">Add Brand</button>
+                        </div>
+                    </form>
+                </div>
         </div>
 
         <!-- RETRIEVE + UPDATE + DELETE -->
@@ -108,6 +97,7 @@ $categories = get_all_categories_ctr($user_id);
             <div class="alert alert-warning">No brands found. Add one above!</div>
         <?php endif; ?>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/brand.js"></script>
 </body>
