@@ -17,15 +17,51 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
     <title>Manage Categories</title>
     <script src="../js/category.js" defer></script>
     <style>
-        body { font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif; margin: 20px; }
-        h2 { color: #333; }
-        form { margin-bottom: 20px; }
-        input[type="text"] { padding: 6px; margin-right: 10px; }
-        button { padding: 6px 12px; margin-left: 5px; }
-        table { border-collapse: collapse; width: 60%; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background: #f4f4f4; }
-    </style>
+        body { 
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+            font-style: oblique;
+            margin: 20px; 
+        }
+        
+        h2 { 
+            color: #333; 
+            font-style: oblique;
+        }
+        
+        form { 
+            margin-bottom: 20px; 
+        }
+        
+        input[type="text"] { 
+            padding: 6px; 
+            margin-right: 10px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-style: oblique;
+        }
+        
+        button { 
+            padding: 6px 12px; 
+            margin-left: 5px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-style: oblique;
+        }
+        
+        table { 
+            border-collapse: collapse; 
+            width: 60%; 
+        }
+        
+        th, td { 
+            border: 1px solid #ccc; 
+            padding: 8px; 
+            text-align: left;
+            font-style: oblique;
+        }
+        
+        th { 
+            background: #f4f4f4; 
+        }
+</style>
 </head>
 <body>
     <h2>Category Management</h2>
