@@ -66,7 +66,12 @@ class Category extends db_connection
     {
         $stmt = $this->db->prepare("SELECT * FROM categories");
         $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result();
+        $categories = [];
+        while ($row = $result->fetch_assoc()) {
+            $categories[] = $row;
+        }
+        return $categories;
     }
 
     // Update category
