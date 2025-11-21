@@ -10,6 +10,7 @@
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 
 		body {
@@ -260,6 +261,7 @@
     <?php else: ?>
         <!-- Logged in as normal user -->
         <a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
+		<a href="view/cart.php" class="btn btn-sm btn-outline-secondary">Cart</a>
     <?php endif; ?>
 	</div>
 
