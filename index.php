@@ -215,7 +215,7 @@ if (!session_id()) {
 <body>
 
 	<div class="menu-tray">
-		<span class="me-2">Menu:</span>
+		<!--<span class="me-2">Menu:</span> -->
 
 		<?php if (!isset($_SESSION['customer_id'])): ?>
 			<!-- Not logged in -->
