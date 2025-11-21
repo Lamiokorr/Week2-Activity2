@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let formData = new FormData(form);
 
+        // email = formData.get("customer_email").trim();
+        // password = formData.get("customer_pass").trim();
+
         try {
             let response = await fetch("../actions/login_customer_action.php", {
                 method: "POST",

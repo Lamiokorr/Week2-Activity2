@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +40,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(252, 176, 69, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 40% 20%, rgba(74, 144, 226, 0.3) 0%, transparent 50%);
@@ -57,14 +58,29 @@
         }
 
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .container {
@@ -184,9 +200,10 @@
         }
     </style>
 </head>
+
 <body>
     <div class="background"></div>
-    
+
     <div class="container">
         <div class="login-box">
             <div class="logo-section">
@@ -194,21 +211,21 @@
                 <h1>WELCOME<br>BACK</h1>
                 <p class="subtitle">Discover your next adventure</p>
             </div>
-            
+
             <form method="POST" action="../actions/login_customer_action.php" class="mt-4" id="login-form">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Address</label>
-                    <input type="email" placeholder="Enter your email address" required>
+                    <input id = "email" name = "customer_email" type="email" placeholder="Enter your email address" required>
                 </div>
                 <div class="mb-4">
-                     <label for="password" class="form-label">Password</label>
-                    <input type="password" placeholder="Enter your password" required>
+                    <label for="password" class="form-label">Password</label>
+                    <input id = "password" name = "customer_pass" type="password" placeholder="Enter your password" required>
                 </div>
                 <button type="submit" class="button">Login</button>
-                
+
                 <div class="card-footer" style="margin-top: 15px; text-align: center; background: transparent; border: none; color: rgba(255, 255, 255, 0.9); font-size: 14px;">
-                        New to KultureKart? <a href="register.php" class="highlight">Create an account</a>
-                    </div>
+                    New to KultureKart? <a href="register.php" class="highlight">Create an account</a>
+                </div>
 
             </form>
         </div>
@@ -223,13 +240,13 @@
         // Add interactive effects
         document.addEventListener('DOMContentLoaded', function() {
             const inputs = document.querySelectorAll('.form-control');
-            
+
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
                     this.style.transform = 'translateY(-3px)';
                     this.style.boxShadow = '0 8px 25px rgba(255, 107, 107, 0.25)';
                 });
-                
+
                 input.addEventListener('blur', function() {
                     this.style.transform = 'translateY(0)';
                     this.style.boxShadow = '0 0 0 0.25rem rgba(255, 107, 107, 0.25)';
@@ -259,4 +276,5 @@
     </script>
 
 </body>
+
 </html>
