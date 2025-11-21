@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let result = await response.text();
 
-            result = result.json();
+            // result = result.json();
 
             if (result.status === "success") {
                 //Redirects to landing page
