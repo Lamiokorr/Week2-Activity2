@@ -2,7 +2,7 @@
 require_once("../settings/core.php");
 require_once("../controllers/product_controller.php");
 
-if (!isLoggedIn() || !isAdmin()) {
+if (!isLoggedIn()) {
     header("Location: ../login/login.php");
     exit();
 }
