@@ -6,8 +6,8 @@ session_start();
 
 require_once '../controllers/customer_controller.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $_POST['customer_email'];
+    $password = $_POST['customer_pass'];
 
     if (empty($email) || empty($password)) {
         echo json_encode(["status" => "error", "message" => "Email and password required"]);
