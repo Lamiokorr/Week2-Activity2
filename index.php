@@ -227,7 +227,6 @@ if (!session_id()) {
 			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
 			<a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Category</a>
 			<a href="admin/brand.php" class="btn btn-sm btn-outline-secondary">Brand</a>
-			<a><?php echo "Hello, " . htmlspecialchars($_SESSION['role']); ?></a>
 
 		<?php else: ?>
 			<!-- Logged in as normal user -->
