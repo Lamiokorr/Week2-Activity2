@@ -1,3 +1,4 @@
+// ...existing code...
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("login-form");
 
@@ -6,32 +7,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let formData = new FormData(form);
 
-        // email = formData.get("customer_email").trim();
-        // password = formData.get("customer_pass").trim();
-
         try {
             let response = await fetch("../actions/login_customer_action.php", {
                 method: "POST",
                 body: formData
             });
 
-            let result = await response.text();
+            // parse JSON safely
+            let result;
+            const contentType = response.headers.get("content-type") || "";
+            if (contentType.includes("application/json")) {
+                result = await response.json();
+            } else {
+                // fallback: try to parse text as JSON (helps if PHP emitted warnings)
+                const text = await response.text();
+                try {
+                    result = JSON.parse(text);
+                } catch (err) {
+                    console.error("Invalid JSON from server:", text);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Login Failed",
+                        text: "Server returned invalid response."
+                    });
+                    return;
+                }
+            }
 
-            // result = result.json();
-
-            if (result.status === "success") {
-                //Redirects to landing page
+            if (result && result.status === "success") {
                 window.location.href = "../admin/category.php";
             } else {
-                // Show error with SweetAlert2
                 Swal.fire({
                     icon: "error",
                     title: "Login Failed",
-                    text: "Invalid email or password!"
+                    text: (result && result.message) ? result.message : "Invalid email or password!"
                 });
             }
         } catch (error) {
             console.error("Login error:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Login Failed",
+                text: "Network or server error."
+            });
         }
     });
 });
+// ...existing code...
