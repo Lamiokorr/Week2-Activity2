@@ -212,14 +212,14 @@
                 <p class="subtitle">Discover your next adventure</p>
             </div>
 
-            <form method="POST" action="../actions/login_customer_action.php" class="mt-4" id="login-form">
+            <form method="POST" class="mt-4" id="login-form">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Address</label>
-                    <input id = "email" name = "customer_email" type="email" placeholder="Enter your email address" required>
+                    <input id="email" name="customer_email" type="email" placeholder="Enter your email address" required>
                 </div>
                 <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
-                    <input id = "password" name = "customer_pass" type="password" placeholder="Enter your password" required>
+                    <input id="password" name="customer_pass" type="password" placeholder="Enter your password" required>
                 </div>
                 <button type="submit" class="button">Login</button>
 
