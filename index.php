@@ -204,12 +204,12 @@
 	<div class="menu-tray">
 		<span class="me-2">Menu:</span>
 
-    <?php if (!isset($_SESSION['user_id'])): ?>
+    <?php if (!isset($_SESSION['customer_id'])): ?>
         <!-- Not logged in -->
         <a href="login/register.php" class="btn btn-sm btn-outline-primary">Register</a>
         <a href="login/login.php" class="btn btn-sm btn-outline-secondary">Login</a>
 
-    <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+    <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
         <!-- Logged in as admin -->
         <a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
         <a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Category</a>
