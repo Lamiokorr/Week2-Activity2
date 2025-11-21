@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 
 require_once("../settings/core.php");
 require_once("../controllers/product_controller.php");
+require_once("../controllers/brand_controller.php");
+require_once("../controllers/category_controller.php");
 
 if (!isLoggedIn()) {
     header("Location: ../login/login.php");
