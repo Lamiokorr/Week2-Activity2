@@ -225,8 +225,8 @@
 	<div class="container">
 		<div class="text-center">
 			<div class="welcome-card">
-				<h1>Connect With Authentic African Artisan Crafts</h1>
-				<p class="text-muted">Use the menu in the top-right to Register or Login.</p>
+				<h1>KultureKart</h1>
+				<p class="text-muted">Connect With Authentic African Artisan Crafts</p>
 			</div>
 		</div>
 	</div>
