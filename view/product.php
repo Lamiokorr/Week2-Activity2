@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once("../settings/core.php");
 require_once("../controllers/product_controller.php");
 
@@ -23,7 +27,7 @@ $categories = get_all_categories_ctr($user_id);
     <script src="../js/product.js" defer></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             background-color: #fafafa;
             padding: 20px;
         }
