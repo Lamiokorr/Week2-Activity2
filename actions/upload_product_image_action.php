@@ -11,9 +11,9 @@ $file = $_FILES['productImage'];
 $uploadDir = "../uploads/products/";
 
 // Create upload folder if it doesn’t exist
-//if (!file_exists($uploadDir)) {
-  //  mkdir($uploadDir, 0777, true);
-//} 
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+} 
 
 // Allowed file types
 $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];

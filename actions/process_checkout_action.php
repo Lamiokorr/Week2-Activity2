@@ -58,7 +58,8 @@ if (!$okDetail) {
 // Record simulated payment
 $currency = 'GHS';
 $payment_date = date('Y-m-d');
-$okPay = record_payment_ctr($pay_id, $amt, $customer_id, $order_id, $currency, $payment_date);
+$pay_id = rand(1000000, 9999999);
+$okPay = record_payment_ctr($pay_id, $total, $c_id, $order_id, $currency, $payment_date);
 
 if (!$okPay) {
     echo json_encode(['status'=>'error','message'=>'Payment recording failed']);
