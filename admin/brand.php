@@ -1,6 +1,7 @@
 <?php
 require_once("../settings/core.php");
 require_once("../controllers/brand_controller.php");
+require_once("../controllers/category_controller.php");
 
 if (!isLoggedIn() || !isAdmin()) {
     header("Location: ../login/login.php");
@@ -9,7 +10,7 @@ if (!isLoggedIn() || !isAdmin()) {
 
 $user_id = $_SESSION['customer_id'];
 $brands = get_all_brands_ctr($user_id);
-//$categories = get_all_categories_ctr($user_id);
+$categories = get_all_categories_ctr($user_id);
 
 ?>
 
