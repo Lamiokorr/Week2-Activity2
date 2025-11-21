@@ -17,7 +17,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
     <title>Manage Categories</title>
     <script src="../js/category.js" defer></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
+        body { font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif; margin: 20px; }
         h2 { color: #333; }
         form { margin-bottom: 20px; }
         input[type="text"] { padding: 6px; margin-right: 10px; }
