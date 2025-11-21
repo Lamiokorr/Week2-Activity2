@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let result = await response.text();
 
-            if (result === "success") {
+            result = result.json();
+
+            if (result.status === "success") {
                 //Redirects to landing page
                 window.location.href = "../admin/category.php";
             } else {
