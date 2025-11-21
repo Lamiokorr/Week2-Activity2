@@ -9,7 +9,7 @@ if (!isLoggedIn() || !isAdmin()) {
 
 $user_id = $_SESSION['customer_id'];
 $brands = get_all_brands_ctr($user_id);
-$categories = get_all_categories_ctr($user_id);
+//$categories = get_all_categories_ctr($user_id);
 
 ?>
 
