@@ -232,6 +232,7 @@ if (!session_id()) {
 			<!-- Logged in as normal user -->
 			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
 			<a href="view/cart.php" class="btn btn-sm btn-outline-secondary">Cart</a>
+			<a href="view/product.php" class="btn btn-sm btn-outline-secondary">Product</a>
 		<?php endif; ?>
 	</div>
 
