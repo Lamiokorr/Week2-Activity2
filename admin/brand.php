@@ -83,7 +83,7 @@ $categories = get_all_categories_ctr($user_id);
                                             <!-- DELETE -->
                                             <form action="../actions/delete_brand_action.php" method="POST" class="d-inline">
                                                 <input type="hidden" name="brand_id" value="<?= $brand['brand_id']; ?>">
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this brand?');">Delete</button>
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
