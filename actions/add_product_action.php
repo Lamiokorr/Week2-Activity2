@@ -7,8 +7,9 @@ require_once '../settings/file_helpers.php';
 require_once '../controllers/product_controller.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $product_cat      = intval($_POST['product_cat'] ?? 0);
-    $product_brand    = intval($_POST['product_brand'] ?? 0);
+    // Accept either product_cat/product_brand or category_id/brand_id for compatibility with different forms
+    $product_cat      = intval($_POST['product_cat'] ?? $_POST['category_id'] ?? 0);
+    $product_brand    = intval($_POST['product_brand'] ?? $_POST['brand_id'] ?? 0);
     $product_title    = trim($_POST['product_title'] ?? '');
     $product_price    = floatval($_POST['product_price'] ?? 0);
     $product_desc     = trim($_POST['product_desc'] ?? '');
