@@ -200,7 +200,7 @@ $categories = get_all_categories_ctr($user_id);
                 <?php
                 $found = false;
                 foreach ($products as $product):
-                    if ($product['cat_id'] == $cat['cat_id']):
+                    if ($product['product_cat'] == $cat['cat_id']):
                         $found = true;
                 ?>
                         <div class="product-card">
@@ -216,8 +216,8 @@ $categories = get_all_categories_ctr($user_id);
                                 data-price="<?= htmlspecialchars($product['product_price']) ?>"
                                 data-desc="<?= htmlspecialchars($product['product_desc']) ?>"
                                 data-keywords="<?= htmlspecialchars($product['product_keywords']) ?>"
-                                data-cat="<?= $product['cat_id'] ?>"
-                                data-brand="<?= $product['brand_id'] ?>"
+                                data-cat="<?= $product['product_cat'] ?>"
+                                data-brand="<?= $product['product_brand'] ?>"
                                 data-image="<?= htmlspecialchars($product['product_image']) ?>">
                                 Edit
                             </button>
