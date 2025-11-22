@@ -27,7 +27,7 @@ $categories = get_all_categories_ctr($user_id);
     <meta charset="UTF-8">
     <title>Product Management</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/product.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
