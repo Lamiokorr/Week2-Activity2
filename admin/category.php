@@ -24,7 +24,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cambria', 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif;
             background: linear-gradient(135deg, #fff8f0 0%, #fff0f5 50%, #ffe8f0 100%);
             min-height: 100vh;
             position: relative;
@@ -399,6 +399,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
 </head>
 <body>
     <h2>Category Management</h2>
+         <a href="../index.php" class="btn-back">Back to Home</a>
 
     <!-- CREATE -->
     <h3>Add New Category</h3>
