@@ -31,7 +31,7 @@ $categories = get_all_categories_ctr($user_id);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             background: linear-gradient(135deg, #fff8f0 0%, #fff0f5 50%, #ffe8f0 100%);
             min-height: 100vh;
             position: relative;
@@ -361,7 +361,7 @@ $categories = get_all_categories_ctr($user_id);
 </head>
 
 <body class="bg-light">
-     <a href="../index.php" class="btn-back">← Back to Home</a>
+     <a href="../index.php" class="btn-back">Back to Home</a>
 
     <div class="container py-5">
         <h2 class="text-center mb-4">Brand Management</h2>

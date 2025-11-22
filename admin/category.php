@@ -74,7 +74,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
     </form>
 
     <!-- RETRIEVE + UPDATE + DELETE -->
-    <h3>Your Categories</h3>
+    <h3>Categories Available</h3>
     <table>
         <thead>
             <tr>
