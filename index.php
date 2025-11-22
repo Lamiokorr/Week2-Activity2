@@ -225,13 +225,13 @@ if (!session_id()) {
 		<?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == '1'): ?>
 			<!-- Logged in as admin -->
 			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
-			<a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Category</a>
-			<a href="admin/brand.php" class="btn btn-sm btn-outline-secondary">Brand</a>
+			<a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Categories</a>
+			<a href="admin/brand.php" class="btn btn-sm btn-outline-secondary">Brands</a>
 
 		<?php else: ?>
 			<!-- Logged in as normal user -->
 			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
-			<a href="view/cart.php" class="btn btn-sm btn-outline-secondary">Cart</a>
+			<a href="view/cart.php" class="btn btn-sm btn-outline-secondary">My Cart</a>
 			<a href="view/product.php" class="btn btn-sm btn-outline-secondary">Products</a>
 		<?php endif; ?>
 	</div>
