@@ -1,126 +1,105 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const productForm = document.getElementById("productForm");
-    const saveBtn = document.getElementById("saveProductBtn");
-    const fileInput = document.getElementById("product_image");
-    const modal = document.getElementById("feedbackModal");
-    const modalMessage = document.getElementById("modalMessage");
+/* jQuery-based product form submit and file upload
+   Submits FormData via AJAX (processData:false, contentType:false)
+   Matches field names used by `add_product_action.php` and `update_product_action.php`.
+*/
+$(function() {
+    var $form = $('#productForm');
+    var $save = $('#saveProductBtn');
+    var $file = $('#product_image');
+    var $modal = $('#feedbackModal');
+    var $modalMessage = $('#modalMessage');
 
-    //Show feedback modal
     function showModal(message, success = true) {
-        modalMessage.textContent = message;
-        modalMessage.style.color = success ? "green" : "red";
-        modal.style.display = "block";
-
-        setTimeout(() => {
-            modal.style.display = "none";
-        }, 3000);
+        if ($modalMessage.length) {
+            $modalMessage.text(message).css('color', success ? 'green' : 'red');
+            $modal.show();
+            setTimeout(function() { $modal.hide(); }, 3000);
+        } else {
+            alert(message);
+        }
     }
 
-    //Validate form inputs
     function validateProductForm() {
-        const name = document.getElementById("product_title").value.trim();
-        const price = document.getElementById("product_price").value.trim();
-        const brand = document.getElementById("brand_id").value;
-        const category = document.getElementById("category_id").value;
+        var name = $.trim($('#product_title').val() || '');
+        var price = $.trim($('#product_price').val() || '');
+        var brand = $('#brand_id').val() || '';
+        var category = $('#category_id').val() || '';
 
         if (!name || !price || !brand || !category) {
-            showModal("Please fill all required fields!", false);
+            showModal('Please fill all required fields!', false);
             return false;
         }
-
         if (isNaN(price) || parseFloat(price) <= 0) {
-            showModal("Please enter a valid price!", false);
+            showModal('Please enter a valid price!', false);
             return false;
         }
-
         return true;
     }
 
-    // Handle Add/Update Product via form submit
-    productForm?.addEventListener("submit", async function (e) {
+    $form.on('submit', function(e) {
         e.preventDefault();
 
         if (!validateProductForm()) return;
 
-        const formData = new FormData(productForm);
+        var fd = new FormData(this);
 
-        // determine whether this is an update or create by product_id
-        const productId = formData.get('product_id') || '';
-        const url = productId ? "../actions/update_product_action.php" : "../actions/add_product_action.php";
+        // Add compatibility keys the server may expect
+        if (fd.has('category_id') && !fd.has('product_cat')) fd.append('product_cat', fd.get('category_id'));
+        if (fd.has('brand_id') && !fd.has('product_brand')) fd.append('product_brand', fd.get('brand_id'));
 
-        try {
-            const response = await fetch(url, {
-                method: "POST",
-                body: formData
-            });
+        var productId = fd.get('product_id') || '';
+        var url = productId ? '../actions/update_product_action.php' : '../actions/add_product_action.php';
 
-            const result = await response.json();
+        $save.prop('disabled', true);
 
-            if (result.success) {
-                showModal(productId ? "Product updated successfully!" : "Product added successfully!");
-                if (!productId) productForm.reset();
-            } else {
-                showModal((productId ? "Failed to update product: " : "Failed to add product: ") + result.message, false);
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: fd,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function(res) {
+                if (res && res.success) {
+                    showModal(productId ? 'Product updated successfully!' : 'Product added successfully!');
+                    if (!productId) $form[0].reset();
+                } else {
+                    var msg = (res && res.message) ? res.message : 'Server returned an error';
+                    showModal((productId ? 'Failed to update product: ' : 'Failed to add product: ') + msg, false);
+                }
+            },
+            error: function(xhr, status, err) {
+                console.error('AJAX Error:', status, err, xhr.responseText);
+                showModal('Request failed. See console for details.', false);
+            },
+            complete: function() {
+                $save.prop('disabled', false);
             }
-        } catch (error) {
-            console.error(error);
-            showModal((productId ? "Error updating product." : "Error adding product. Please try again."), false);
-        }
+        });
     });
 
-    //Handle Update Product
-    updateBtn?.addEventListener("click", async function (e) {
-        e.preventDefault();
+    // Optional: image-only upload handler (keeps compatibility)
+    $file.on('change', function() {
+        var f = this.files && this.files[0];
+        if (!f) return;
+        var upload = new FormData();
+        upload.append('product_image', f);
+        upload.append('productImage', f);
 
-        if (!validateProductForm()) return;
-
-        const formData = new FormData(productForm);
-
-        try {
-            const response = await fetch("../actions/update_product_action.php", {
-                method: "POST",
-                body: formData
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                showModal("Product updated successfully!");
-            } else {
-                showModal("Failed to update product: " + result.message, false);
+        $.ajax({
+            url: '../actions/upload_product_image_action.php',
+            method: 'POST',
+            data: upload,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function(res) {
+                if (res && res.success) showModal('Image uploaded successfully!');
+                else showModal('Image upload failed: ' + (res && res.message ? res.message : 'unknown'), false);
+            },
+            error: function() {
+                showModal('Image upload failed (request error)', false);
             }
-        } catch (error) {
-            console.error(error);
-            showModal("Error updating product.", false);
-        }
-    });
-
-    //Handle Image Upload (optional separate upload)
-    fileInput?.addEventListener("change", async function () {
-        const file = fileInput.files[0];
-        if (!file) return;
-
-        const formData = new FormData();
-        // accept either name expected by server
-        formData.append("product_image", file);
-        formData.append("productImage", file);
-
-        try {
-            const response = await fetch("../actions/upload_product_image_action.php", {
-                method: "POST",
-                body: formData
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                showModal("Image uploaded successfully!");
-            } else {
-                showModal("Image upload failed: " + result.message, false);
-            }
-        } catch (error) {
-            console.error(error);
-            showModal("Error uploading image.", false);
-        }
+        });
     });
 });
