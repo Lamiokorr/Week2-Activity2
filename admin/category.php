@@ -403,25 +403,29 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
     </style>
 </head>
 <body>
-    <h2>Category Management</h2>
          <a href="../index.php" class="btn-back">Back to Home</a>
+         <div class="container">
+            <h2>Category Management</h2>
 
     <!-- CREATE -->
-    <h3>Add New Category</h3>
-    <form id="addCategoryForm">
-        <input type="text" name="name" placeholder="Enter category name" required>
-        <button type="submit">Add Category</button>
+     <div class="form-card">
+        <h3>Add New Category</h3>
+        <form id="addCategoryForm">
+            <input type="text" name="name" placeholder="Enter category name" required>
+            <button type="submit">Add Category</button>
     </form>
+    </div>
 
     <!-- RETRIEVE + UPDATE + DELETE -->
-    <h3>Categories Available</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Category Name</th>
-                <th>Actions</th>
-            </tr>
+       <div class="table-card">
+        <h3>Categories Available</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Category Name</th>
+                    <th>Actions</th>
+                </tr>
         </thead>
         <tbody id="categoryList">
             <?php if (!empty($categories)): ?>
@@ -440,6 +444,8 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
             <?php endif; ?>
         </tbody>
     </table>
+            </div>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/category.js"></script>
 </body>
