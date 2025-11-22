@@ -206,7 +206,7 @@ $categories = get_all_categories_ctr($user_id);
                         <div class="product-card">
                             <img src="../images/product/<?= htmlspecialchars($product['product_image']) ?>" alt="Product Image">
                             <h4><?= htmlspecialchars($product['product_title']) ?></h4>
-                            <p><strong>Brand:</strong> <?= htmlspecialchars($product['brand_name']) ?></p>
+                            <p><strong>Brand:</strong> <?= htmlspecialchars($product['product_brand']) ?></p>
                             <p><strong>Price:</strong> GHS <?= htmlspecialchars($product['product_price']) ?></p>
                             <p><strong>Keywords:</strong> <?= htmlspecialchars($product['product_keywords']) ?></p>
 
