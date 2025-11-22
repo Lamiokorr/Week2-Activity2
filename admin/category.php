@@ -12,11 +12,12 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Manage Categories</title>
     <script src="../js/category.js" defer></script>
-     <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -39,7 +40,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
+            background-image:
                 repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(255, 107, 53, 0.02) 60px, rgba(255, 107, 53, 0.02) 120px),
                 repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(233, 30, 99, 0.02) 60px, rgba(233, 30, 99, 0.02) 120px);
             z-index: 0;
@@ -89,6 +90,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -100,6 +102,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -117,7 +120,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
             animation: fadeInUp 0.6s ease;
             transition: all 0.3s ease;
             border: 3px solid transparent;
-            background-image: 
+            background-image:
                 linear-gradient(white, white),
                 linear-gradient(135deg, #ff6b35, #e91e63);
             background-origin: border-box;
@@ -344,7 +347,8 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
             color: #e91e63;
         }
 
-        .form-card, .table-card {
+        .form-card,
+        .table-card {
             position: relative;
         }
 
@@ -362,7 +366,8 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
                 font-size: 1.2rem;
             }
 
-            .form-card, .table-card {
+            .form-card,
+            .table-card {
                 padding: 1.5rem;
             }
 
@@ -383,7 +388,8 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
                 font-size: 0.9rem;
             }
 
-            th, td {
+            th,
+            td {
                 padding: 0.75rem 0.5rem;
             }
 
@@ -399,54 +405,75 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
                 padding: 0.5rem 1rem;
                 font-size: 0.9rem;
             }
+
+            .site-logo {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                width: 120px;
+                height: auto;
+                z-index: 1001;
+                transition: all 0.3s ease;
+                filter: drop-shadow(0 4px 10px rgba(255, 107, 53, 0.2));
+            }
+
+            .site-logo:hover {
+                transform: scale(1.05);
+                filter: drop-shadow(0 6px 15px rgba(233, 30, 99, 0.3));
+            }
         }
     </style>
 </head>
+
 <body>
-         <a href="../index.php" class="btn-back">Back to Home</a>
-         <div class="container">
-            <h2>Category Management</h2>
+    <img src="C:\Users\Naa Lamiokor\Downloads\KultureKart Logo_ChatGPT Image.png" alt="KultureKart Logo" class="site-logo">
+    <a href="../index.php" class="btn-back" style="left: 160px;">Back to Home</a>
+    <div class="container">
+        <h2>Category Management</h2>
 
-    <!-- CREATE -->
-     <div class="form-card">
-        <h3>Add New Category</h3>
-        <form id="addCategoryForm">
-            <input type="text" name="name" placeholder="Enter category name" required>
-            <button type="submit">Add Category</button>
-    </form>
-    </div>
-
-    <!-- RETRIEVE + UPDATE + DELETE -->
-       <div class="table-card">
-        <h3>Categories Available</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Category Name</th>
-                    <th>Actions</th>
-                </tr>
-        </thead>
-        <tbody id="categoryList">
-            <?php if (!empty($categories)): ?>
-                <?php foreach ($categories as $cat): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($cat['cat_id']); ?></td>
-                        <td><?php echo htmlspecialchars($cat['cat_name']); ?></td>
-                        <td>
-                            <button onclick="updateCategory(<?php echo $cat['cat_id']; ?>, '<?php echo $cat['cat_name']; ?>')">Update</button>
-                            <button onclick="deleteCategory(<?php echo $cat['cat_id']; ?>)">Delete</button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="3">No categories found.</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-            </div>
+        <!-- CREATE -->
+        <div class="form-card">
+            <h3>Add New Category</h3>
+            <form id="addCategoryForm">
+                <input type="text" name="name" placeholder="Enter category name" required>
+                <button type="submit">Add Category</button>
+            </form>
         </div>
+
+        <!-- RETRIEVE + UPDATE + DELETE -->
+        <div class="table-card">
+            <h3>Categories Available</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="categoryList">
+                    <?php if (!empty($categories)): ?>
+                        <?php foreach ($categories as $cat): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($cat['cat_id']); ?></td>
+                                <td><?php echo htmlspecialchars($cat['cat_name']); ?></td>
+                                <td>
+                                    <button onclick="updateCategory(<?php echo $cat['cat_id']; ?>, '<?php echo $cat['cat_name']; ?>')">Update</button>
+                                    <button onclick="deleteCategory(<?php echo $cat['cat_id']; ?>)">Delete</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="3">No categories found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/category.js"></script>
 </body>
+
 </html>
