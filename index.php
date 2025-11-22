@@ -213,9 +213,9 @@ if (!session_id()) {
 </head>
 
 <body>
-
+	<!-- <img src="" alt="KultureKart Logo" class="site-logo"> -->
 	<div class="menu-tray">
-		<!--<span class="me-2">Menu:</span> -->
+		<span>Welcome,</span>
 
 		<?php if (!isset($_SESSION['customer_id'])): ?>
 			<!-- Not logged in -->

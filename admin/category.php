@@ -426,7 +426,6 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
 </head>
 
 <body>
-    <img src="C:\Users\Naa Lamiokor\Downloads\KultureKart Logo_ChatGPT Image.png" alt="KultureKart Logo" class="site-logo">
     <a href="../index.php" class="btn-back" style="left: 160px;">Back to Home</a>
     <div class="container">
         <h2>Category Management</h2>
