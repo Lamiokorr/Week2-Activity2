@@ -361,6 +361,7 @@ $categories = get_all_categories_ctr($user_id);
 </head>
 
 <body class="bg-light">
+     <a href="../index.php" class="btn-back">← Back to Home</a>
 
     <div class="container py-5">
         <h2 class="text-center mb-4">Brand Management</h2>
