@@ -49,10 +49,15 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
         .container {
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
             padding-top: 100px;
+        }
+
+        .content-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
         }
 
         /* Header styling */
@@ -192,7 +197,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
 
         thead {
