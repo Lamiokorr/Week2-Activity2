@@ -220,6 +220,7 @@ if (!session_id()) {
 			<!-- Not logged in -->
 			<a href="login/register.php" class="btn btn-sm btn-outline-primary">Register</a>
 			<a href="login/login.php" class="btn btn-sm btn-outline-secondary">Login</a>
+			<a href="view/all_product.php" class="btn btn-sm btn-outline-secondary">Products</a>
 
 		<?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == '1'): ?>
 			<!-- Logged in as admin -->
