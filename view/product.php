@@ -29,7 +29,7 @@ $categories = get_all_categories_ctr($user_id);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-         * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -52,7 +52,7 @@ $categories = get_all_categories_ctr($user_id);
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
+            background-image:
                 repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(255, 107, 53, 0.02) 60px, rgba(255, 107, 53, 0.02) 120px),
                 repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(233, 30, 99, 0.02) 60px, rgba(233, 30, 99, 0.02) 120px);
             z-index: 0;
@@ -153,6 +153,7 @@ $categories = get_all_categories_ctr($user_id);
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -164,6 +165,7 @@ $categories = get_all_categories_ctr($user_id);
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -183,7 +185,7 @@ $categories = get_all_categories_ctr($user_id);
             margin-left: auto;
             margin-right: auto;
             border: 3px solid transparent;
-            background-image: 
+            background-image:
                 linear-gradient(white, white),
                 linear-gradient(135deg, #ff6b35, #e91e63);
             background-origin: border-box;
@@ -268,8 +270,13 @@ $categories = get_all_categories_ctr($user_id);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         /* Product Card */
@@ -478,102 +485,107 @@ $categories = get_all_categories_ctr($user_id);
 </head>
 
 <body>
+    <a href="../index.php" class="btn-back">← Back to Home</a>
 
-    <h1>Product Page</h1>
+    <div class="container">
+        <h1>Product Page</h1>
 
-    <!--CREATE / UPDATE FORM -->
-    <form id="productForm" enctype="multipart/form-data">
-        <input type="hidden" name="product_id" id="product_id">
+        <!--CREATE / UPDATE FORM -->
+        <div class="form-card">
+            <form id="productForm" enctype="multipart/form-data">
+                <input type="hidden" name="product_id" id="product_id">
 
-        <label for="product_title">Product Title:</label>
-        <input type="text" name="product_title" id="product_title" required>
+                <label for="product_title">Product Title:</label>
+                <input type="text" name="product_title" id="product_title" required>
 
-        <label for="product_price">Product Price:</label>
-        <input type="number" name="product_price" id="product_price" step="0.01" required>
+                <label for="product_price">Product Price:</label>
+                <input type="number" name="product_price" id="product_price" step="0.01" required>
 
-        <label for="product_desc">Product Description:</label>
-        <textarea name="product_desc" id="product_desc" rows="3" required></textarea>
+                <label for="product_desc">Product Description:</label>
+                <textarea name="product_desc" id="product_desc" rows="3" required></textarea>
 
-        <label for="product_keywords">Product Keywords:</label>
-        <input type="text" name="product_keywords" id="product_keywords" required>
+                <label for="product_keywords">Product Keywords:</label>
+                <input type="text" name="product_keywords" id="product_keywords" required>
 
-        <label for="category_id">Category:</label>
-        <select name="category_id" id="category_id" required>
-            <option value="">Select Category</option>
-            <?php foreach ($categories as $cat): ?>
-                <option value="<?= $cat['cat_id'] ?>"><?= htmlspecialchars($cat['cat_name']) ?></option>
-            <?php endforeach; ?>
-        </select>
+                <label for="category_id">Category:</label>
+                <select name="category_id" id="category_id" required>
+                    <option value="">Select Category</option>
+                    <?php foreach ($categories as $cat): ?>
+                        <option value="<?= $cat['cat_id'] ?>"><?= htmlspecialchars($cat['cat_name']) ?></option>
+                    <?php endforeach; ?>
+                </select>
 
-        <label for="brand_id">Brand:</label>
-        <select name="brand_id" id="brand_id" required>
-            <option value="">Select Brand</option>
-            <?php foreach ($brands as $brand): ?>
-                <option value="<?= $brand['brand_id'] ?>"><?= htmlspecialchars($brand['brand_name']) ?></option>
-            <?php endforeach; ?>
-        </select>
+                <label for="brand_id">Brand:</label>
+                <select name="brand_id" id="brand_id" required>
+                    <option value="">Select Brand</option>
+                    <?php foreach ($brands as $brand): ?>
+                        <option value="<?= $brand['brand_id'] ?>"><?= htmlspecialchars($brand['brand_name']) ?></option>
+                    <?php endforeach; ?>
+                </select>
 
-        <label for="product_image">Product Image:</label>
-        <input type="file" name="product_image" id="product_image" accept="image/*">
+                <label for="product_image">Product Image:</label>
+                <input type="file" name="product_image" id="product_image" accept="image/*">
 
-        <button type="submit" id="saveProductBtn">Save Product</button>
-    </form>
-
-    <!--DISPLAY PRODUCTS -->
-    <h2>Products by Category & Brand</h2>
-    <?php if (!empty($products)): ?>
-        <?php foreach ($categories as $cat): ?>
-            <h3><?= htmlspecialchars($cat['cat_name']) ?></h3>
-            <div class="product-container">
-                <?php
-                $found = false;
-                foreach ($products as $product):
-                    if ($product['product_cat'] == $cat['cat_id']):
-                        $found = true;
-                ?>
-                        <div class="product-card">
-                            <img src="../<?= htmlspecialchars($product['product_image']) ?>" alt="Product Image">
-                            <h4><?= htmlspecialchars($product['product_title']) ?></h4>
-                            <p><strong>Brand:</strong> <?= htmlspecialchars($product['product_brand']) ?></p>
-                            <p><strong>Price:</strong> GHS <?= htmlspecialchars($product['product_price']) ?></p>
-                            <p><strong>Keywords:</strong> <?= htmlspecialchars($product['product_keywords']) ?></p>
-
-                            <button class="edit-btn"
-                                data-id="<?= $product['product_id'] ?>"
-                                data-title="<?= htmlspecialchars($product['product_title']) ?>"
-                                data-price="<?= htmlspecialchars($product['product_price']) ?>"
-                                data-desc="<?= htmlspecialchars($product['product_desc']) ?>"
-                                data-keywords="<?= htmlspecialchars($product['product_keywords']) ?>"
-                                data-cat="<?= $product['product_cat'] ?>"
-                                data-brand="<?= $product['product_brand'] ?>"
-                                data-image="<?= htmlspecialchars($product['product_image']) ?>">
-                                Edit
-                            </button>
-
-                            <form action="../actions/delete_product_action.php" method="POST" class="deleteForm" style="display:inline;">
-                                <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                                <button type="submit" class="delete-btn">Delete</button>
-                            </form>
-                        </div>
-                <?php
-                    endif;
-                endforeach;
-                if (!$found) echo "<p>No products in this category yet.</p>";
-                ?>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>No products available yet.</p>
-    <?php endif; ?>
-
-    <div id="feedbackModal" class="modal">
-        <div class="modal-content">
-            <p id="modalMessage"></p>
+                <button type="submit" id="saveProductBtn">Save Product</button>
+            </form>
         </div>
-    </div>
 
+        <!--DISPLAY PRODUCTS -->
+        <h2>Products by Category & Brand</h2>
+        <?php if (!empty($products)): ?>
+            <?php foreach ($categories as $cat): ?>
+                <h3><?= htmlspecialchars($cat['cat_name']) ?></h3>
+                <div class="product-container">
+                    <?php
+                    $found = false;
+                    foreach ($products as $product):
+                        if ($product['product_cat'] == $cat['cat_id']):
+                            $found = true;
+                    ?>
+                            <div class="product-card">
+                                <img src="../<?= htmlspecialchars($product['product_image']) ?>" alt="Product Image">
+                                <h4><?= htmlspecialchars($product['product_title']) ?></h4>
+                                <p><strong>Brand:</strong> <?= htmlspecialchars($product['product_brand']) ?></p>
+                                <p><strong>Price:</strong> GHS <?= htmlspecialchars($product['product_price']) ?></p>
+                                <p><strong>Keywords:</strong> <?= htmlspecialchars($product['product_keywords']) ?></p>
 
-    <script src="../js/product.js"></script>
+                                <button class="edit-btn"
+                                    data-id="<?= $product['product_id'] ?>"
+                                    data-title="<?= htmlspecialchars($product['product_title']) ?>"
+                                    data-price="<?= htmlspecialchars($product['product_price']) ?>"
+                                    data-desc="<?= htmlspecialchars($product['product_desc']) ?>"
+                                    data-keywords="<?= htmlspecialchars($product['product_keywords']) ?>"
+                                    data-cat="<?= $product['product_cat'] ?>"
+                                    data-brand="<?= $product['product_brand'] ?>"
+                                    data-image="<?= htmlspecialchars($product['product_image']) ?>">
+                                    Edit
+                                </button>
+
+                                <form action="../actions/delete_product_action.php" method="POST" class="deleteForm" style="display:inline;">
+                                    <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                    <button type="submit" class="delete-btn">Delete</button>
+                                </form>
+                            </div>
+                    <?php
+                        endif;
+                    endforeach;
+                    if (!$found) echo "<p>No products in this category yet.</p>";
+                    ?>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No products available yet.</p>
+        <?php endif; ?>
+
+        <div id="feedbackModal" class="modal">
+            <div class="modal-content">
+                <p id="modalMessage">Action Completed Succesfully</p>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../js/product.js"></script>
 
 
 </body>
