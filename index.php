@@ -215,7 +215,7 @@ if (!session_id()) {
 <body>
 	<header>
 		<nav class ="navbar">
-			<h1><a id="logo">KultureKart</a></h1>
+			<h3><a id="logo">KultureKart</a></h3>
 			<ul>
 				<li><a href="index.php">Home</a></li>
 				<li><a href="view/all_product.php">Products</a></li>
