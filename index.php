@@ -213,9 +213,24 @@ if (!session_id()) {
 </head>
 
 <body>
-	<!-- <img src="" alt="KultureKart Logo" class="site-logo"> -->
+	<header>
+		<nav class ="navbar">
+			<h1><a id="logo">KultureKart</a></h1>
+			<ul>
+				<li><a href="index.php">Home</a></li>
+				<li><a href="view/all_product.php">Products</a></li>
+				<li><a href="view/cart.php">Cart</a></li>
+				<?php if (isset($_SESSION['customer_id'])): ?>
+					<li><a href="login/logout.php">Logout</a></li>
+				<?php else: ?>
+					<li><a href="login/login.php">Login</a></li>
+					<li><a href="login/register.php">Register</a></li>
+				<?php endif; ?>
+			</ul>
+		</nav>
+	</header>
 	<div class="menu-tray">
-		
+	
 
 		<?php if (!isset($_SESSION['customer_id'])): ?>
 			<!-- Not logged in -->
