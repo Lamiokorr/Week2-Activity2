@@ -173,6 +173,34 @@ if (!session_id()) {
 			z-index: 1000;
 		}
 
+		.navbar > ul{
+			display : flex;
+			list-style-type: none;
+			gap: 40px
+		}
+
+		#logo {
+			font-size: 40px;
+			text-decoration: none;
+		}
+
+		#logo:hover {
+			cursor: pointer;
+		}
+
+		.underline-text{
+			text-decoration-color: transparent;
+			text-underline-offset: 8px;
+			transition-property: text-decoration-color;
+			transition-duration: 1s;
+		}
+
+		.underline-text:hover {
+			text-decoration-color: #ff6b35;
+			transition-property: text-decoration-color;
+			transition-duration: 1s;
+		}
+
 		@keyframes fadeIn {
 			from {
 				opacity: 0;
