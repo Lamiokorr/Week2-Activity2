@@ -159,6 +159,20 @@ if (!session_id()) {
 			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 		}
 
+		.navbar{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 16px 32px;
+			background: rgba(255, 255, 255, 0.9);
+			backdrop-filter: blur(10px);
+			position: fixed;
+			width: 100%;
+			top: 0;
+			left: 0;
+			z-index: 1000;
+		}
+
 		@keyframes fadeIn {
 			from {
 				opacity: 0;
@@ -217,21 +231,20 @@ if (!session_id()) {
 		<nav class ="navbar">
 			<h3><a id="logo">KultureKart</a></h3>
 			<ul>
-				<li><a href="index.php">Home</a></li>
-				<li><a href="view/all_product.php">Products</a></li>
-				<li><a href="view/cart.php">Cart</a></li>
+				<li><a class="underline-text" href="index.php">Home</a></li>
+				<li><a class="underline-text" href="view/all_product.php">Products</a></li>
+				<li><a class="underline-text" href="view/cart.php">Cart</a></li>
 				<?php if (isset($_SESSION['customer_id'])): ?>
-					<li><a href="login/logout.php">Logout</a></li>
+					<li><a class="underline-text" href="login/logout.php">Logout</a></li>
 				<?php else: ?>
-					<li><a href="login/login.php">Login</a></li>
-					<li><a href="login/register.php">Register</a></li>
+					<li><a class="underline-text" href="login/login.php">Login</a></li>
+					<li><a class="underline-text" href="login/register.php">Register</a></li>
 				<?php endif; ?>
 			</ul>
 		</nav>
 	</header>
 	<div class="menu-tray">
 	
-
 		<?php if (!isset($_SESSION['customer_id'])): ?>
 			<!-- Not logged in -->
 			<a href="login/register.php" class="btn btn-sm btn-outline-primary">Register</a>
