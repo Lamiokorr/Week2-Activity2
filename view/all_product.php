@@ -464,21 +464,15 @@ if ($search_query || $cat_filter || $brand_filter) {
         </div>
     </nav>
 
-     <div class="filters">
-    <!-- Header Section -->
-    <div class="header-section">
-        <h1>Welcome to Our Store</h1>
-        <p>Discover Authentic African Artisan Crafts</p>
-        
-        <div class="search-container">
-            <form method="GET" action="../actions/product_actions.php" style="display: flex; width: 100%; gap: 0.5rem;">
-                <input type="text" name="search" placeholder="Search for products..." required>
-                <button name="search_btn" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
+    <h1>All Products</h1>
 
-     </div>
+    <div class="filters">
+
+        <!-- SEARCH FORM -->
+        <form class="search-bar" method="GET" action="../actions/product_actions.php">
+            <input type="text" name="search" placeholder="Search products..." required>
+            <button name="search_btn" type="submit">Search</button>
+        </form>
 
         <!-- CATEGORY FILTER -->
         <form method="GET" action="../actions/product_actions.php">
