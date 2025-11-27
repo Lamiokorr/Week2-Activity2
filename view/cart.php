@@ -10,9 +10,10 @@ $total = 0.0;
 ?>
 
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart</title>
     <style>
         * {
@@ -22,7 +23,7 @@ $total = 0.0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             background: linear-gradient(135deg, #fff8f0 0%, #fff0f5 50%, #ffe8f0 100%);
             min-height: 100vh;
             position: relative;
@@ -486,9 +487,9 @@ $total = 0.0;
 
             <!-- Action Buttons -->
             <div class="actions">
-                <a href="all_product.php"><button class ="btn-continue">Continue Shopping</button></a>
-                <button id="empty-cart" class ="btn-empty">Empty Cart</button>
-                <a href="checkout.php"><button id="checkout-btn" class ="btn-checkout">Proceed to Checkout</button></a>
+                <a href="all_product.php"><button class="btn-continue">Continue Shopping</button></a>
+                <button id="empty-cart" class="btn-empty">Empty Cart</button>
+                <a href="checkout.php"><button id="checkout-btn" class="btn-checkout">Proceed to Checkout</button></a>
             </div>
 
         <?php endif; ?>
