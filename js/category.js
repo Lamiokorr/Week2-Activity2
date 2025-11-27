@@ -28,7 +28,7 @@ function fetchCategories() {
                 data.forEach(cat => {
                     output += `
                     <tr>
-                        <td>${cat.cat_id}</td>
+                       
                         <td>${cat.cat_name}</td>
                         <td>
                             <button onclick="updateCategory(${cat.cat_id}, '${cat.cat_name}')">Update</button>
@@ -38,7 +38,7 @@ function fetchCategories() {
                 `;
                 });
             } else {
-                output = `<tr><td colspan="3">No categories found.</td></tr>`;
+                output = `<tr><td colspan="2">No categories found.</td></tr>`;
             }
             document.getElementById("categoryList").innerHTML = output;
         });
