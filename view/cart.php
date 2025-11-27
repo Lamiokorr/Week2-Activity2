@@ -11,6 +11,7 @@ $total = 0.0;
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Your Cart</title>
     <style>
@@ -37,7 +38,7 @@ $total = 0.0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
+            background-image:
                 repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(255, 107, 53, 0.02) 60px, rgba(255, 107, 53, 0.02) 120px),
                 repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(233, 30, 99, 0.02) 60px, rgba(233, 30, 99, 0.02) 120px);
             z-index: 0;
@@ -139,6 +140,7 @@ $total = 0.0;
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -160,6 +162,7 @@ $total = 0.0;
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -415,12 +418,13 @@ $total = 0.0;
         }
     </style>
 </head>
+
 <body>
-     <!-- Navigation Bar -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="../index.php" class="navbar-brand">
             <img src="../assets/images/logo.png" alt="KultureKart" class="navbar-logo">
-           <!-- <h2 class="navbar-title">KultureKart</h2> -->
+            <!-- <h2 class="navbar-title">KultureKart</h2> -->
         </a>
         <div class="navbar-menu">
             <a href="../index.php">Home</a>
@@ -428,63 +432,68 @@ $total = 0.0;
             <a href="../login/logout.php">Logout</a>
         </div>
     </nav>
-<div class="container">
+    <div class="container">
         <!-- Page Header -->
         <div class="page-header">
             <h1>Your Shopping Cart</h1>
         </div>
 
-<!-- Empty Cart State -->
- <div class="empty-cart" style="display: none;">        
-<?php if (empty($items)): ?>
-    <p>Your cart is empty. <a href="all_product.php">Continue shopping</a></p>
-<?php else: ?>
- </div>
+        <!-- Empty Cart State -->
+        <div class="empty-cart" style="display: none;">
+            <?php if (empty($items)): ?>
+                <p>Your cart is empty. <a href="all_product.php">Continue shopping</a></p>
+            <?php else: ?>
+        </div>
 
-<table class="cart-table">
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Qty</th>
-            <th>Subtotal</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="cart-items">
-    <?php foreach ($items as $it): 
-        $subtotal = floatval($it['product_price']) * intval($it['qty']);
-        $total += $subtotal;
-    ?>
-        <tr data-pid="<?php echo $it['p_id']; ?>">
-            <td class="cart-image"><img src="../product/<?php echo htmlspecialchars($it['product_image']); ?>" alt=""></td>
-            <td><?php echo htmlspecialchars($it['product_title']); ?></td>
-            <td>GHS <?php echo number_format($it['product_price'],2); ?></td>
-            <td>
-                <input type="number" min="1" value="<?php echo $it['qty']; ?>" class="qty-input" data-pid="<?php echo $it['p_id']; ?>">
-            </td>
-            <td class="subtotal">GHS <?php echo number_format($subtotal,2); ?></td>
-            <td>
-                <button class="remove-btn" data-pid="<?php echo $it['p_id']; ?>">Remove</button>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
 
-<div style="width:90%; margin: 10px auto; text-align:right;">
-    <strong>Total: GHS <?php echo number_format($total,2); ?></strong>
-</div>
+        <!-- Cart Content -->
+        <div class="cart-card">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <?php foreach ($items as $it):
+                        $subtotal = floatval($it['product_price']) * intval($it['qty']);
+                        $total += $subtotal;
+                    ?>
+                        <tr data-pid="<?php echo $it['p_id']; ?>">
+                            <td class="cart-image"><img src="../product/<?php echo htmlspecialchars($it['product_image']); ?>" alt=""></td>
+                            <td><?php echo htmlspecialchars($it['product_title']); ?></td>
+                            <td>GHS <?php echo number_format($it['product_price'], 2); ?></td>
+                            <td>
+                                <input type="number" min="1" value="<?php echo $it['qty']; ?>" class="qty-input" data-pid="<?php echo $it['p_id']; ?>">
+                            </td>
+                            <td class="subtotal">GHS <?php echo number_format($subtotal, 2); ?></td>
+                            <td>
+                                <button class="remove-btn" data-pid="<?php echo $it['p_id']; ?>">Remove</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
 
-<div class="actions">
-    <a href="all_product.php"><button>Continue Shopping</button></a>
-    <button id="empty-cart">Empty Cart</button>
-    <a href="checkout.php"><button id="checkout-btn">Proceed to Checkout</button></a>
-</div>
+            <div style="width:90%; margin: 10px auto; text-align:right;">
+                <strong>Total: GHS <?php echo number_format($total, 2); ?></strong>
+            </div>
 
-<?php endif; ?>
+            <!-- Action Buttons -->
+            <div class="actions">
+                <a href="all_product.php"><button class ="btn-continue">Continue Shopping</button></a>
+                <button id="empty-cart" class ="btn-empty">Empty Cart</button>
+                <a href="checkout.php"><button id="checkout-btn" class ="btn-checkout">Proceed to Checkout</button></a>
+            </div>
 
-<script src="../js/cart.js"></script>
+        <?php endif; ?>
+
+        <script src="../js/cart.js"></script>
 </body>
+
 </html>
