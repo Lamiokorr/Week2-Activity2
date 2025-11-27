@@ -454,7 +454,7 @@ if ($search_query || $cat_filter || $brand_filter) {
     <nav class="navbar">
         <a href="../index.php" class="navbar-brand">
             <img src="../assets/images/logo.png" alt="KultureKart" class="navbar-logo">
-            <h2 class="navbar-title">KultureKart</h2>
+            <!--<h2 class="navbar-title">KultureKart</h2> -->
         </a>
         <div class="navbar-menu">
             <a href="../index.php">Home</a>
