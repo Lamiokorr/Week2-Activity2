@@ -39,12 +39,13 @@ if ($search_query || $cat_filter || $brand_filter) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products</title>
     <style>
-         * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -56,7 +57,7 @@ if ($search_query || $cat_filter || $brand_filter) {
             min-height: 100vh;
         }
 
-         /* Header Section */
+        /* Header Section */
         .header-section {
             background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
             color: white;
@@ -70,7 +71,7 @@ if ($search_query || $cat_filter || $brand_filter) {
             font-weight: 700;
             font-style: oblique;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .header-section p {
@@ -95,12 +96,12 @@ if ($search_query || $cat_filter || $brand_filter) {
             border-radius: 50px;
             font-size: 1rem;
             font-style: oblique;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .search-container input:focus {
             outline: none;
-            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
         }
 
         .search-container button {
@@ -113,13 +114,13 @@ if ($search_query || $cat_filter || $brand_filter) {
             font-style: oblique;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .search-container button:hover {
             background: #ff8555;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,107,53,0.4);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
         }
 
         /* Main Content */
@@ -154,12 +155,12 @@ if ($search_query || $cat_filter || $brand_filter) {
             background: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(233,30,99,0.1);
+            box-shadow: 0 2px 10px rgba(233, 30, 99, 0.1);
         }
 
         .filters select:hover {
             border-color: #ff6b35;
-            box-shadow: 0 4px 15px rgba(255,107,53,0.2);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
             transform: translateY(-2px);
         }
 
@@ -181,6 +182,7 @@ if ($search_query || $cat_filter || $brand_filter) {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -192,14 +194,14 @@ if ($search_query || $cat_filter || $brand_filter) {
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(233,30,99,0.15);
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.15);
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(255,107,53,0.3);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
         .product-image {
@@ -277,7 +279,7 @@ if ($search_query || $cat_filter || $brand_filter) {
         .btn-cart:hover {
             background: linear-gradient(135deg, #e91e63 0%, #ff6b35 100%);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255,107,53,0.4);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
             color: white;
         }
 
@@ -300,7 +302,7 @@ if ($search_query || $cat_filter || $brand_filter) {
             border-radius: 25px;
             font-weight: 600;
             font-style: oblique;
-            box-shadow: 0 2px 10px rgba(233,30,99,0.15);
+            box-shadow: 0 2px 10px rgba(233, 30, 99, 0.15);
             transition: all 0.3s ease;
         }
 
@@ -308,7 +310,7 @@ if ($search_query || $cat_filter || $brand_filter) {
             background: linear-gradient(135deg, #ff6b35 0%, #e91e63 100%);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
         .pagination strong {
@@ -448,60 +450,72 @@ if ($search_query || $cat_filter || $brand_filter) {
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="../index.php" class="navbar-brand">
+            <img src="../assets/images/logo.png" alt="KultureKart" class="navbar-logo">
+            <h2 class="navbar-title">KultureKart</h2>
+        </a>
+        <div class="navbar-menu">
+            <a href="../index.php">Home</a>
+            <a href="cart.php">My Cart</a>
+            <a href="../login/logout.php">Logout</a>
+        </div>
+    </nav>
 
-<h1>All Products</h1>
+    <h1>All Products</h1>
 
-<div class="filters">
+    <div class="filters">
 
-    <!-- SEARCH FORM -->
-    <form class="search-bar" method="GET" action="../actions/product_actions.php">
-        <input type="text" name="search" placeholder="Search products..." required>
-        <button name ="search_btn" type="submit">Search</button>
-    </form>
+        <!-- SEARCH FORM -->
+        <form class="search-bar" method="GET" action="../actions/product_actions.php">
+            <input type="text" name="search" placeholder="Search products..." required>
+            <button name="search_btn" type="submit">Search</button>
+        </form>
 
-    <!-- CATEGORY FILTER -->
-    <form method="GET" action="../actions/product_actions.php">
-        <select id="categoryFilter" onchange="applyFilters()">
-        <option value="">All Categories</option>
+        <!-- CATEGORY FILTER -->
+        <form method="GET" action="../actions/product_actions.php">
+            <select id="categoryFilter" onchange="applyFilters()">
+                <option value="">All Categories</option>
+                <?php
+                require_once "../controllers/category_controller.php";
+                $categories = get_all_categories_ctr();
+                foreach ($categories as $cat) {
+                    echo "<option value='{$cat['cat_id']}'>{$cat['cat_name']}</option>";
+                }
+                ?>
+            </select>
+        </form>
+
+        <!-- BRAND FILTER -->
+        <form method="GET" action="../actions/product_actions.php">
+            <select id="brandFilter" onchange="applyFilters()">
+                <option value="">All Brands</option>
+                <?php
+                require_once "../controllers/brand_controller.php";
+                $brands = get_all_brands_ctr();
+                foreach ($brands as $brand) {
+                    echo "<option value='{$brand['brand_id']}'>{$brand['brand_name']}</option>";
+                }
+                ?>
+            </select>
+        </form>
+
+    </div>
+
+    <hr>
+
+    <!-- PRODUCT GRID -->
+    <div class="product-grid">
         <?php
-        require_once "../controllers/category_controller.php";
-        $categories = get_all_categories_ctr();
-        foreach ($categories as $cat) {
-            echo "<option value='{$cat['cat_id']}'>{$cat['cat_name']}</option>";
-        }
-        ?>
-    </select>
-    </form>
+        if (empty($products)) {
+            echo "<p>No products found.</p>";
+        } else {
+            foreach ($products as $product) {
+                $img = "../product/" . $product['product_image'];
+                $id = $product['product_id'];
 
-    <!-- BRAND FILTER -->
-    <form method="GET" action="../actions/product_actions.php">
-        <select id="brandFilter" onchange="applyFilters()">
-        <option value="">All Brands</option>
-        <?php
-        require_once "../controllers/brand_controller.php";
-        $brands = get_all_brands_ctr();
-        foreach ($brands as $brand) {
-            echo "<option value='{$brand['brand_id']}'>{$brand['brand_name']}</option>";
-        }
-        ?>
-    </select>
-    </form>
-
-</div>
-
-<hr>
-
-<!-- PRODUCT GRID -->
-<div class="product-grid">
-    <?php
-    if (empty($products)) {
-        echo "<p>No products found.</p>";
-    } else {
-        foreach ($products as $product) {
-            $img = "../product/" . $product['product_image'];
-            $id = $product['product_id'];
-
-            echo "
+                echo "
             <div class='product-card'>
                 <a href='single_product.php?id=$id'>
                     <img src='$img' alt='{$product['product_title']}'>
@@ -511,50 +525,57 @@ if ($search_query || $cat_filter || $brand_filter) {
                 <p><strong>Category:</strong> {$product['product_cat']}</p>
                 <p><strong>Brand:</strong> {$product['product_brand']}</p>
 
-                <a href='#' class='btn'>Add to Cart</a>
+                <a href='cart.php' class='btn'>Add to Cart</a>
             </div>
             ";
+            }
         }
-    }
-    ?>
-</div>
-<?php if (!$search_query && !$cat_filter && !$brand_filter): ?>
-<div style="margin-top: 20px; text-align:center;">
-    <?php if ($page > 1): ?>
-        <a href="?page=<?php echo $page - 1; ?>">← Previous</a>
+        ?>
+    </div>
+    <?php if (!$search_query && !$cat_filter && !$brand_filter): ?>
+        <div style="margin-top: 20px; text-align:center;">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?php echo $page - 1; ?>">← Previous</a>
+            <?php endif; ?>
+
+            <strong> Page <?php echo $page; ?> of <?php echo $total_pages; ?> </strong>
+
+            <?php if ($page < $total_pages): ?>
+                <a href="?page=<?php echo $page + 1; ?>">Next →</a>
+            <?php endif; ?>
+        </div>
     <?php endif; ?>
 
-    <strong> Page <?php echo $page; ?> of <?php echo $total_pages; ?> </strong>
+    
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 KultureKart. All rights reserved.
+    </div>
 
-    <?php if ($page < $total_pages): ?>
-        <a href="?page=<?php echo $page + 1; ?>">Next →</a>
-    <?php endif; ?>
-</div>
-<?php endif; ?>
+    <script>
+        function applyFilters(page = 1) {
+            const category = document.getElementById("categoryFilter").value;
+            const brand = document.getElementById("brandFilter").value;
 
-<script>
-function applyFilters(page = 1) {
-    const category = document.getElementById("categoryFilter").value;
-    const brand = document.getElementById("brandFilter").value;
+            const container = document.getElementById("product-container");
+            container.innerHTML = "<p>Loading products...</p>";
 
-    const container = document.getElementById("product-container");
-    container.innerHTML = "<p>Loading products...</p>";
+            fetch(`../actions/filter_products_ajax.php?page=${page}&category=${category}&brand=${brand}`)
+                .then(res => res.text())
+                .then(html => {
+                    container.innerHTML = html;
+                })
+                .catch(err => {
+                    container.innerHTML = "<p>Error loading products.</p>";
+                });
+        }
 
-    fetch(`../actions/filter_products_ajax.php?page=${page}&category=${category}&brand=${brand}`)
-        .then(res => res.text())
-        .then(html => {
-            container.innerHTML = html;
-        })
-        .catch(err => {
-            container.innerHTML = "<p>Error loading products.</p>";
+        // LOAD FIRST PAGE ON PAGE LOAD
+        document.addEventListener("DOMContentLoaded", function() {
+            loadProducts(1); // default pagination loader
         });
-}
-
-// LOAD FIRST PAGE ON PAGE LOAD
-document.addEventListener("DOMContentLoaded", function() {
-    loadProducts(1);  // default pagination loader
-});
-</script>
+    </script>
 
 </body>
+
 </html>
