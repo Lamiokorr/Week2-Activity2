@@ -445,7 +445,6 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
             <table>
                 <thead>
                     <tr>
-                        <!-- <th>ID</th> -->
                         <th>Category Name</th>
                         <th>Actions</th>
                     </tr>
