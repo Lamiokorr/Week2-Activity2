@@ -454,7 +454,6 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
                     <?php if (!empty($categories)): ?>
                         <?php foreach ($categories as $cat): ?>
                             <tr>
-                               
                                 <td><?php echo htmlspecialchars($cat['cat_name']); ?></td>
                                 <td>
                                     <button onclick="updateCategory(<?php echo $cat['cat_id']; ?>, '<?php echo $cat['cat_name']; ?>')">Update</button>
@@ -464,7 +463,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="3">No categories found.</td>
+                            <td colspan="2">No categories found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
