@@ -449,6 +449,7 @@ if ($search_query || $cat_filter || $brand_filter) {
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -464,65 +465,65 @@ if ($search_query || $cat_filter || $brand_filter) {
     </nav>
 
     < <!-- Header Section -->
-    <div class="header-section">
-        <h1>Welcome to Our Store</h1>
-        <p>Discover Authentic African Artisan Crafts</p>
-        
-        <div class="search-container">
-            <form method="GET" action="../actions/product_actions.php" style="display: flex; width: 100%; gap: 0.5rem;">
-                <input type="text" name="search" placeholder="Search for products..." required>
-                <button name="search_btn" type="submit">Search</button>
-            </form>
+        <div class="header-section">
+            <h1>Welcome to Our Store</h1>
+            <p>Discover Authentic African Artisan Crafts</p>
+
+            <div class="search-container">
+                <form method="GET" action="../actions/product_actions.php" style="display: flex; width: 100%; gap: 0.5rem;">
+                    <input type="text" name="search" placeholder="Search for products..." required>
+                    <button name="search_btn" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
 
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="container">
-            <!-- Filters -->
-              <div class="filters">
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container">
+                <!-- Filters -->
+                <div class="filters">
 
-        <!-- CATEGORY FILTER -->
-        <!--<form method="GET" action="../actions/product_actions.php"> -->
-            <select id="categoryFilter" onchange="applyFilters()">
-                <option value="">All Categories</option>
-                <?php
-                require_once "../controllers/category_controller.php";
-                $categories = get_all_categories_ctr();
-                foreach ($categories as $cat) {
-                    echo "<option value='{$cat['cat_id']}'>{$cat['cat_name']}</option>";
-                }
-                ?>
-            </select>
-        <!--</form> -->
+                    <!-- CATEGORY FILTER -->
+                    <!--<form method="GET" action="../actions/product_actions.php"> -->
+                    <select id="categoryFilter" onchange="applyFilters()">
+                        <option value="">All Categories</option>
+                        <?php
+                        require_once "../controllers/category_controller.php";
+                        $categories = get_all_categories_ctr();
+                        foreach ($categories as $cat) {
+                            echo "<option value='{$cat['cat_id']}'>{$cat['cat_name']}</option>";
+                        }
+                        ?>
+                    </select>
+                    <!--</form> -->
 
-        <!-- BRAND FILTER -->
-        <!--<form method="GET" action="../actions/product_actions.php"> -->
-            <select id="brandFilter" onchange="applyFilters()">
-                <option value="">All Brands</option>
-                <?php
-                require_once "../controllers/brand_controller.php";
-                $brands = get_all_brands_ctr();
-                foreach ($brands as $brand) {
-                    echo "<option value='{$brand['brand_id']}'>{$brand['brand_name']}</option>";
-                }
-                ?>
-            </select>
-       <!-- </form> -->
-    </div>
+                    <!-- BRAND FILTER -->
+                    <!--<form method="GET" action="../actions/product_actions.php"> -->
+                    <select id="brandFilter" onchange="applyFilters()">
+                        <option value="">All Brands</option>
+                        <?php
+                        require_once "../controllers/brand_controller.php";
+                        $brands = get_all_brands_ctr();
+                        foreach ($brands as $brand) {
+                            echo "<option value='{$brand['brand_id']}'>{$brand['brand_name']}</option>";
+                        }
+                        ?>
+                    </select>
+                    <!-- </form> -->
+                </div>
 
-    <!-- PRODUCT GRID -->
-    <div class="product-grid" id="product-container">
-        <?php
-        if (empty($products)) {
-            echo "<p>No products found.</p>";
-        } else {
-            foreach ($products as $product) {
-                $img = "../product/" . $product['product_image'];
-                $id = $product['product_id'];
+                <!-- PRODUCT GRID -->
+                <div class="product-grid" id="product-container">
+                    <?php
+                    if (empty($products)) {
+                        echo "<p>No products found.</p>";
+                    } else {
+                        foreach ($products as $product) {
+                            $img = "../product/" . $product['product_image'];
+                            $id = $product['product_id'];
 
-                echo "
+                            echo "
             <div class='product-card'>
                 <div class='product-image'>
                     <a href='single_product.php?id=$id'>
@@ -539,53 +540,49 @@ if ($search_query || $cat_filter || $brand_filter) {
                 </div>
             </div>
             ";
-            }
-        }
-        ?>
-    </div>
-    <?php if (!$search_query && !$cat_filter && !$brand_filter): ?>
-        <div style="margin-top: 20px; text-align:center;">
-            <?php if ($page > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>">← Previous</a>
-            <?php endif; ?>
+                        }
+                    }
+                    ?>
+                </div>
 
-            <strong> Page <?php echo $page; ?> of <?php echo $total_pages; ?> </strong>
+                <!-- PAGINATION -->
+                <?php if (!$search_query && !$cat_filter && !$brand_filter): ?>
+                    <div class="pagination" style="margin-top: 20px; text-align:center;">
+                        <?php if ($page > 1): ?>
+                            <a href="?page=<?php echo $page - 1; ?>">← Previous</a>
+                        <?php endif; ?>
 
-            <?php if ($page < $total_pages): ?>
-                <a href="?page=<?php echo $page + 1; ?>">Next →</a>
-            <?php endif; ?>
+                        <strong> Page <?php echo $page; ?> of <?php echo $total_pages; ?> </strong>
+
+                        <?php if ($page < $total_pages): ?>
+                            <a href="?page=<?php echo $page + 1; ?>">Next →</a>
+
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
-    <?php endif; ?>
 
-    
-    
-    <script>
-        function applyFilters(page = 1) {
+         <!-- Footer -->
+        <div class="footer">
+            © 2025 KultureKart. All rights reserved.
+        </div>
+
+       <script>
+        function applyFilters() {
             const category = document.getElementById("categoryFilter").value;
             const brand = document.getElementById("brandFilter").value;
 
-            const container = document.getElementById("product-container");
-            container.innerHTML = "<p>Loading products...</p>";
-
-            fetch(`../actions/filter_products_ajax.php?page=${page}&category=${category}&brand=${brand}`)
-                .then(res => res.text())
-                .then(html => {
-                    container.innerHTML = html;
-                })
-                .catch(err => {
-                    container.innerHTML = "<p>Error loading products.</p>";
-                });
+            // Build URL with filters
+            let url = window.location.pathname + '?';
+            if (category) url += 'category=' + category + '&';
+            if (brand) url += 'brand=' + brand;
+            
+            // Redirect to filtered page
+            window.location.href = url;
         }
-
-        // LOAD FIRST PAGE ON PAGE LOAD
-        document.addEventListener("DOMContentLoaded", function() {
-            loadProducts(1); // default pagination loader
-        });
     </script>
-<!-- Footer -->
-    <div class="footer">
-        © 2025 KultureKart. All rights reserved.
-    </div>
+       
 </body>
 
 </html>
