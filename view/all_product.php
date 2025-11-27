@@ -476,8 +476,15 @@ if ($search_query || $cat_filter || $brand_filter) {
         </div>
     </div>
 
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Filters -->
+              <div class="filters">
+
         <!-- CATEGORY FILTER -->
-        <form method="GET" action="../actions/product_actions.php">
+        <!--<form method="GET" action="../actions/product_actions.php"> -->
             <select id="categoryFilter" onchange="applyFilters()">
                 <option value="">All Categories</option>
                 <?php
@@ -488,10 +495,10 @@ if ($search_query || $cat_filter || $brand_filter) {
                 }
                 ?>
             </select>
-        </form>
+        <!--</form> -->
 
         <!-- BRAND FILTER -->
-        <form method="GET" action="../actions/product_actions.php">
+        <!--<form method="GET" action="../actions/product_actions.php"> -->
             <select id="brandFilter" onchange="applyFilters()">
                 <option value="">All Brands</option>
                 <?php
@@ -502,14 +509,11 @@ if ($search_query || $cat_filter || $brand_filter) {
                 }
                 ?>
             </select>
-        </form>
-
+       <!-- </form> -->
     </div>
 
-    <hr>
-
     <!-- PRODUCT GRID -->
-    <div class="product-grid">
+    <div class="product-grid" id="product-container">
         <?php
         if (empty($products)) {
             echo "<p>No products found.</p>";
@@ -520,15 +524,19 @@ if ($search_query || $cat_filter || $brand_filter) {
 
                 echo "
             <div class='product-card'>
-                <a href='single_product.php?id=$id'>
-                    <img src='$img' alt='{$product['product_title']}'>
+                <div class='product-image'>
+                    <a href='single_product.php?id=$id'>
+                        <img src='$img' alt='{$product['product_title']}'>
                 </a>
+                </div>
+            <div class='product-info'>
                 <h3>{$product['product_title']}</h3>
                 <p><strong>Price:</strong> \${$product['product_price']}</p>
                 <p><strong>Category:</strong> {$product['product_cat']}</p>
                 <p><strong>Brand:</strong> {$product['product_brand']}</p>
 
                 <a href='cart.php' class='btn'>Add to Cart</a>
+                </div>
             </div>
             ";
             }
