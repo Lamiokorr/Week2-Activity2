@@ -420,7 +420,7 @@ $total = 0.0;
     <nav class="navbar">
         <a href="../index.php" class="navbar-brand">
             <img src="../assets/images/logo.png" alt="KultureKart" class="navbar-logo">
-            <h2 class="navbar-title">KultureKart</h2>
+           <!-- <h2 class="navbar-title">KultureKart</h2> -->
         </a>
         <div class="navbar-menu">
             <a href="../index.php">Home</a>
@@ -428,11 +428,18 @@ $total = 0.0;
             <a href="../login/logout.php">Logout</a>
         </div>
     </nav>
-<h1>Your Cart</h1>
+<div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Your Shopping Cart</h1>
+        </div>
 
+<!-- Empty Cart State -->
+ <div class="empty-cart" style="display: none;">        
 <?php if (empty($items)): ?>
     <p>Your cart is empty. <a href="all_product.php">Continue shopping</a></p>
 <?php else: ?>
+ </div>
 
 <table class="cart-table">
     <thead>
