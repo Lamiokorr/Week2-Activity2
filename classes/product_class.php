@@ -83,7 +83,9 @@ class Product extends db_connection {
 
     //View all products
     public function view_all_products(){
-        $stmt = $this->db->prepare("SELECT * FROM products");
+        $stmt = $this->db->prepare("SELECT p.*, b.brand_name 
+                FROM products p 
+                LEFT JOIN brands b ON p.product_brand = b.brand_id");
         $stmt->execute();
         $result = $stmt->get_result();
         $products = [];
