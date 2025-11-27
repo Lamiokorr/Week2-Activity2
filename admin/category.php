@@ -16,7 +16,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
 <head>
     <meta charset="UTF-8">
     <title>Manage Categories</title>
-    <script src="../js/category.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * {
             margin: 0;
@@ -470,7 +470,7 @@ $categories = get_all_categories_ctr($user_id); // fetch categories for current 
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/category.js"></script>
+    <script src="../js/category.js?v=<?php echo time(); ?>"></script>
 </body>
 
 </html>

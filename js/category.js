@@ -28,7 +28,6 @@ function fetchCategories() {
                 data.forEach(cat => {
                     output += `
                     <tr>
-                       
                         <td>${cat.cat_name}</td>
                         <td>
                             <button onclick="updateCategory(${cat.cat_id}, '${cat.cat_name}')">Update</button>
