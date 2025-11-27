@@ -550,11 +550,7 @@ if ($search_query || $cat_filter || $brand_filter) {
     <?php endif; ?>
 
     
-    <!-- Footer -->
-    <div class="footer">
-        © 2025 KultureKart. All rights reserved.
-    </div>
-
+    
     <script>
         function applyFilters(page = 1) {
             const category = document.getElementById("categoryFilter").value;
@@ -578,7 +574,10 @@ if ($search_query || $cat_filter || $brand_filter) {
             loadProducts(1); // default pagination loader
         });
     </script>
-
+<!-- Footer -->
+    <div class="footer">
+        © 2025 KultureKart. All rights reserved.
+    </div>
 </body>
 
 </html>
