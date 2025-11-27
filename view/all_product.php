@@ -478,7 +478,7 @@ if ($search_query || $cat_filter || $brand_filter) {
         </div>
     </div>
 
-
+     </div>
 
         <!-- CATEGORY FILTER -->
         <form method="GET" action="../actions/product_actions.php">
