@@ -144,6 +144,14 @@ if (!session_id()) {
 			padding: 40px 0;
 			text-align: center;
 		}
+
+		.carousel-control-prev-icon,
+		.carousel-control-next-icon {
+			filter: invert(1);
+			background-color: rgba(233, 30, 99, 0.5);
+			border-radius: 50%;
+			padding: 20px;
+		}
 	</style>
 </head>
 
@@ -205,10 +213,40 @@ if (!session_id()) {
         <h2 class="section-title">Featured Products</h2>
 
         <?php
+        // Enable error reporting
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
+        // DATABASE CONNECTION
         require_once("controllers/product_controller.php");
-        $user_id = $_SESSION['customer_id'] ?? null;  // FIXED
-        $featured_products = view_all_products_ctr($user_id);  // FIXED
+        
+        // Debug: Check session
+        echo "<!-- DEBUG: Session ID = " . ($_SESSION['customer_id'] ?? 'NOT SET') . " -->";
+        
+        // Try to get products
+        try {
+            $featured_products = view_all_products_ctr();
+            
+            // Debug: Show what we got
+            echo "<!-- DEBUG: Product count = " . count($featured_products) . " -->";
+            echo "<!-- DEBUG: Products = " . print_r($featured_products, true) . " -->";
+            
+        } catch (Exception $e) {
+            echo "<!-- ERROR: " . $e->getMessage() . " -->";
+            $featured_products = [];
+        }
         ?>
+
+        <!-- Temporary: Show raw data -->
+        <div style="background: white; padding: 20px; margin: 20px 0; border: 2px solid red;">
+            <h4>DEBUG INFO:</h4>
+            <p><strong>Products Found:</strong> <?= count($featured_products) ?></p>
+            <?php if (!empty($featured_products)): ?>
+                <pre><?= print_r($featured_products[0] ?? 'No products', true) ?></pre>
+            <?php else: ?>
+                <p style="color: red;">No products returned from database!</p>
+            <?php endif; ?>
+        </div>
 
         <?php if (!empty($featured_products)): ?>
             <div id="kkCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -221,33 +259,49 @@ if (!session_id()) {
                             <?php $active = ""; ?>
                             <div class="row justify-content-center">
                                 <div class="col-md-5 text-center">
-                                    <!-- FIXED image path -->
-                                    <img src="product/<?= $product['product_image'] ?>"
+                                    <!-- Debug: Show actual path -->
+                                    <p>Image Path: product/<?= htmlspecialchars($product['product_image']) ?></p>
+                                    
+                                    <!-- Product Image -->
+                                    <img src="product/<?= htmlspecialchars($product['product_image']) ?>"
                                         class="d-block w-75 mx-auto rounded-4 shadow"
-                                        style="max-height:350px; object-fit:cover;">
+                                        style="max-height:350px; object-fit:cover;"
+                                        onerror="this.src='https://via.placeholder.com/350?text=Image+Not+Found'">
 
+                                    <!-- Product Info -->
                                     <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
-                                        <?= $product['product_title'] ?>
+                                        <?= htmlspecialchars($product['product_title']) ?>
                                     </h4>
 
                                     <p style="color:#ff6b35; font-size:1.2rem;">
                                         GHS <?= number_format($product['product_price'], 2) ?>
                                     </p>
 
-										<a href="view/single_product.php?id=<?= $product['product_id'] ?>"
-											class="btn btn-primary"
-											style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
-											View Product
-										</a>
+                                    <a href="view/single_product.php?id=<?= $product['product_id'] ?>"
+                                        class="btn btn-primary"
+                                        style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+                                        View Product
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
 
-									</div>
-								</div>
-
-							</div>
-
-						<?php endforeach; ?>
-
-					</div>
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#kkCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#kkCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        <?php else: ?>
+            <p class="text-center text-muted">No products available yet.</p>
+        <?php endif; ?>
+    </div>
+</section>
+										
 
 					<!-- Controls -->
 					<button class="carousel-control-prev" type="button" data-bs-target="#kkCarousel" data-bs-slide="prev">
