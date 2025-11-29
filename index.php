@@ -153,19 +153,17 @@ if (!session_id()) {
 			padding: 20px;
 		}
 
-		.feature-icon {
-			width: 120px;
-			height: 120px;
+		.feature-image {
+			width: 100%;
+			height: 200px;
 			object-fit: cover;
-			border-radius: 50%;
-			border: 4px solid #ff6b35;
+			border-radius: 15px;
 			box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
-			transition: all 0.3s ease;
+			transition: transform 0.3s ease;
 		}
 
-		.feature-card:hover .feature-icon {
-			transform: rotate(5deg) scale(1.1);
-			border-color: #e91e63;
+		.feature-card:hover .feature-image {
+			transform: scale(1.05);
 		}
 	</style>
 </head>
@@ -357,7 +355,7 @@ if (!session_id()) {
 					<div class="feature-card">
 						<img src="https://i.pinimg.com/originals/bf/02/3f/bf023f7dad8cdf1299357afdfb467106.jpg"
 							alt="Authenticity"
-							class="feature-icon mb-3">
+							class="feature-image mb-3">
 						<h4>Authenticity Verified</h4>
 						<p>Each product is culturally rooted, ethically made, and artisan-verified.</p>
 					</div>
