@@ -229,7 +229,7 @@ if (!session_id()) {
                             </h4>
 
                             <p style="color:#ff6b35; font-size:1.2rem;">
-                                GHS 45.00
+                                GHS 100.00
                             </p>
 
                             <a href="view/all_product.php"
@@ -281,7 +281,7 @@ if (!session_id()) {
                             </h4>
 
                             <p style="color:#ff6b35; font-size:1.2rem;">
-                                GHS 120.00
+                                GHS 140.00
                             </p>
 
                             <a href="view/all_product.php"
@@ -307,7 +307,7 @@ if (!session_id()) {
                             </h4>
 
                             <p style="color:#ff6b35; font-size:1.2rem;">
-                                GHS 65.00
+                                GHS 50.00
                             </p>
 
                             <a href="view/all_product.php"
