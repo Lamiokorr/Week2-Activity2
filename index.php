@@ -153,7 +153,7 @@ if (!session_id()) {
 		<nav class="navbar">
 			<h3>
 				<a href="index.php">
-					<img src="assets/logo_image.png"
+					<img src="assets/logo.png"
 						alt="KultureKart Logo"
 						style="height:55px; width:auto; object-fit:contain;">
 				</a>
