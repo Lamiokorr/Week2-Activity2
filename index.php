@@ -152,6 +152,21 @@ if (!session_id()) {
 			border-radius: 50%;
 			padding: 20px;
 		}
+
+		.feature-icon {
+			width: 120px;
+			height: 120px;
+			object-fit: cover;
+			border-radius: 50%;
+			border: 4px solid #ff6b35;
+			box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
+			transition: all 0.3s ease;
+		}
+
+		.feature-card:hover .feature-icon {
+			transform: rotate(5deg) scale(1.1);
+			border-color: #e91e63;
+		}
 	</style>
 </head>
 
@@ -208,130 +223,130 @@ if (!session_id()) {
 	</section>
 
 	<!-- FEATURED PRODUCTS CAROUSEL -->
-<section id="featured-products" style="background:#fff8f0; padding:100px 0;">
-    <div class="container">
-        <h2 class="section-title">Featured Products</h2>
+	<section id="featured-products" style="background:#fff8f0; padding:100px 0;">
+		<div class="container">
+			<h2 class="section-title">Featured Products</h2>
 
-        <div id="kkCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+			<div id="kkCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
 
-                <!-- Product 1 -->
-                <div class="carousel-item active">
-                    <div class="row justify-content-center">
-                        <div class="col-md-5 text-center">
-                            <img src="https://afriqueclothingstore.com/cdn/shop/files/rn-image_picker_lib_temp_89e0d659-60d6-4a2e-ac4c-85b1a1440dc4_1400x.heic?v=1713320400"
-                                class="d-block w-75 mx-auto rounded-4 shadow"
-                                style="max-height:350px; object-fit:cover;"
-                                alt="Traditional Ankara Fabric">
+					<!-- Product 1 -->
+					<div class="carousel-item active">
+						<div class="row justify-content-center">
+							<div class="col-md-5 text-center">
+								<img src="https://afriqueclothingstore.com/cdn/shop/files/rn-image_picker_lib_temp_89e0d659-60d6-4a2e-ac4c-85b1a1440dc4_1400x.heic?v=1713320400"
+									class="d-block w-75 mx-auto rounded-4 shadow"
+									style="max-height:350px; object-fit:cover;"
+									alt="Traditional Ankara Fabric">
 
-                            <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
-                                Traditional Ankara Fabric
-                            </h4>
+								<h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+									Traditional Ankara Fabric
+								</h4>
 
-                            <p style="color:#ff6b35; font-size:1.2rem;">
-                                GHS 100.00
-                            </p>
+								<p style="color:#ff6b35; font-size:1.2rem;">
+									GHS 100.00
+								</p>
 
-                            <a href="view/all_product.php"
-                                class="btn btn-primary"
-                                style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
-                                View Product
-                            </a>
-                        </div>
-                    </div>
-                </div>
+								<a href="view/all_product.php"
+									class="btn btn-primary"
+									style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+									View Product
+								</a>
+							</div>
+						</div>
+					</div>
 
-                <!-- Product 2 -->
-                <div class="carousel-item">
-                    <div class="row justify-content-center">
-                        <div class="col-md-5 text-center">
-                            <img src="https://shoprisham.com/cdn/shop/products/HandmadeBeadedJewellery-RedCollarNecklace-1.jpg?v=1706591860&width=1445"
-                                class="d-block w-75 mx-auto rounded-4 shadow"
-                                style="max-height:350px; object-fit:cover;"
-                                alt="Handcrafted Beaded Necklace">
+					<!-- Product 2 -->
+					<div class="carousel-item">
+						<div class="row justify-content-center">
+							<div class="col-md-5 text-center">
+								<img src="https://shoprisham.com/cdn/shop/products/HandmadeBeadedJewellery-RedCollarNecklace-1.jpg?v=1706591860&width=1445"
+									class="d-block w-75 mx-auto rounded-4 shadow"
+									style="max-height:350px; object-fit:cover;"
+									alt="Handcrafted Beaded Necklace">
 
-                            <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
-                                Handcrafted Beaded Necklace
-                            </h4>
+								<h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+									Handcrafted Beaded Necklace
+								</h4>
 
-                            <p style="color:#ff6b35; font-size:1.2rem;">
-                                GHS 35.00
-                            </p>
+								<p style="color:#ff6b35; font-size:1.2rem;">
+									GHS 35.00
+								</p>
 
-                            <a href="view/all_product.php"
-                                class="btn btn-primary"
-                                style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
-                                View Product
-                            </a>
-                        </div>
-                    </div>
-                </div>
+								<a href="view/all_product.php"
+									class="btn btn-primary"
+									style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+									View Product
+								</a>
+							</div>
+						</div>
+					</div>
 
-                <!-- Product 3 -->
-                <div class="carousel-item">
-                    <div class="row justify-content-center">
-                        <div class="col-md-5 text-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlEkEZE2rtY3Wn0HxaDdwEzCGAusevZKnXIA&s"
-                                class="d-block w-75 mx-auto rounded-4 shadow"
-                                style="max-height:350px; object-fit:cover;"
-                                alt="Authentic Kente Cloth">
+					<!-- Product 3 -->
+					<div class="carousel-item">
+						<div class="row justify-content-center">
+							<div class="col-md-5 text-center">
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlEkEZE2rtY3Wn0HxaDdwEzCGAusevZKnXIA&s"
+									class="d-block w-75 mx-auto rounded-4 shadow"
+									style="max-height:350px; object-fit:cover;"
+									alt="Authentic Kente Cloth">
 
-                            <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
-                                Authentic Kente Cloth
-                            </h4>
+								<h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+									Authentic Kente Cloth
+								</h4>
 
-                            <p style="color:#ff6b35; font-size:1.2rem;">
-                                GHS 140.00
-                            </p>
+								<p style="color:#ff6b35; font-size:1.2rem;">
+									GHS 140.00
+								</p>
 
-                            <a href="view/all_product.php"
-                                class="btn btn-primary"
-                                style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
-                                View Product
-                            </a>
-                        </div>
-                    </div>
-                </div>
+								<a href="view/all_product.php"
+									class="btn btn-primary"
+									style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+									View Product
+								</a>
+							</div>
+						</div>
+					</div>
 
-                <!-- Product 4 -->
-                <div class="carousel-item">
-                    <div class="row justify-content-center">
-                        <div class="col-md-5 text-center">
-                            <img src="https://i.pinimg.com/236x/73/5a/2c/735a2c86c1b9478d498ede9b209afb6a.jpg"
-                                class="d-block w-75 mx-auto rounded-4 shadow"
-                                style="max-height:350px; object-fit:cover;"
-                                alt="African Print Bag">
+					<!-- Product 4 -->
+					<div class="carousel-item">
+						<div class="row justify-content-center">
+							<div class="col-md-5 text-center">
+								<img src="https://i.pinimg.com/236x/73/5a/2c/735a2c86c1b9478d498ede9b209afb6a.jpg"
+									class="d-block w-75 mx-auto rounded-4 shadow"
+									style="max-height:350px; object-fit:cover;"
+									alt="African Print Bag">
 
-                            <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
-                                African Print Bag
-                            </h4>
+								<h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+									African Print Bag
+								</h4>
 
-                            <p style="color:#ff6b35; font-size:1.2rem;">
-                                GHS 50.00
-                            </p>
+								<p style="color:#ff6b35; font-size:1.2rem;">
+									GHS 50.00
+								</p>
 
-                            <a href="view/all_product.php"
-                                class="btn btn-primary"
-                                style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
-                                View Product
-                            </a>
-                        </div>
-                    </div>
-                </div>
+								<a href="view/all_product.php"
+									class="btn btn-primary"
+									style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+									View Product
+								</a>
+							</div>
+						</div>
+					</div>
 
-            </div>
+				</div>
 
-            <!-- Carousel Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#kkCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#kkCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-        </div>
-    </div>
-</section>
-							
+				<!-- Carousel Controls -->
+				<button class="carousel-control-prev" type="button" data-bs-target="#kkCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#kkCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+	</section>
+
 	<!-- VALUE PROPOSITION -->
 	<section id="value">
 		<div class="container">
@@ -340,9 +355,9 @@ if (!session_id()) {
 			<div class="row g-4">
 				<div class="col-md-4">
 					<div class="feature-card">
-						<img src="https://i.pinimg.com/originals/bf/02/3f/bf023f7dad8cdf1299357afdfb467106.jpg" 
-                         alt="Authenticity" 
-                         class="feature-image mb-3">
+						<img src="https://i.pinimg.com/originals/bf/02/3f/bf023f7dad8cdf1299357afdfb467106.jpg"
+							alt="Authenticity"
+							class="feature-icon mb-3">
 						<h4>Authenticity Verified</h4>
 						<p>Each product is culturally rooted, ethically made, and artisan-verified.</p>
 					</div>
