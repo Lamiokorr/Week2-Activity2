@@ -427,14 +427,6 @@ if (!$cart_items || count($cart_items) == 0) {
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="../index.php" class="logo">KultureKart</a>
-            <div style="display: flex; gap: 20px;">
-                <a href="cart.php" style="color: #374151; text-decoration: none;">← Back to Cart</a>
-            </div>
-        </div>
-    </nav>
     <div class="container">
         <!--Page Header-->
         <div class="page-header">
@@ -486,10 +478,16 @@ if (!$cart_items || count($cart_items) == 0) {
                 <button id="simulate-pay">Complete Payment</button>
             </div>
 
-            !-- Security Badge -->
-            <div class="security-badge">
-                <p>Secure Payment Protected</p>
+            <!-- Security Badge -->
+            <div style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); color: white; padding: 20px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                <div style="font-size: 12px; margin-bottom: 10px; opacity: 0.8;">SECURED PAYMENT</div>
+                <div style="font-size: 18px; letter-spacing: 2px; margin-bottom: 15px;">🔒 Powered by Paystack</div>
+                <div style="font-size: 12px; opacity: 0.8;">Your payment information is 100% secure and encrypted</div>
             </div>
+
+            <p style="text-align: center; color: #6b7280; font-size: 13px; margin-bottom: 20px;">
+                You will be redirected to Paystack's secure payment gateway
+            </p>
 
         <?php endif; ?>
         </div>
