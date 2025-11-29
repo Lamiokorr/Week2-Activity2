@@ -151,7 +151,13 @@ if (!session_id()) {
 	<!-- NAVIGATION -->
 	<header>
 		<nav class="navbar">
-			<h3><a id="logo" href="index.php">KultureKart</a></h3>
+			<h3>
+				<a href="index.php">
+					<img src="assets/logo_image.png"
+						alt="KultureKart Logo"
+						style="height:55px; width:auto; object-fit:contain;">
+				</a>
+			</h3>
 
 			<ul>
 				<li><a href="index.php">Home</a></li>
