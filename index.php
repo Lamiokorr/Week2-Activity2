@@ -219,7 +219,7 @@ if (!session_id()) {
                 <div class="carousel-item active">
                     <div class="row justify-content-center">
                         <div class="col-md-5 text-center">
-                            <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400"
+                            <img src="https://afriqueclothingstore.com/cdn/shop/files/rn-image_picker_lib_temp_89e0d659-60d6-4a2e-ac4c-85b1a1440dc4_1400x.heic?v=1713320400"
                                 class="d-block w-75 mx-auto rounded-4 shadow"
                                 style="max-height:350px; object-fit:cover;"
                                 alt="Traditional Ankara Fabric">
@@ -245,7 +245,7 @@ if (!session_id()) {
                 <div class="carousel-item">
                     <div class="row justify-content-center">
                         <div class="col-md-5 text-center">
-                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400"
+                            <img src="https://shoprisham.com/cdn/shop/products/HandmadeBeadedJewellery-RedCollarNecklace-1.jpg?v=1706591860&width=1445"
                                 class="d-block w-75 mx-auto rounded-4 shadow"
                                 style="max-height:350px; object-fit:cover;"
                                 alt="Handcrafted Beaded Necklace">
@@ -271,7 +271,7 @@ if (!session_id()) {
                 <div class="carousel-item">
                     <div class="row justify-content-center">
                         <div class="col-md-5 text-center">
-                            <img src="https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=400"
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlEkEZE2rtY3Wn0HxaDdwEzCGAusevZKnXIA&s"
                                 class="d-block w-75 mx-auto rounded-4 shadow"
                                 style="max-height:350px; object-fit:cover;"
                                 alt="Authentic Kente Cloth">
@@ -297,7 +297,7 @@ if (!session_id()) {
                 <div class="carousel-item">
                     <div class="row justify-content-center">
                         <div class="col-md-5 text-center">
-                            <img src="https://images.unsplash.com/photo-1611312449412-6cefac5dc5e4?w=400"
+                            <img src="https://i.pinimg.com/236x/73/5a/2c/735a2c86c1b9478d498ede9b209afb6a.jpg"
                                 class="d-block w-75 mx-auto rounded-4 shadow"
                                 style="max-height:350px; object-fit:cover;"
                                 alt="African Print Bag">
