@@ -9,298 +9,279 @@ if (!session_id()) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home</title>
+	<title>KultureKart | Home</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		}
-
 		body {
-			background: linear-gradient(135deg, #ffffff 0%, #fff8f0 50%, #fff0f5 100%);
-			min-height: 100vh;
-			position: relative;
+			background: #fff;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 			overflow-x: hidden;
 		}
 
-		/* Subtle African pattern overlay */
-		.pattern-overlay {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-image:
-				repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(255, 107, 53, 0.015) 50px, rgba(255, 107, 53, 0.015) 100px),
-				repeating-linear-gradient(-45deg, transparent, transparent 50px, rgba(233, 30, 99, 0.015) 50px, rgba(233, 30, 99, 0.015) 100px);
-			z-index: 0;
-			pointer-events: none;
+		section {
+			padding: 100px 0;
 		}
 
-		.menu-tray {
-			position: fixed;
-			top: 20px;
-			right: 20px;
-			background: rgba(255, 255, 255, 0.9);
-			backdrop-filter: blur(10px);
-			border: 2px solid rgba(255, 107, 53, 0.3);
-			border-radius: 16px;
-			padding: 10px 16px;
-			box-shadow: 0 8px 32px rgba(233, 30, 99, 0.2);
-			z-index: 1000;
-			transition: all 0.3s ease;
-		}
-
-		.menu-tray:hover {
-			background: rgba(255, 255, 255, 0.95);
-			box-shadow: 0 12px 40px rgba(255, 107, 53, 0.35);
-			transform: translateY(-2px);
-			border-color: rgba(233, 30, 99, 0.5);
-		}
-
-		.menu-tray span {
-			color: #d81b60;
-			font-weight: 600;
-			font-style: oblique;
-		}
-
-		.menu-tray a {
-			margin-left: 8px;
-			border-radius: 10px;
-			transition: all 0.3s ease;
-			font-weight: 500;
-		}
-
-		.btn-outline-primary {
-			border-color: #ff6b35;
-			color: #ff6b35;
-			font-weight: 600;
-		}
-
-		.btn-outline-primary:hover {
-			background: linear-gradient(135deg, #ff6b35 0%, #ff8555 100%);
-			border-color: #ff6b35;
-			color: white;
-			transform: translateY(-1px);
-			box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-		}
-
-		.btn-outline-secondary {
-			border-color: #e91e63;
-			color: #e91e63;
-			font-weight: 600;
-		}
-
-		.btn-outline-secondary:hover {
-			background: linear-gradient(135deg, #e91e63 0%, #f06292 100%);
-			border-color: #e91e63;
-			color: white;
-			transform: translateY(-1px);
-			box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-		}
-
-		.container {
-			position: relative;
-			z-index: 1;
-			padding-top: 120px;
-		}
-
-		.welcome-card {
-			background: rgba(255, 255, 255, 0.95);
-			backdrop-filter: blur(10px);
-			border-radius: 20px;
-			padding: 60px 50px;
-			box-shadow:
-				0 10px 40px rgba(233, 30, 99, 0.15),
-				0 2px 8px rgba(255, 107, 53, 0.1);
-			border: 2px solid transparent;
-			background-image:
-				linear-gradient(white, white),
-				linear-gradient(135deg, #ff6b35, #e91e63);
-			background-origin: border-box;
-			background-clip: padding-box, border-box;
-			animation: fadeInUp 0.8s ease;
-			max-width: 700px;
-			margin: 0 auto;
-			position: relative;
-		}
-
-		.welcome-card>* {
-			position: relative;
-			z-index: 1;
-		}
-
-		@keyframes fadeInUp {
-			from {
-				opacity: 0;
-				transform: translateY(30px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		h1 {
-			background: linear-gradient(135deg, #ff6b35 0%, #e91e63 100%);
+		h2.section-title {
+			font-size: 3rem;
+			font-weight: 700;
+			text-align: center;
+			margin-bottom: 40px;
+			background: linear-gradient(135deg, #ff6b35, #e91e63);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
-			background-clip: text;
-			font-size: 4rem;
-			font-weight: 700;
-			margin-bottom: 20px;
-			letter-spacing: -2px;
-			animation: fadeIn 1s ease 0.2s both;
-			font-style: oblique;
-			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 		}
 
-		.navbar{
+		/* TOP NAVBAR */
+		.navbar {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			padding: 16px 32px;
 			background: rgba(255, 255, 255, 0.9);
-			backdrop-filter: blur(10px);
+			backdrop-filter: blur(12px);
 			position: fixed;
 			width: 100%;
 			top: 0;
-			left: 0;
 			z-index: 1000;
 		}
 
-		.navbar > ul{
-			display : flex;
+		.navbar ul {
+			display: flex;
 			list-style-type: none;
-			gap: 40px
+			gap: 40px;
+		}
+
+		.navbar a {
+			font-weight: 600;
+			text-decoration: none;
+			color: #e91e63;
+		}
+
+		.navbar a:hover {
+			color: #ff6b35;
 		}
 
 		#logo {
 			font-size: 40px;
-			text-decoration: none;
+			background: linear-gradient(135deg, #ff6b35, #e91e63);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			font-weight: 800;
 		}
 
-		#logo:hover {
-			cursor: pointer;
+		/* HERO SECTION */
+		.hero {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			background: linear-gradient(135deg, #ffffff 0%, #fff8f0 50%, #fff0f5 100%);
 		}
 
-		.underline-text{
-			text-decoration-color: transparent;
-			text-underline-offset: 8px;
-			transition-property: text-decoration-color;
-			transition-duration: 1s;
+		.hero h1 {
+			font-size: 5rem;
+			font-weight: 800;
+			background: linear-gradient(135deg, #ff6b35, #e91e63);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
 		}
 
-		.underline-text:hover {
-			text-decoration-color: #ff6b35;
-			transition-property: text-decoration-color;
-			transition-duration: 1s;
+		.hero p {
+			color: #ff6b35;
+			font-size: 1.2rem;
+			margin-top: 10px;
 		}
 
-		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 1;
-			}
+		.hero .btn-primary {
+			background: linear-gradient(135deg, #ff6b35, #ff884d);
+			border: none;
+			font-weight: 600;
+			padding: 12px 26px;
 		}
 
-		.subtitle {
-			color: #d81b60;
-			font-size: 1.3rem;
-			font-weight: 500;
-			margin-bottom: 15px;
-			font-style: oblique;
-			animation: fadeIn 1s ease 0.4s both;
+		/* ABOUT SECTION */
+		.about-box {
+			background: #fff;
+			padding: 40px;
+			border-radius: 20px;
+			border-left: 6px solid #ff6b35;
+			box-shadow: 0 8px 20px rgba(255, 107, 53, 0.15);
 		}
 
-		.text-muted {
-			color: #ff6b35 !important;
-			font-size: 1.1rem;
-			font-weight: 400;
-			animation: fadeIn 1s ease 0.6s both;
-			font-style: oblique;
+		/* FEATURES SECTION */
+		.feature-card {
+			padding: 30px;
+			border-radius: 20px;
+			background: #fff;
+			box-shadow: 0 6px 20px rgba(233, 30, 99, 0.15);
+			border-top: 4px solid #e91e63;
+			transition: 0.3s;
 		}
 
-		@media (max-width: 768px) {
-			h1 {
-				font-size: 2.8rem;
-			}
+		.feature-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 10px 30px rgba(255, 107, 53, 0.25);
+		}
 
-			.welcome-card {
-				padding: 40px 30px;
-			}
+		/* ARTISAN CTA */
+		.join-section {
+			background: linear-gradient(135deg, #ff6b35, #e91e63);
+			color: #fff;
+			text-align: center;
+			padding: 100px 0;
+		}
 
-			.menu-tray {
-				top: 10px;
-				right: 10px;
-				padding: 8px 12px;
-			}
+		.join-section h2 {
+			color: #fff !important;
+		}
 
-			.menu-tray span {
-				display: none;
-			}
-
-			.subtitle {
-				font-size: 1.1rem;
-			}
+		/* FOOTER */
+		footer {
+			background: #111;
+			color: #fff;
+			padding: 40px 0;
+			text-align: center;
 		}
 	</style>
 </head>
 
 <body>
+	<!-- NAVIGATION -->
 	<header>
-		<nav class ="navbar">
-			<h3><a id="logo">KultureKart</a></h3>
+		<nav class="navbar">
+			<h3><a id="logo" href="index.php">KultureKart</a></h3>
+
 			<ul>
-				<li><a class="underline-text" href="index.php">Home</a></li>
-				<li><a class="underline-text" href="view/all_product.php">Products</a></li>
-				<li><a class="underline-text" href="view/cart.php">Cart</a></li>
+				<li><a href="index.php">Home</a></li>
+				<li><a href="view/all_product.php">Products</a></li>
+				<li><a href="view/cart.php">Cart</a></li>
+
 				<?php if (isset($_SESSION['customer_id'])): ?>
-					<li><a class="underline-text" href="login/logout.php">Logout</a></li>
+					<li><a href="login/logout.php">Logout</a></li>
 				<?php else: ?>
-					<li><a class="underline-text" href="login/login.php">Login</a></li>
-					<li><a class="underline-text" href="login/register.php">Register</a></li>
+					<li><a href="login/login.php">Login</a></li>
+					<li><a href="login/register.php">Register</a></li>
 				<?php endif; ?>
 			</ul>
 		</nav>
 	</header>
-	<div class="menu-tray">
-	
-		<?php if (!isset($_SESSION['customer_id'])): ?>
-			<!-- Not logged in -->
-			<a href="login/register.php" class="btn btn-sm btn-outline-primary">Register</a>
-			<a href="login/login.php" class="btn btn-sm btn-outline-secondary">Login</a>
-			<a href="view/all_product.php" class="btn btn-sm btn-outline-secondary">Products</a>
 
-		<?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == '1'): ?>
-			<!-- Logged in as admin -->
-			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
-			<a href="admin/category.php" class="btn btn-sm btn-outline-secondary">Categories</a>
-			<a href="admin/brand.php" class="btn btn-sm btn-outline-secondary">Brands</a>
+	<!-- HERO SECTION -->
+	<section class="hero">
+		<div>
+			<h1>KultureKart</h1>
+			<p>Connecting Africa’s Artisans to the World</p>
+			<a href="view/all_product.php" class="btn btn-primary mt-3">Shop Now</a>
+		</div>
+	</section>
 
-		<?php else: ?>
-			<!-- Logged in as normal user -->
-			<a href="login/logout.php" class="btn btn-sm btn-outline-primary">Logout</a>
-			<a href="view/cart.php" class="btn btn-sm btn-outline-secondary">My Cart</a>
-			<a href="view/product.php" class="btn btn-sm btn-outline-secondary">Products</a>
-		<?php endif; ?>
-	</div>
+	<!-- ABOUT SECTION -->
+	<section id="about">
+		<div class="container">
+			<h2 class="section-title">About KultureKart</h2>
 
-	<div class="container">
-		<div class="text-center">
-			<div class="welcome-card">
-				<h1>KultureKart</h1>
-				<p class="text-muted">Connect With Authentic African Artisan Crafts</p>
+			<div class="about-box">
+				<p>
+					KultureKart is an inclusive e-commerce platform designed to empower African artisans,
+					fashion designers, and creative entrepreneurs by connecting them to global markets.
+					The platform celebrates authentic African craftsmanship, cultural storytelling,
+					and ethical fashion.
+				</p>
 			</div>
 		</div>
-	</div>
+	</section>
+
+	<!-- VALUE PROPOSITION -->
+	<section id="value">
+		<div class="container">
+			<h2 class="section-title">Our Value Proposition</h2>
+
+			<div class="row g-4">
+				<div class="col-md-4">
+					<div class="feature-card">
+						<h4>Authenticity Verified</h4>
+						<p>Each product is culturally rooted, ethically made, and artisan-verified.</p>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="feature-card">
+						<h4>Fair Trade</h4>
+						<p>Artisans earn transparent, fair compensation for their creative work.</p>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="feature-card">
+						<h4>Inclusive Payments</h4>
+						<p>Supports Mobile Money, PayPal, and later debit/credit cards.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- MARKET OPPORTUNITY -->
+	<section id="market">
+		<div class="container">
+			<h2 class="section-title">The Market Opportunity</h2>
+
+			<div class="about-box">
+				<p>
+					Africa’s creative economy is projected to generate over <strong>$20 billion</strong>
+					annually by 2030. Rising global demand for ethical, handmade, and culturally inspired goods
+					makes now the perfect time to connect artisans to consumers worldwide.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- PLATFORM FEATURES -->
+	<section id="features">
+		<div class="container">
+			<h2 class="section-title">Our Platform Features</h2>
+
+			<div class="row g-4">
+
+				<div class="col-md-4">
+					<div class="feature-card">
+						<h4>AI-Driven Recommendations</h4>
+						<p>Personalized shopping powered by smart product suggestions.</p>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="feature-card">
+						<h4>Storytelling Profiles</h4>
+						<p>Each artisan’s cultural journey and heritage is highlighted.</p>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="feature-card">
+						<h4>Secure Payments</h4>
+						<p>Fraud-proof, encrypted transactions for all users.</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- JOIN CTA -->
+	<section class="join-section">
+		<h2 class="section-title" style="color:white;">Become an Artisan on KultureKart</h2>
+		<p class="mt-2 mb-4">Sell your craft, share your story, and reach global customers.</p>
+
+		<a href="login/register.php" class="btn btn-light px-4 py-2">Join Now</a>
+	</section>
+
+	<!-- FOOTER -->
+	<footer>
+		<p>© 2025 KultureKart. All Rights Reserved.</p>
+	</footer>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
