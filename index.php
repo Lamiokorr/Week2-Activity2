@@ -200,50 +200,41 @@ if (!session_id()) {
 	</section>
 
 	<!-- FEATURED PRODUCTS CAROUSEL -->
-	<section id="featured-products" style="background:#fff8f0; padding:100px 0;">
-		<div class="container">
+<section id="featured-products" style="background:#fff8f0; padding:100px 0;">
+    <div class="container">
+        <h2 class="section-title">Featured Products</h2>
 
-			<h2 class="section-title">Featured Products</h2>
+        <?php
+        require_once("controllers/product_controller.php");
+        $user_id = $_SESSION['customer_id'] ?? null;  // FIXED
+        $featured_products = view_all_products_ctr($user_id);  // FIXED
+        ?>
 
-			<?php
-			// DATABASE CONNECTION
-			require_once("controllers/product_controller.php");
-			$featured_products = view_all_products_ctr();
-			?>
+        <?php if (!empty($featured_products)): ?>
+            <div id="kkCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
+                    $active = "active";
+                    foreach ($featured_products as $product):
+                    ?>
+                        <div class="carousel-item <?= $active ?>">
+                            <?php $active = ""; ?>
+                            <div class="row justify-content-center">
+                                <div class="col-md-5 text-center">
+                                    <!-- FIXED image path -->
+                                    <img src="product/<?= $product['product_image'] ?>"
+                                        class="d-block w-75 mx-auto rounded-4 shadow"
+                                        style="max-height:350px; object-fit:cover;">
 
-			<?php if (!empty($featured_products)): ?>
+                                    <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+                                        <?= $product['product_title'] ?>
+                                    </h4>
 
-				<div id="kkCarousel" class="carousel slide" data-bs-ride="carousel">
+                                    <p style="color:#ff6b35; font-size:1.2rem;">
+                                        GHS <?= number_format($product['product_price'], 2) ?>
+                                    </p>
 
-					<div class="carousel-inner">
-
-						<?php
-						$active = "active";
-						foreach ($featured_products as $product):
-						?>
-
-							<div class="carousel-item <?= $active ?>">
-								<?php $active = ""; ?>
-
-								<div class="row justify-content-center">
-									<div class="col-md-5 text-center">
-
-										<!-- Product Image -->
-										<img src="<?= $product['product_image'] ?>"
-											class="d-block w-75 mx-auto rounded-4 shadow"
-											style="max-height:350px; object-fit:cover;">
-
-										<!-- Product Info -->
-										<h4 class="mt-4"
-											style="font-weight:700; color:#e91e63;">
-											<?= $product['product_title'] ?>
-										</h4>
-
-										<p style="color:#ff6b35; font-size:1.2rem;">
-											GHS <?= number_format($product['product_price'], 2) ?>
-										</p>
-
-										<a href="view/product_detail.php?id=<?= $product['product_id'] ?>"
+										<a href="view/single_product.php?id=<?= $product['product_id'] ?>"
 											class="btn btn-primary"
 											style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
 											View Product
