@@ -212,114 +212,126 @@ if (!session_id()) {
     <div class="container">
         <h2 class="section-title">Featured Products</h2>
 
-        <?php
-        // Enable error reporting
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
+        <div id="kkCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
 
-        // DATABASE CONNECTION
-        require_once("controllers/product_controller.php");
-        
-        // Debug: Check session
-        echo "<!-- DEBUG: Session ID = " . ($_SESSION['customer_id'] ?? 'NOT SET') . " -->";
-        
-        // Try to get products
-        try {
-            $featured_products = view_all_products_ctr();
-            
-            // Debug: Show what we got
-            echo "<!-- DEBUG: Product count = " . count($featured_products) . " -->";
-            echo "<!-- DEBUG: Products = " . print_r($featured_products, true) . " -->";
-            
-        } catch (Exception $e) {
-            echo "<!-- ERROR: " . $e->getMessage() . " -->";
-            $featured_products = [];
-        }
-        ?>
+                <!-- Product 1 -->
+                <div class="carousel-item active">
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 text-center">
+                            <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400"
+                                class="d-block w-75 mx-auto rounded-4 shadow"
+                                style="max-height:350px; object-fit:cover;"
+                                alt="Traditional Ankara Fabric">
 
-        <!-- Temporary: Show raw data -->
-        <div style="background: white; padding: 20px; margin: 20px 0; border: 2px solid red;">
-            <h4>DEBUG INFO:</h4>
-            <p><strong>Products Found:</strong> <?= count($featured_products) ?></p>
-            <?php if (!empty($featured_products)): ?>
-                <pre><?= print_r($featured_products[0] ?? 'No products', true) ?></pre>
-            <?php else: ?>
-                <p style="color: red;">No products returned from database!</p>
-            <?php endif; ?>
-        </div>
+                            <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+                                Traditional Ankara Fabric
+                            </h4>
 
-        <?php if (!empty($featured_products)): ?>
-            <div id="kkCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <?php
-                    $active = "active";
-                    foreach ($featured_products as $product):
-                    ?>
-                        <div class="carousel-item <?= $active ?>">
-                            <?php $active = ""; ?>
-                            <div class="row justify-content-center">
-                                <div class="col-md-5 text-center">
-                                    <!-- Debug: Show actual path -->
-                                    <p>Image Path: product/<?= htmlspecialchars($product['product_image']) ?></p>
-                                    
-                                    <!-- Product Image -->
-                                    <img src="product/<?= htmlspecialchars($product['product_image']) ?>"
-                                        class="d-block w-75 mx-auto rounded-4 shadow"
-                                        style="max-height:350px; object-fit:cover;"
-                                        onerror="this.src='https://via.placeholder.com/350?text=Image+Not+Found'">
+                            <p style="color:#ff6b35; font-size:1.2rem;">
+                                GHS 45.00
+                            </p>
 
-                                    <!-- Product Info -->
-                                    <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
-                                        <?= htmlspecialchars($product['product_title']) ?>
-                                    </h4>
-
-                                    <p style="color:#ff6b35; font-size:1.2rem;">
-                                        GHS <?= number_format($product['product_price'], 2) ?>
-                                    </p>
-
-                                    <a href="view/single_product.php?id=<?= $product['product_id'] ?>"
-                                        class="btn btn-primary"
-                                        style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
-                                        View Product
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="view/all_product.php"
+                                class="btn btn-primary"
+                                style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+                                View Product
+                            </a>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
 
-                <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#kkCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#kkCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </button>
+                <!-- Product 2 -->
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 text-center">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400"
+                                class="d-block w-75 mx-auto rounded-4 shadow"
+                                style="max-height:350px; object-fit:cover;"
+                                alt="Handcrafted Beaded Necklace">
+
+                            <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+                                Handcrafted Beaded Necklace
+                            </h4>
+
+                            <p style="color:#ff6b35; font-size:1.2rem;">
+                                GHS 35.00
+                            </p>
+
+                            <a href="view/all_product.php"
+                                class="btn btn-primary"
+                                style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+                                View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 text-center">
+                            <img src="https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=400"
+                                class="d-block w-75 mx-auto rounded-4 shadow"
+                                style="max-height:350px; object-fit:cover;"
+                                alt="Authentic Kente Cloth">
+
+                            <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+                                Authentic Kente Cloth
+                            </h4>
+
+                            <p style="color:#ff6b35; font-size:1.2rem;">
+                                GHS 120.00
+                            </p>
+
+                            <a href="view/all_product.php"
+                                class="btn btn-primary"
+                                style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+                                View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 text-center">
+                            <img src="https://images.unsplash.com/photo-1611312449412-6cefac5dc5e4?w=400"
+                                class="d-block w-75 mx-auto rounded-4 shadow"
+                                style="max-height:350px; object-fit:cover;"
+                                alt="African Print Bag">
+
+                            <h4 class="mt-4" style="font-weight:700; color:#e91e63;">
+                                African Print Bag
+                            </h4>
+
+                            <p style="color:#ff6b35; font-size:1.2rem;">
+                                GHS 65.00
+                            </p>
+
+                            <a href="view/all_product.php"
+                                class="btn btn-primary"
+                                style="background:linear-gradient(135deg,#ff6b35,#ff884d); border:none;">
+                                View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        <?php else: ?>
-            <p class="text-center text-muted">No products available yet.</p>
-        <?php endif; ?>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#kkCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#kkCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
     </div>
 </section>
-										
-
-					<!-- Controls -->
-					<button class="carousel-control-prev" type="button" data-bs-target="#kkCarousel" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#kkCarousel" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					</button>
-
-				</div>
-
-			<?php else: ?>
-				<p class="text-center text-muted">No products available yet.</p>
-			<?php endif; ?>
-		</div>
-	</section>
-
-
+							
 	<!-- VALUE PROPOSITION -->
 	<section id="value">
 		<div class="container">
