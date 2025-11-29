@@ -168,7 +168,7 @@ try {
         
         // Add order details for each cart item
         foreach ($cart_items as $item) {
-            $detail_result = add_order_details_ctr($order_id, $item['p_id'], $item['qty']);
+            $detail_result = add_order_detail_ctr($order_id, $item['p_id'], $item['qty']);
             
             if (!$detail_result) {
                 throw new Exception("Failed to add order details for product: {$item['p_id']}");

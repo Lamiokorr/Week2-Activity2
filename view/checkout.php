@@ -1,24 +1,25 @@
 <?php
 session_start();
+require_once '../settings/core.php';
+require_login('../login/login.php');
+
+// Check if cart is not empty
 require_once "../controllers/cart_controller.php";
+$customer_id = get_user_id();
+$cart_items = get_user_cart_ctr($customer_id);
 
-$ip = $_SERVER['REMOTE_ADDR'];
-$c_id = isset($_SESSION['customer_id']) ? intval($_SESSION['customer_id']) : null;
-
-$items = get_user_cart_ctr($ip, $c_id);
-$total = 0;
-foreach ($items as $it) {
-    $total += floatval($it['product_price']) * intval($it['qty']);
+if (!$cart_items || count($cart_items) == 0) {
+    header('Location: cart.php');
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html>
-
+<html lang ="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
+    <title>Checkout Page - KultureKart</title>
     <style>
         * {
             margin: 0;
@@ -27,7 +28,7 @@ foreach ($items as $it) {
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'comorant garamond', serif;
             background: linear-gradient(135deg, #fff8f0 0%, #fff0f5 50%, #ffe8f0 100%);
             min-height: 100vh;
             position: relative;
@@ -425,8 +426,15 @@ foreach ($items as $it) {
         }
     </style>
 </head>
-
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.php" class="logo">KultureKart</a>
+            <div style="display: flex; gap: 20px;">
+                <a href="cart.php" style="color: #374151; text-decoration: none;">← Back to Cart</a>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         <!--Page Header-->
         <div class="page-header">
@@ -442,50 +450,51 @@ foreach ($items as $it) {
 
             <!--Empty Cart-->
             <div class="empty-cart" style="display: none;">
-            <?php if (empty($items)): ?>
-                <p>Your cart is empty. <a href="all_product.php">Shop now</a></p>
+                <?php if (empty($items)): ?>
+                    <p>Your cart is empty. <a href="all_product.php">Shop now</a></p>
             </div>
 
             <!--Cart with Items-->
-            <?php else: ?>
-                <table class="summary-table">
-                    <thead>
+        <?php else: ?>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($items as $it):
+                        $sub = floatval($it['product_price']) * intval($it['qty']);
+                    ?>
                         <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                            <th>Subtotal</th>
+                            <td><?php echo htmlspecialchars($it['product_title']); ?></td>
+                            <td>GHS <?php echo number_format($it['product_price'], 2); ?></td>
+                            <td><?php echo $it['qty']; ?></td>
+                            <td>GHS <?php echo number_format($sub, 2); ?></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($items as $it):
-                            $sub = floatval($it['product_price']) * intval($it['qty']);
-                        ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($it['product_title']); ?></td>
-                                <td>GHS <?php echo number_format($it['product_price'], 2); ?></td>
-                                <td><?php echo $it['qty']; ?></td>
-                                <td>GHS <?php echo number_format($sub, 2); ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
 
-                <p style="text-align:right;"><strong>Total: GHS <?php echo number_format($total, 2); ?></strong></p>
+            <p style="text-align:right;"><strong>Total: GHS <?php echo number_format($total, 2); ?></strong></p>
 
-                <!-- Payment Section -->
-                <div class ="payment_section" style="text-align:right;">
-                    <button id="simulate-pay">Complete Payment</button>
-                </div>
+            <!-- Payment Section -->
+            <div class="payment_section" style="text-align:right;">
+                <button id="simulate-pay">Complete Payment</button>
+            </div>
 
-                !-- Security Badge -->
+            !-- Security Badge -->
             <div class="security-badge">
                 <p>Secure Payment Protected</p>
             </div>
 
-            <?php endif; ?>
+        <?php endif; ?>
         </div>
 
         <script src="../js/checkout.js"></script>
 </body>
+
 </html>
