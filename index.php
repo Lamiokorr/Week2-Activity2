@@ -363,6 +363,9 @@ if (!session_id()) {
 
 				<div class="col-md-4">
 					<div class="feature-card">
+						<img src="https://img.freepik.com/premium-vector/fair-trade-icon-vector-image-can-be-used-social-justice_120816-351411.jpg"
+							alt="Fair Trade"
+							class="feature-image mb-3">
 						<h4>Fair Trade</h4>
 						<p>Artisans earn transparent, fair compensation for their creative work.</p>
 					</div>
@@ -370,6 +373,9 @@ if (!session_id()) {
 
 				<div class="col-md-4">
 					<div class="feature-card">
+						<img src="https://cdn.ghanaweb.com/imagelib/pics/420/42010747.295.jpg"
+							alt="Inclusive Payments"
+							class="feature-image mb-3">
 						<h4>Inclusive Payments</h4>
 						<p>Supports Mobile Money, PayPal, and later debit/credit cards.</p>
 					</div>
