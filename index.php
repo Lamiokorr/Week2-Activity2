@@ -202,7 +202,7 @@ if (!session_id()) {
 			<?php
 			// DATABASE CONNECTION
 			require_once("controllers/product_controller.php");
-			$featured_products = get_all_products_controller();
+			$featured_products = view_all_products_ctr();
 			?>
 
 			<?php if (!empty($featured_products)): ?>
