@@ -340,7 +340,9 @@ if (!session_id()) {
 			<div class="row g-4">
 				<div class="col-md-4">
 					<div class="feature-card">
-						<img src ="https://i.pinimg.com/originals/bf/02/3f/bf023f7dad8cdf1299357afdfb467106.jpg">
+						<img src ="https://i.pinimg.com/originals/bf/02/3f/bf023f7dad8cdf1299357afdfb467106.jpg"
+						alt = "Authenticity Verified"
+						class="feature-image mb-3">
 						<h4>Authenticity Verified</h4>
 						<p>Each product is culturally rooted, ethically made, and artisan-verified.</p>
 					</div>
