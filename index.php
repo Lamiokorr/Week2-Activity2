@@ -14,7 +14,7 @@ if (!session_id()) {
 	<style>
 		body {
 			background: #fff;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-family: 'garamond', serif;
 			overflow-x: hidden;
 		}
 
