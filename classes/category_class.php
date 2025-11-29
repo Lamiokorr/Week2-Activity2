@@ -96,3 +96,5 @@ class Category extends db_connection
         return false;
     }
 }
+
+?> 
