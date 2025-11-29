@@ -223,20 +223,7 @@ if (!session_id()) {
 		</div>
 	</section>
 
-	<!-- MARKET OPPORTUNITY -->
-	<section id="market">
-		<div class="container">
-			<h2 class="section-title">The Market Opportunity</h2>
 
-			<div class="about-box">
-				<p>
-					Africa’s creative economy is projected to generate over <strong>$20 billion</strong>
-					annually by 2030. Rising global demand for ethical, handmade, and culturally inspired goods
-					makes now the perfect time to connect artisans to consumers worldwide.
-				</p>
-			</div>
-		</div>
-	</section>
 
 	<!-- PLATFORM FEATURES -->
 	<section id="features">
