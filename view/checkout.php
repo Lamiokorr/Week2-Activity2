@@ -1,12 +1,19 @@
 <?php
 session_start();
 require_once '../settings/core.php';
-require_login('../login/login.php');
+
+
+// Check if user is logged in
+if (!isLoggedIn()) {
+    header('Location: ../login/login.php');
+    exit();
+}
 
 // Check if cart is not empty
 require_once "../controllers/cart_controller.php";
-$customer_id = get_user_id();
-$cart_items = get_user_cart_ctr($customer_id);
+$ip = $_SERVER['REMOTE_ADDR'];
+$customer_id = isset($_SESSION['customer_id']) ? intval($_SESSION['customer_id']) : null;
+$cart_items = get_user_cart_ctr($ip, $customer_id);
 
 if (!$cart_items || count($cart_items) == 0) {
     header('Location: cart.php');
@@ -15,7 +22,8 @@ if (!$cart_items || count($cart_items) == 0) {
 ?>
 
 <!DOCTYPE html>
-<html lang ="en">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -426,6 +434,7 @@ if (!$cart_items || count($cart_items) == 0) {
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!--Page Header-->
