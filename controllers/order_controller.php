@@ -10,7 +10,8 @@ require_once '../classes/order_class.php';
  * @param string $order_status - Order status
  * @return int|false - Returns order_id if successful, false if failed
  */
-function create_order_ctr($customer_id, $invoice_no, $order_date, $order_status)
+
+function create_order_ctr($customer_id, $invoice_no, $order_date, $order_status = 'Pending'){
 {
     $order = new Order();
     return $order->createOrder($customer_id, $invoice_no, $order_date, $order_status);
@@ -92,4 +93,5 @@ function update_order_status_ctr($order_id, $order_status)
 {
     $order = new order_class();
     return $order->update_order_status($order_id, $order_status);
+}
 }

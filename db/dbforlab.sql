@@ -87,40 +87,55 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 -- TABLE: orders
 -- --------------------------------------------------------
-CREATE TABLE `orders` (
-  `order_id` int NOT NULL,
-  `customer_id` int NOT NULL,
-  `invoice_no` int NOT NULL,
-  `order_date` date NOT NULL,
-  `order_status` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE orders (
+    `order_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `customer_id` INT NOT NULL,
+    `invoice_no` INT NOT NULL UNIQUE,
+    `order_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `order_status` ENUM('pending', 'processing', 'shipped', 'delivered', 'cancelled') 
+        NOT NULL DEFAULT 'pending',
+
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+        ON DELETE CASCADE
+);
 
 -- --------------------------------------------------------
 -- TABLE: orderdetails
 -- --------------------------------------------------------
 CREATE TABLE `orderdetails` (
-  `order_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `qty` int NOT NULL
+    `order_id` INT NOT NULL,
+    `product_id` INT NOT NULL,
+    `qty` INT NOT NULL CHECK (qty > 0),
+    PRIMARY KEY `order_id`, `product_id`,
+    FOREIGN KEY (order_id) REFERENCES orders (order_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products (product_id)
+        ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 -- TABLE: payment
 -- --------------------------------------------------------
-CREATE TABLE `payment` (
-  `pay_id` int NOT NULL,
-  `amt` double NOT NULL,
-  `customer_id` int NOT NULL,
-  `order_id` int NOT NULL,
-  `currency` text NOT NULL,
-  `payment_date` date NOT NULL,
+CREATE TABLE payment (
+    `pay_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `amt` DOUBLE NOT NULL CHECK (amt >= 0),
+    `customer_id` INT NOT NULL,
+    `order_id` INT NOT NULL,
+    `currency` VARCHAR(10) NOT NULL DEFAULT 'GHS',
+    `payment_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-  -- from modifications.sql
-  `payment_method` varchar(50) DEFAULT NULL COMMENT 'Payment method: paystack, cash, etc.',
-  `transaction_ref` varchar(100) DEFAULT NULL COMMENT 'Paystack transaction reference',
-  `authorization_code` varchar(100) DEFAULT NULL COMMENT 'Authorization code',
-  `payment_channel` varchar(50) DEFAULT NULL COMMENT 'Payment channel: card, momo, etc.'
+    `payment_method` VARCHAR(50) DEFAULT NULL,
+    `transaction_ref` VARCHAR(100) DEFAULT NULL UNIQUE,
+    `authorization_code` VARCHAR(100) DEFAULT NULL,
+    `payment_channel` VARCHAR(50) DEFAULT NULL,
+
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+        ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- add indexes
 ALTER TABLE payment ADD INDEX idx_transaction_ref (transaction_ref);
