@@ -14,7 +14,7 @@ if (!session_id()) {
 	<style>
 		body {
 			background: #fff;
-			font-family: 'cambria', serif;
+			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 			overflow-x: hidden;
 		}
 

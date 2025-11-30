@@ -51,7 +51,7 @@ $total_pages = ceil($total_products / $limit);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
             min-height: 100vh;
         }
