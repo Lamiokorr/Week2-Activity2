@@ -103,10 +103,14 @@ class Product extends db_connection
         return $products;
     }
 
-    public function search_products($query)
-    {
+   public function search_products($query){
         $like_query = '%' . $query . '%';
-        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_title LIKE ? OR product_desc LIKE ? OR product_keywords LIKE ?");
+        $sql = "SELECT p.*, b.brand_name, c.cat_name 
+                FROM products p 
+                LEFT JOIN brands b ON p.product_brand = b.brand_id
+                LEFT JOIN categories c ON p.product_cat = c.cat_id
+                WHERE p.product_title LIKE ? OR p.product_desc LIKE ? OR p.product_keywords LIKE ?";
+        $stmt = $this->db->prepare($sql);
         $stmt->bind_param("sss", $like_query, $like_query, $like_query);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -114,12 +118,17 @@ class Product extends db_connection
         while ($row = $result->fetch_assoc()) {
             $products[] = $row;
         }
-        return $products;
+        return $products; 
     }
 
-    public function filter_products_by_category($cat_id)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_cat = ?");
+
+    public function filter_products_by_category($cat_id){
+        $sql = "SELECT p.*, b.brand_name, c.cat_name 
+                FROM products p 
+                LEFT JOIN brands b ON p.product_brand = b.brand_id
+                LEFT JOIN categories c ON p.product_cat = c.cat_id
+                WHERE p.product_cat = ?";
+        $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $cat_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -128,12 +137,17 @@ class Product extends db_connection
         while ($row = $result->fetch_assoc()) {
             $products[] = $row;
         }
-        return $products;
+        return $products; 
     }
 
     public function filter_products_by_brand($brand_id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM products WHERE product_brand = ?");
+       $sql = "SELECT p.*, b.brand_name, c.cat_name 
+                FROM products p 
+                LEFT JOIN brands b ON p.product_brand = b.brand_id
+                LEFT JOIN categories c ON p.product_cat = c.cat_id
+                WHERE p.product_brand = ?";
+        $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $brand_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -154,13 +168,17 @@ class Product extends db_connection
         return $result->fetch_assoc();
     }
 
-    public function view_all_products_paginated($offset, $limit)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM products LIMIT ? OFFSET ?");
+    public function view_all_products_paginated($limit, $offset) {
+        $sql = "SELECT p.*, b.brand_name, c.cat_name 
+                FROM products p 
+                LEFT JOIN brands b ON p.product_brand = b.brand_id
+                LEFT JOIN categories c ON p.product_cat = c.cat_id
+                LIMIT ? OFFSET ?";
+        $stmt = $this->db->prepare($sql);
         $stmt->bind_param("ii", $limit, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        
         $products = [];
         while ($row = $result->fetch_assoc()) {
             $products[] = $row;

@@ -512,7 +512,6 @@ $total_pages = ceil($total_products / $limit);
                         }
                         ?>
                     </select>
-                    <!-- </form> -->
                 </div>
 
                 <!-- PRODUCT GRID -->
@@ -522,23 +521,25 @@ $total_pages = ceil($total_products / $limit);
                         echo "<p>No products found.</p>";
                     } else {
                         foreach ($products as $product) {
-                            $img = "../product/" . $product['product_image'];
+                            $img = "../" . (strpos($product['product_image'], 'uploads/') === 0 ? $product['product_image'] : "images/product/" . $product['product_image']);
                             $id = $product['product_id'];
+                            $cat_name = isset($product['cat_name']) ? htmlspecialchars($product['cat_name']) : 'N/A';
+                            $brand_name = isset($product['brand_name']) ? htmlspecialchars($product['brand_name']) : 'N/A';
 
                             echo "
             <div class='product-card'>
                 <div class='product-image'>
                     <a href='single_product.php?id=$id'>
-                        <img src='$img' alt='{$product['product_title']}'>
+                        <img src='$img' alt='{$product['product_title']}' onerror=\"this.src='../images/placeholder.jpg'\">
                 </a>
                 </div>
             <div class='product-info'>
-                <h3>{$product['product_title']}</h3>
-                <p><strong>Price:</strong> \${$product['product_price']}</p>
-                <p><strong>Category:</strong> {$product['product_cat']}</p>
-                <p><strong>Brand:</strong> {$product['product_brand']}</p>
+                <h3>" . htmlspecialchars($product['product_title']) . "</h3>
+                <p><strong>Price:</strong> GHS " . number_format($product['product_price'], 2) . "</p>
+                <p><strong>Category:</strong> $cat_name</p>
+                <p><strong>Brand:</strong> $brand_name</p>
 
-                <a href='cart.php' class='btn'>Add to Cart</a>
+                <a href='cart.php?add=$id' class='btn-cart'>Add to Cart</a>
                 </div>
             </div>
             ";
