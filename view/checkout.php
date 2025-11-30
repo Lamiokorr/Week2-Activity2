@@ -456,7 +456,7 @@ if (!$cart_items || count($cart_items) == 0) {
             <a href="../login/logout.php">Logout</a>
         </div>
     </nav>
-    
+
     <div class="container">
         <!--Page Header-->
         <div class="page-header">
@@ -470,43 +470,44 @@ if (!$cart_items || count($cart_items) == 0) {
         <div class="checkout-card">
             <h2 class="section-title">Order Summary</h2>
 
-            <!--Empty Cart-->
-            <div class="empty-cart" style="display: none;">
-                <?php if (empty($items)): ?>
+            <?php if (empty($cart_items)): ?>
+                <!--Empty Cart-->
+                <div class="empty-cart">
                     <p>Your cart is empty. <a href="all_product.php">Shop now</a></p>
             </div>
-
-            <!--Cart with Items-->
-        <?php else: ?>
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Qty</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($items as $it):
-                        $sub = floatval($it['product_price']) * intval($it['qty']);
-                    ?>
+            <?php else: ?>
+                <!--Cart with Items-->
+                <table class="summary-table">
+                    <thead>
                         <tr>
-                            <td><?php echo htmlspecialchars($it['product_title']); ?></td>
-                            <td>GHS <?php echo number_format($it['product_price'], 2); ?></td>
-                            <td><?php echo $it['qty']; ?></td>
-                            <td>GHS <?php echo number_format($sub, 2); ?></td>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Subtotal</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($cart_items as $it):
+                            $sub = floatval($it['product_price']) * intval($it['qty']);
+                        ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($it['product_title']); ?></td>
+                                <td>GHS <?php echo number_format($it['product_price'], 2); ?></td>
+                                <td><?php echo $it['qty']; ?></td>
+                                <td>GHS <?php echo number_format($sub, 2); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
 
-            <p style="text-align:right;"><strong>Total: GHS <?php echo number_format($total, 2); ?></strong></p>
+            <div class="total-section">
+                    <strong>Total: GHS <?php echo number_format($total, 2); ?></strong>
+                </div>
 
             <!-- Payment Section -->
-            <div class="payment_section" style="text-align:right;">
-                <button id="simulate-pay">Complete Payment</button>
-            </div>
+                <div class="payment-section">
+                    <button id="simulate-pay">Complete Payment</button>
+                </div>
 
             <!-- Security Badge -->
             <div style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); color: white; padding: 20px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
@@ -516,10 +517,9 @@ if (!$cart_items || count($cart_items) == 0) {
             </div>
 
             <p style="text-align: center; color: #6b7280; font-size: 13px; margin-bottom: 20px;">
-                You will be redirected to Paystack's secure payment gateway
-            </p>
-
-        <?php endif; ?>
+                    You will be redirected to Paystack's secure payment gateway
+                </p>
+            <?php endif; ?>
         </div>
 
         <script src="../js/checkout.js"></script>
