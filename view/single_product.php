@@ -1,6 +1,6 @@
 <?php
 require_once "../controllers/product_controller.php";
-require_once "../settings/core.php"; 
+require_once "../settings/core.php";
 
 //Check if product ID is provided
 if (!isset($_GET['id']) || empty($_GET['id'])) {
@@ -25,6 +25,7 @@ $image_path = "../product/" . $product['product_image'];
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title><?php echo $product['product_title']; ?></title>
 
@@ -78,36 +79,37 @@ $image_path = "../product/" . $product['product_image'];
 
 <body>
 
-<h1>Product Details</h1>
+    <h1>Product Details</h1>
 
-<div class="container">
+    <div class="container">
 
-    <!-- PRODUCT IMAGE -->
-    <div class="product-image">
-        <img src="<?php echo $image_path; ?>" alt="<?php echo $product['product_title']; ?>">
+        <!-- PRODUCT IMAGE -->
+        <div class="product-image">
+            <img src="<?php echo $image_path; ?>" alt="<?php echo $product['product_title']; ?>">
+        </div>
+
+        <!-- PRODUCT DETAILS -->
+        <div class="product-details">
+            <h2><?php echo $product['product_title']; ?></h2>
+
+            <p><strong>Price:</strong> $<?php echo $product['product_price']; ?></p>
+            <p><strong>Category:</strong> <?php echo $product['product_cat']; ?></p>
+            <p><strong>Brand:</strong> <?php echo $product['product_brand']; ?></p>
+
+            <p><strong>Description:</strong><br>
+                <?php echo nl2br($product['product_desc']); ?>
+            </p>
+
+            <p><strong>Keywords:</strong> <?php echo $product['product_keywords']; ?></p>
+
+            <br>
+            <a href="#" class="add-to-cart">Add to Cart</a>
+
+            <br><br>
+            <a href="all_product.php" class="back">← Back to All Products</a>
+        </div>
     </div>
-
-    <!-- PRODUCT DETAILS -->
-    <div class="product-details">
-        <h2><?php echo $product['product_title']; ?></h2>
-
-        <p><strong>Price:</strong> $<?php echo $product['product_price']; ?></p>
-        <p><strong>Category:</strong> <?php echo $product['product_cat']; ?></p>
-        <p><strong>Brand:</strong> <?php echo $product['product_brand']; ?></p>
-
-        <p><strong>Description:</strong><br>
-            <?php echo nl2br($product['product_desc']); ?>
-        </p>
-
-        <p><strong>Keywords:</strong> <?php echo $product['product_keywords']; ?></p>
-
-        <br>
-        <a href="#" class="add-to-cart">Add to Cart</a>
-
-        <br><br>
-        <a href="all_product.php" class="back">← Back to All Products</a>
-    </div>
-</div>
 
 </body>
+
 </html>
