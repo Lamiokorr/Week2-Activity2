@@ -453,10 +453,13 @@ if ($search_query || $cat_filter || $brand_filter) {
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="../index.php" class="navbar-brand">
-            <img src="../assets/images/logo.png" alt="KultureKart" class="navbar-logo">
-            <!--<h2 class="navbar-title">KultureKart</h2> -->
-        </a>
+        <h3>
+				<a href="index.php">
+					<img src="assets/logo.png"
+						alt="KultureKart Logo"
+						style="height:55px; width:auto; object-fit:contain;">
+				</a>
+			</h3>
         <div class="navbar-menu">
             <a href="../index.php">Home</a>
             <a href="cart.php">My Cart</a>

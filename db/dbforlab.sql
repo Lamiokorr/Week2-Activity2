@@ -1,13 +1,13 @@
--- MERGED SQL: Original + Lecturer Updates + Modifications
+-- MERGED SQL
 -- Final Database
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 SET time_zone = "+00:00";
 
-CREATE DATABASE IF NOT EXISTS `ecommerce_2025A_elorm_ameyibor`
+CREATE DATABASE IF NOT EXISTS `ecommerce_2025A_naa_dove`
   DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `ecommerce_2025A_elorm_ameyibor`;
+USE `ecommerce_2025A_naa_dove`;
 
 -- --------------------------------------------------------
 -- TABLE: customer
