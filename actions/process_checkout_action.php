@@ -11,7 +11,7 @@ require_once "../controllers/order_controller.php";
 require_once "../controllers/product_controller.php"; 
 
 // Paystack secret key (TEST)
-$secret_key = "sk_test_acb1b5ad4d0ed7a63fe7866559bfef4263983b43"; 
+$secret_key = "sk_test_acb1b5ad4d0ed7a63fe7866559bfef4263983b43";  
 
 // Determine user
 $ip = $_SERVER['REMOTE_ADDR'];
@@ -100,11 +100,13 @@ if (!$okDetail) {
     exit;
 }
 
-// Record payment
+// Record payment (no manual pay_id)
 $currency = 'GHS';
-$payment_date = date('Y-m-d');
-$pay_id = rand(1000000, 9999999);
-$okPay = record_payment_ctr($pay_id, $total, $c_id, $order_id, $currency, $payment_date);
+$payment_method = 'Paystack';
+$transaction_ref = $reference;
+$payment_date = date('Y-m-d H:i:s');
+
+$okPay = record_payment_ctr($c_id, $order_id, $total, $currency, $payment_method, $transaction_ref, $payment_date);
 if (!$okPay) {
     echo json_encode(['status'=>'error','message'=>'Payment recording failed']);
     exit;
