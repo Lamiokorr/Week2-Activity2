@@ -62,7 +62,7 @@ if (!isset($resp['data']) || $resp['data']['status'] !== 'success') {
     exit;
 }
 
-// compute total amount from cart to cross-check
+// Compute total amount from cart
 $total = 0.0;
 foreach ($items as $it) {
     $price = floatval($it['product_price']);
@@ -70,14 +70,14 @@ foreach ($items as $it) {
     $total += $price * $qty;
 }
 
-// Optionally cross-check Paystack amount matches cart total
-$paid_amount = $resp['data']['amount'] / 100; // Paystack returns in kobo
+// Cross-check amount
+$paid_amount = $resp['data']['amount'] / 100;
 if (abs($paid_amount - $total) > 0.01) {
     echo json_encode(['status'=>'error','message'=>'Paid amount does not match cart total']);
     exit;
 }
 
-// generate invoice_no
+// Generate invoice & date
 $invoice_no = rand(100000, 999999);
 $order_date = date('Y-m-d');
 
@@ -100,30 +100,44 @@ if (!$okDetail) {
     exit;
 }
 
-// Record payment (no manual pay_id)
-$currency = 'GHS';
+// Extract Paystack extra data
+$paystack_data = $resp['data'];
+$authorization_code = $paystack_data['authorization']['authorization_code'] ?? null;
+$payment_channel    = $paystack_data['channel'] ?? 'unknown';
+
+// Record payment – now with ALL required fields
+$currency       = 'GHS';
 $payment_method = 'Paystack';
 $transaction_ref = $reference;
-$payment_date = date('Y-m-d H:i:s');
+$payment_date   = date('Y-m-d H:i:s');
 
-$okPay = record_payment_ctr($c_id, $order_id, $total, $currency, $payment_method, $transaction_ref, $payment_date);
+$okPay = record_payment_ctr(
+    $c_id,
+    $order_id,
+    $total,
+    $currency,
+    $payment_method,
+    $transaction_ref,
+    $payment_date,
+    $authorization_code,
+    $payment_channel
+);
+
 if (!$okPay) {
     echo json_encode(['status'=>'error','message'=>'Payment recording failed']);
     exit;
 }
 
 // Empty cart
-$okEmpty = empty_cart_ctr($ip, $c_id);
+empty_cart_ctr($ip, $c_id);
 
 // Success response
-$response = [
-    'status' => 'success',
-    'message' => 'Payment verified and order created',
-    'order_id' => $order_id,
+echo json_encode([
+    'status'     => 'success',
+    'message'    => 'Payment verified and order created',
+    'order_id'   => $order_id,
     'invoice_no' => $invoice_no,
-    'amount' => $total
-];
-
-echo json_encode($response);
+    'amount'     => $total
+]);
 exit;
 ?>
