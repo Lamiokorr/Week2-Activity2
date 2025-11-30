@@ -15,6 +15,14 @@ $ip = $_SERVER['REMOTE_ADDR'];
 $customer_id = isset($_SESSION['customer_id']) ? intval($_SESSION['customer_id']) : null;
 $cart_items = get_user_cart_ctr($ip, $customer_id);
 
+// Calculate total
+$total = 0.0;
+if ($cart_items) {
+    foreach ($cart_items as $it) {
+        $total += floatval($it['product_price']) * intval($it['qty']);
+    }
+}
+
 if (!$cart_items || count($cart_items) == 0) {
     header('Location: cart.php');
     exit();
@@ -436,6 +444,19 @@ if (!$cart_items || count($cart_items) == 0) {
 </head>
 
 <body>
+     <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="../index.php" class="navbar-brand">
+            <img src="../assets/logo.png" alt="KultureKart" class="navbar-logo">
+        </a>
+        <div class="navbar-menu">
+            <a href="../index.php">Home</a>
+            <a href="all_product.php">Products</a>
+            <a href="cart.php">Cart</a>
+            <a href="../login/logout.php">Logout</a>
+        </div>
+    </nav>
+    
     <div class="container">
         <!--Page Header-->
         <div class="page-header">
