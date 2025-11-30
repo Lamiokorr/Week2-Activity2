@@ -548,7 +548,7 @@ $total_pages = ceil($total_products / $limit);
                 </div>
 
                 <!-- PAGINATION -->
-                <?php if (!$search_query && !$cat_filter && !$brand_filter): ?>
+                <?php if ($use_pagination): ?>
                     <div class="pagination" style="margin-top: 20px; text-align:center;">
                         <?php if ($page > 1): ?>
                             <a href="?page=<?php echo $page - 1; ?>">← Previous</a>
