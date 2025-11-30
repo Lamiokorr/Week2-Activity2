@@ -417,38 +417,56 @@ $image_path = "../product/" . $product['product_image'];
 </head>
 
 <body>
+ <div class="container-main">
+        <a href="all_product.php" class="back-link">Back to All Products</a>
 
-    <h1>Product Details</h1>
-
-    <div class="container">
-
-        <!-- PRODUCT IMAGE -->
+    <div class="product_container">
         <div class="product-image">
-            <img src="<?php echo $image_path; ?>" alt="<?php echo $product['product_title']; ?>">
-        </div>
+    <img src="<?php echo $image_path; ?>" alt="<?php echo htmlspecialchars($product['product_title']); ?>">
+</div>
 
-        <!-- PRODUCT DETAILS -->
         <div class="product-details">
-            <h2><?php echo $product['product_title']; ?></h2>
+    <h1><?php echo htmlspecialchars($product['product_title']); ?></h1>
 
-            <p><strong>Price:</strong> $<?php echo $product['product_price']; ?></p>
-            <p><strong>Category:</strong> <?php echo $product['product_cat']; ?></p>
-            <p><strong>Brand:</strong> <?php echo $product['product_brand']; ?></p>
+    <div class="price">GHS <?php echo number_format($product['product_price'], 2); ?></div>
 
-            <p><strong>Description:</strong><br>
-                <?php echo nl2br($product['product_desc']); ?>
-            </p>
+    <div class="info-group">
+        <div class="info-label">Category & Brand</div>
+        <span class="info-badge"><?php echo htmlspecialchars($product['product_cat']); ?></span>
+        <span class="info-badge"><?php echo htmlspecialchars($product['product_brand']); ?></span>
+    </div>
 
-            <p><strong>Keywords:</strong> <?php echo $product['product_keywords']; ?></p>
-
-            <br>
-            <a href="#" class="add-to-cart">Add to Cart</a>
-
-            <br><br>
-            <a href="all_product.php" class="back">← Back to All Products</a>
+    <div class="info-group">
+        <div class="info-label">Description</div>
+        <div class="description-box">
+            <p><?php echo nl2br(htmlspecialchars($product['product_desc'])); ?></p>
         </div>
     </div>
 
+     <div class="info-group">
+        <div class="info-label">Keywords</div>
+        <div class="keywords">
+            <?php 
+            $keywords = explode(',', $product['product_keywords']);
+            foreach($keywords as $keyword): 
+            ?>
+                <span class="keyword-tag"><?php echo trim(htmlspecialchars($keyword)); ?></span>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <!-- Quantity Selector -->
+    <div class="quantity-selector">
+        <span class="quantity-label">Quantity:</span>
+        <div class="quantity-controls">
+            <button class="quantity-btn" onclick="decreaseQty()">-</button>
+            <input type="number" id="quantity" class="quantity-input" value="1" min="1">
+            <button class="quantity-btn" onclick="increaseQty()">+</button>
+        </div>
+    </div>
+
+    <a href="cart.php?product_id=<?php echo $product['product_id']; ?>" class="btn-add-cart">Add to Cart</a>
+</div>
 </body>
 
 </html>
