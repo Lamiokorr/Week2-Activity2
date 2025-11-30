@@ -7,33 +7,32 @@ $search_query = isset($_GET['search']) ? $_GET['search'] : null;
 $cat_filter   = isset($_GET['category']) ? $_GET['category'] : null;
 $brand_filter = isset($_GET['brand']) ? $_GET['brand'] : null;
 
-//Fetch Products Based On Filters
-if ($search_query) {
-    $products = search_products_ctr($search_query);
-} elseif ($cat_filter) {
-    $products = filter_products_by_category_ctr($cat_filter);
-} elseif ($brand_filter) {
-    $products = filter_products_by_brand_ctr($brand_filter);
-} else {
-    $products = view_all_products_ctr();
-}
-
 // PAGINATION SETTINGS
 $limit = 10; // products per page
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $offset = ($page - 1) * $limit;
 
-// Count total products
-$total_products = count_all_products_ctr();
-$total_pages = ceil($total_products / $limit);
-
-// If search or filters are applied, skip pagination
-if ($search_query || $cat_filter || $brand_filter) {
-    // normal (unpaginated) results
+// Fetch Products Based On Filters
+if ($search_query) {
+    $products = search_products_ctr($search_query);
+    $total_products = count($products);
+    $use_pagination = false;
+} elseif ($cat_filter) {
+    $products = filter_products_by_category_ctr($cat_filter);
+    $total_products = count($products);
+    $use_pagination = false;
+} elseif ($brand_filter) {
+    $products = filter_products_by_brand_ctr($brand_filter);
+    $total_products = count($products);
+    $use_pagination = false;
 } else {
-    // Load paginated products
+    // No filters: load paginated products
     $products = get_products_paginated_ctr($limit, $offset);
+    $total_products = count_all_products_ctr();
+    $use_pagination = true;
 }
+
+$total_pages = ceil($total_products / $limit);
 
 ?>
 
