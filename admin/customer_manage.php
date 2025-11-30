@@ -1,3 +1,21 @@
+<?php
+require_once("../settings/core.php");
+require_once("../controllers/customer_controller.php");
+
+if (!isLoggedIn() || !isAdmin()) {
+    header("Location: ../login/login.php");
+    exit();
+}
+
+// Get all customers
+$customers = get_all_customers_ctr();
+$total_customers = count($customers);
+$active_customers = count(array_filter($customers, function($c) { 
+    return $c['status'] == 'active'; 
+}));
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -398,3 +416,31 @@
     <div class="container">
         <h2>Customer Management</h2>
         <p class="subtitle">Manage and view all registered customers</p>
+ <div class="table-card">
+            <table id="customerTable">
+                <thead>
+        <?php foreach ($customers as $customer): ?>
+<tr>
+    <td><?= $customer['customer_id'] ?></td>
+    <td><?= htmlspecialchars($customer['customer_name']) ?></td>
+    <td><?= htmlspecialchars($customer['customer_email']) ?></td>
+    <td><?= htmlspecialchars($customer['customer_country']) ?></td>
+    <td><?= htmlspecialchars($customer['customer_city']) ?></td>
+    <td><?= htmlspecialchars($customer['customer_contact']) ?></td>
+    <td><span class="status-badge status-active">Active</span></td>
+    <td>
+        <a href="customer_details.php?id=<?= $customer['customer_id'] ?>" class="btn-view">View</a>
+        <button class="btn-delete" onclick="deleteCustomer(<?= $customer['customer_id'] ?>)">Delete</button>
+    </td>
+</tr>
+<?php endforeach; ?>
+
+    </div>
+
+    <script>
+        function deleteCustomer(customerId) {
+            if (confirm("Are you sure you want to delete this customer?")) {
+                window.location.href = `delete_customer.php?id=${customerId}`;
+            }
+        }
+    </script>

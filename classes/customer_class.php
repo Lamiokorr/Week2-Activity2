@@ -86,5 +86,21 @@ class Customer extends db_connection
         $stmt->execute();
         return $stmt->affected_rows > 0;
     }
+
+
+    public function updateCustomer($customer_id, $customer_name, $email, $password, $country, $city, $phone_number)
+    {
+        $stmt = $this->db->prepare("UPDATE customer SET customer_name = ?, customer_email = ?, customer_pass = ?, customer_country = ?, customer_city = ?, customer_contact = ? WHERE customer_id = ?");
+        $stmt->bind_param("ssssssi", $customer_name, $email, $password, $country, $city, $phone_number, $customer_id);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    }
+
+    public function getAllCustomers()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM customer");
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
