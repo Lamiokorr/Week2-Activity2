@@ -439,57 +439,57 @@ $total = 0.0;
             <h1>Your Shopping Cart</h1>
         </div>
 
-        <!-- Empty Cart State -->
-        <div class="empty-cart" style="display: none;">
-            <?php if (empty($items)): ?>
+        <?php if (empty($items)): ?>
+            <!-- Empty Cart State -->
+            <div class="empty-cart">
                 <p>Your cart is empty. <a href="all_product.php">Continue shopping</a></p>
-            <?php else: ?>
-        </div>
-
-
-        <!-- Cart Content -->
-        <div class="cart-card">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Qty</th>
-                        <th>Subtotal</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-items">
-                    <?php foreach ($items as $it):
-                        $subtotal = floatval($it['product_price']) * intval($it['qty']);
-                        $total += $subtotal;
-                    ?>
-                        <tr data-pid="<?php echo $it['p_id']; ?>">
-                            <td class="cart-image"><img src="../product/<?php echo htmlspecialchars($it['product_image']); ?>" alt=""></td>
-                            <td><?php echo htmlspecialchars($it['product_title']); ?></td>
-                            <td>GHS <?php echo number_format($it['product_price'], 2); ?></td>
-                            <td>
-                                <input type="number" min="1" value="<?php echo $it['qty']; ?>" class="qty-input" data-pid="<?php echo $it['p_id']; ?>">
-                            </td>
-                            <td class="subtotal">GHS <?php echo number_format($subtotal, 2); ?></td>
-                            <td>
-                                <button class="remove-btn" data-pid="<?php echo $it['p_id']; ?>">Remove</button>
-                            </td>
+           
+            </div>
+        <?php else: ?>
+            <!-- Cart Content -->
+            <div class="cart-card">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Subtotal</th>
+                            <th>Action</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id="cart-items">
+                        <?php foreach ($items as $it):
+                            $subtotal = floatval($it['product_price']) * intval($it['qty']);
+                            $total += $subtotal;
+                        ?>
+                            <tr data-pid="<?php echo $it['p_id']; ?>">
+                                <td class="cart-image"><img src="../<?php echo (strpos($it['product_image'], 'uploads/') === 0 ? $it['product_image'] : 'product/' . htmlspecialchars($it['product_image'])); ?>" alt=""></td>
+                                <td><?php echo htmlspecialchars($it['product_title']); ?></td>
+                                <td>GHS <?php echo number_format($it['product_price'], 2); ?></td>
+                                <td>
+                                    <input type="number" min="1" value="<?php echo $it['qty']; ?>" class="qty-input" data-pid="<?php echo $it['p_id']; ?>">
+                                </td>
+                                <td class="subtotal">GHS <?php echo number_format($subtotal, 2); ?></td>
+                                <td>
+                                    <button class="remove-btn" data-pid="<?php echo $it['p_id']; ?>">Remove</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
 
             <div style="width:90%; margin: 10px auto; text-align:right;">
                 <strong>Total: GHS <?php echo number_format($total, 2); ?></strong>
             </div>
 
             <!-- Action Buttons -->
-            <div class="actions">
-                <a href="all_product.php"><button class="btn-continue">Continue Shopping</button></a>
-                <button id="empty-cart" class="btn-empty">Empty Cart</button>
-                <a href="checkout.php"><button id="checkout-btn" class="btn-checkout">Proceed to Checkout</button></a>
+                <div class="actions">
+                    <a href="all_product.php"><button class="btn-continue">Continue Shopping</button></a>
+                    <button id="empty-cart" class="btn-empty">Empty Cart</button>
+                    <a href="checkout.php"><button id="checkout-btn" class="btn-checkout">Proceed to Checkout</button></a>
+                </div>
             </div>
 
         <?php endif; ?>

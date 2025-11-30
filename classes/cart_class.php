@@ -113,7 +113,7 @@ class Cart extends db_connection
     }
 
     // Get cart items for user
-    public function get_user_cart($ip_add, $c_id = null) {
+   public function get_user_cart($ip_add, $c_id = null) {
         if ($c_id) {
             $stmt = $this->db->prepare("SELECT c.p_id, c.qty, p.product_title, p.product_price, p.product_image FROM cart c JOIN products p ON c.p_id = p.product_id WHERE c.c_id = ?");
             $stmt->bind_param("i", $c_id);

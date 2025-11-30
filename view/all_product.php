@@ -536,10 +536,10 @@ $total_pages = ceil($total_products / $limit);
             <div class='product-info'>
                 <h3>" . htmlspecialchars($product['product_title']) . "</h3>
                 <p><strong>Price:</strong> GHS " . number_format($product['product_price'], 2) . "</p>
-                <p><strong>Category:</strong> $cat_name</p>
-                <p><strong>Brand:</strong> $brand_name</p>
+                <p><strong>Category:</strong> " . (isset($product['cat_name']) ? htmlspecialchars($product['cat_name']) : 'N/A') . "</p>
+                <p><strong>Brand:</strong> " . (isset($product['brand_name']) ? htmlspecialchars($product['brand_name']) : 'N/A') . "</p>
 
-                <a href='cart.php?add=$id' class='btn-cart'>Add to Cart</a>
+                <button class='btn-cart' onclick='addToCart($id)'>Add to Cart</button>
                 </div>
             </div>
             ";
@@ -583,6 +583,29 @@ $total_pages = ceil($total_products / $limit);
             
             // Redirect to filtered page
             window.location.href = url;
+        }
+
+        function addToCart(productId) {
+            const formData = new FormData();
+            formData.append('p_id', productId);
+            formData.append('qty', 1);
+
+            fetch('../actions/add_to_cart_action.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Product added to cart!');
+                } else {
+                    alert('Failed to add product: ' + (data.message || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while adding to cart');
+            });
         }
     </script>
        

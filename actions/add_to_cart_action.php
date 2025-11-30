@@ -19,7 +19,7 @@ $qty = isset($data['qty']) ? intval($data['qty']) : 1;
 $ip = $_SERVER['REMOTE_ADDR'];
 $c_id = isset($_SESSION['customer_id']) ? intval($_SESSION['customer_id']) : null;
 
-$result = add_to_cart_ctr($p_id, $qty, $ip, $c_id);
+$result = add_to_cart_ctr($p_id, $ip, $c_id, $qty);
 
 if ($result) {
     $count = count_cart_items_ctr($ip, $c_id);
