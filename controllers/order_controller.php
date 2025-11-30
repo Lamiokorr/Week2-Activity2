@@ -4,25 +4,24 @@ require_once '../classes/order_class.php';
 
 /**
  * Create a new order
- * @param int $customer_id - Customer ID
- * @param string $invoice_no - Unique invoice number
- * @param string $order_date - Order date (YYYY-MM-DD)
- * @param string $order_status - Order status
- * @return int|false - Returns order_id if successful, false if failed
+ * @param int $customer_id
+ * @param string $invoice_no
+ * @param string $order_date
+ * @param string $order_status
+ * @return int|false
  */
-
-function create_order_ctr($customer_id, $invoice_no, $order_date, $order_status = 'Pending'){
+function create_order_ctr($customer_id, $invoice_no, $order_date, $order_status = 'Pending')
 {
     $order = new Order();
     return $order->createOrder($customer_id, $invoice_no, $order_date, $order_status);
 }
 
 /**
- * Add order details (products) to an order
- * @param int $order_id - Order ID
- * @param int $product_id - Product ID
- * @param int $qty - Quantity ordered
- * @return bool - Returns true if successful, false if failed
+ * Add order details (products)
+ * @param int $order_id
+ * @param int $product_id
+ * @param int $qty
+ * @return bool
  */
 function add_order_detail_ctr($order_id, $product_id, $qty)
 {
@@ -31,28 +30,38 @@ function add_order_detail_ctr($order_id, $product_id, $qty)
 }
 
 /**
- * Record a payment for an order
- * @param float $amount - Payment amount
- * @param int $customer_id - Customer ID
- * @param int $order_id - Order ID
- * @param string $currency - Currency code
- * @param string $payment_date - Payment date (YYYY-MM-DD)
- * @param string $payment_method - Payment method (default: 'direct')
- * @param string $transaction_ref - Transaction reference
- * @param string $authorization_code - Authorization code
- * @param string $payment_channel - Payment channel
- * @return int|false - Returns payment_id if successful, false if failed
+ * Record a payment
+ * @param float $amount
+ * @param int $customer_id
+ * @param int $order_id
+ * @param string $currency
+ * @param string $payment_date
+ * @param string $payment_method
+ * @param string|null $transaction_ref
+ * @param string|null $authorization_code
+ * @param string|null $payment_channel
+ * @return int|false
  */
 function record_payment_ctr($amount, $customer_id, $order_id, $currency, $payment_date, $payment_method = 'direct', $transaction_ref = null, $authorization_code = null, $payment_channel = null)
 {
-    $order = new order_class();
-    return $order->record_payment($amount, $customer_id, $order_id, $currency, $payment_date, $payment_method, $transaction_ref, $authorization_code, $payment_channel);
+    $order = new Order();
+    return $order->record_payment(
+        $amount, 
+        $customer_id, 
+        $order_id, 
+        $currency, 
+        $payment_date, 
+        $payment_method, 
+        $transaction_ref, 
+        $authorization_code, 
+        $payment_channel
+    );
 }
 
 /**
  * Get all orders for a user
- * @param int $customer_id - Customer ID
- * @return array|false - Returns array of orders or false if failed
+ * @param int $customer_id
+ * @return array|false
  */
 function get_user_orders_ctr($customer_id)
 {
@@ -61,37 +70,38 @@ function get_user_orders_ctr($customer_id)
 }
 
 /**
- * Get details of a specific order
- * @param int $order_id - Order ID
- * @param int $customer_id - Customer ID (for security check)
- * @return array|false - Returns order details or false if not found
+ * Get a specific order’s details
+ * @param int $order_id
+ * @param int $customer_id
+ * @return array|false
  */
 function get_order_details_ctr($order_id, $customer_id)
 {
-    $order = new order_class();
+    $order = new Order();
     return $order->get_order_details($order_id, $customer_id);
 }
 
 /**
- * Get all products in a specific order
- * @param int $order_id - Order ID
- * @return array|false - Returns array of products in the order or false if failed
+ * Get products inside an order
+ * @param int $order_id
+ * @return array|false
  */
 function get_order_products_ctr($order_id)
 {
-    $order = new order_class();
+    $order = new Order();
     return $order->get_order_products($order_id);
 }
 
 /**
  * Update order status
- * @param int $order_id - Order ID
- * @param string $order_status - New order status
- * @return bool - Returns true if successful, false if failed
+ * @param int $order_id
+ * @param string $order_status
+ * @return bool
  */
 function update_order_status_ctr($order_id, $order_status)
 {
-    $order = new order_class();
+    $order = new Order();
     return $order->update_order_status($order_id, $order_status);
 }
-}
+
+?>
