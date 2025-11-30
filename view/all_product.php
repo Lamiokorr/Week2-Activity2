@@ -455,7 +455,7 @@ if ($search_query || $cat_filter || $brand_filter) {
     <nav class="navbar">
         <h3>
 				<a href="index.php">
-					<img src="assets/logo.png"
+					<img src="../assets/logo.png"
 						alt="KultureKart Logo"
 						style="height:55px; width:auto; object-fit:contain;">
 				</a>
