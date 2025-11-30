@@ -6,25 +6,28 @@ document.addEventListener('DOMContentLoaded', function() {
     payBtn.addEventListener('click', function(e) {
         e.preventDefault();
 
-        // Get user email and total amount
         const email = prompt("Enter your email for payment:");
-        if (!email) return alert("Email is required to proceed.");
+        if (!email || !email.includes('@')) return alert("Please enter a valid email.");
 
-        // Get total amount from the page (adjust selector if needed)
         const totalEl = document.querySelector(".total-section strong");
         if (!totalEl) return alert("Total amount not found.");
-        let totalText = totalEl.textContent.replace(/[^\d.]/g, ""); 
-        const amount = parseFloat(totalText);
-        if (isNaN(amount) || amount <= 0) return alert("Invalid amount.");
 
-        // Setup Paystack
+        let totalText = totalEl.textContent.replace(/[^\d.]/g, "");
+        let totalAmount = parseFloat(totalText);
+
+        if (isNaN(totalAmount) || totalAmount <= 0) return alert("Invalid amount.");
+
+        // Fix for Ghana (GHS): Paystack wants amount in whole pesewas (integer only)
+        const amountInPesewas = Math.round(totalAmount * 100);
+
         let handler = PaystackPop.setup({
-            key: 'pk_test_2389054a47afefda526108beeac5d4f9be527215', 
+            key: 'pk_test_2389054a47afefda526108beeac5d4f9be527215',
             email: email,
-            amount: amount * 100, 
+            amount: amountInPesewas,        // Correct for GHS
             currency: 'GHS',
+            ref: 'REF' + Math.floor((Math.random() * 1000000000) + 1), // optional
+
             callback: function(response) {
-                // Send reference to PHP backend for verification
                 fetch('../actions/process_checkout_action.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -33,16 +36,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(r => r.json())
                 .then(resp => {
                     if (resp.status === 'success') {
-                        alert('Payment successful! Order #' + resp.order_id + ' Invoice: ' + resp.invoice_no + ' Amount: GHS ' + resp.amount.toFixed(2));
+                        alert('Payment successful! Order #' + resp.order_id);
                         window.location.href = 'payment_success.php?order_id=' + resp.order_id;
                     } else {
-                        alert('Payment verification failed: ' + (resp.message || 'Unknown error'));
+                        alert('Payment failed: ' + (resp.message || 'Please try again'));
                         window.location.href = 'payment_failed.php';
                     }
                 })
                 .catch(err => {
                     console.error(err);
-                    alert('Error verifying payment.');
+                    alert('Network error. Please try again.');
                 });
             },
             onClose: function() {
