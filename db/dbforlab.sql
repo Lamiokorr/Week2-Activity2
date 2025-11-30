@@ -24,16 +24,6 @@ CREATE TABLE `customer` (
   `user_role` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- sample data
-INSERT INTO `customer`
-(`customer_id`, `customer_name`, `customer_email`, `customer_pass`,
-`customer_country`, `customer_city`, `customer_contact`,
-`customer_image`, `user_role`)
-VALUES
-(1, 'Peggy', 'test3@gmail.com', '$2y$10$jcgx3Ev...', 'USA', 'Houston', '2938048496', NULL, 1),
-(9, 'Test One', 'test@gmail.com', '$2y$10$YWr6/...', 'Canada', 'Ontario', '0394029394', NULL, 1),
-(10, 'Test Two', 'test2@gmail.com', '$2y$10$vJ72...', 'Ghana', 'Tema', '0495038495', NULL, 2),
-(12, 'Elikem GaleZoyiku', 'egalezoyiku@gmail.com', '$2y$10$u92g...', 'Ghana', 'Aburi', '+233507586382', NULL, 1);
 
 -- --------------------------------------------------------
 -- TABLE: brands
