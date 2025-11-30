@@ -424,7 +424,7 @@ $total = 0.0;
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="../index.php" class="navbar-brand">
-            <img src="../assets/images/logo.png" alt="KultureKart" class="navbar-logo">
+            <img src="../assets/logo.png" alt="KultureKart" class="navbar-logo">
             <!-- <h2 class="navbar-title">KultureKart</h2> -->
         </a>
         <div class="navbar-menu">
