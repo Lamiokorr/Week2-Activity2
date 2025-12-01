@@ -37,7 +37,7 @@ if ($search_query) {
     <title>Search Results</title>
 
     <style>
-         * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -165,6 +165,7 @@ if ($search_query) {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -474,21 +475,29 @@ if ($search_query) {
                     echo "<div class='empty-state'><p>No products matched your search or filters.</p></div>";
                 } else {
                     foreach ($products as $product) {
-                        $img = "../product/" . $product['product_image'];
+                        // Handle image path - support both uploads/ and product/ paths
+                        $img_path = $product['product_image'];
+                        if (strpos($img_path, 'uploads/') === 0) {
+                            $img = "../" . $img_path;
+                        } else {
+                            $img = "../product/" . $img_path;
+                        }
                         $id = $product['product_id'];
+                        $cat_name = isset($product['cat_name']) ? htmlspecialchars($product['cat_name']) : 'N/A';
+                        $brand_name = isset($product['brand_name']) ? htmlspecialchars($product['brand_name']) : 'N/A';
                         echo "
             <div class='product-card'>
                 <div class='product-image'>
                     <a href='single_product.php?id=$id'>
-                        <img src='$img' alt='{$product['product_title']}'>
+                        <img src='$img' alt='" . htmlspecialchars($product['product_title']) . "' onerror=\"this.src='../images/placeholder.jpg'\">
                     </a>
                 </div>
                 <div class='product-info'>
-                    <h3>{$product['product_title']}</h3>
-                    <p class='product-price'>GHS {$product['product_price']}</p>
-                    <p><strong>Category:</strong> {$product['product_cat']}</p>
-                    <p><strong>Brand:</strong> {$product['product_brand']}</p>
-                    <a href='cart.php?product_id=$id' class='btn-cart'>Add to Cart</a>
+                    <h3>" . htmlspecialchars($product['product_title']) . "</h3>
+                    <p class='product-price'>GHS " . number_format($product['product_price'], 2) . "</p>
+                    <p><strong>Category:</strong> $cat_name</p>
+                    <p><strong>Brand:</strong> $brand_name</p>
+                    <button class='btn-cart' onclick='addToCart($id)'>Add to Cart</button>
                 </div>
             </div>
             ";
@@ -501,6 +510,33 @@ if ($search_query) {
             <div class="footer">
                 © 2025 KultureKart. All rights reserved.
             </div>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(productId) {
+            const formData = new FormData();
+            formData.append('p_id', productId);
+            formData.append('qty', 1);
+
+            fetch('../actions/add_to_cart_action.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Product added to cart!');
+                    } else {
+                        alert('Failed to add product: ' + (data.message || 'Unknown error'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while adding to cart');
+                });
+        }
+    </script>
 </body>
 
 </html>
