@@ -207,6 +207,29 @@ if (!$cart_items || count($cart_items) == 0) {
             }
         }
 
+        @media (max-width: 768px) {
+            .checkout-card {
+                padding: 1.5rem;
+            }
+
+            .navbar {
+                padding: 0.6rem 1rem;
+            }
+
+            .navbar-title {
+                font-size: 1.2rem;
+            }
+
+            .navbar-menu {
+                gap: 0.5rem;
+            }
+
+            .navbar-menu a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
         .section-title {
             color: #e91e63;
             font-size: 1.5rem;
