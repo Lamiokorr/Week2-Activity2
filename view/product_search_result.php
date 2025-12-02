@@ -475,21 +475,34 @@ if ($search_query) {
                     echo "<div class='empty-state'><p>No products matched your search or filters.</p></div>";
                 } else {
                     foreach ($products as $product) {
-                        // Handle image path - support both uploads/ and product/ paths
-                        $img_path = $product['product_image'];
-                        if (strpos($img_path, 'uploads/') === 0) {
+                        // Handle image path - support multiple formats
+                        $img_path = isset($product['product_image']) ? trim($product['product_image']) : '';
+                        if (empty($img_path)) {
+                            $img = "../images/placeholder.jpg";
+                        } elseif (strpos($img_path, 'uploads/') === 0) {
+                            // Path like: uploads/u1/p2/image.jpg
                             $img = "../" . $img_path;
+                        } elseif (strpos($img_path, 'images/') === 0) {
+                            // Path like: images/product/image.jpg
+                            $img = "../" . $img_path;
+                        } elseif (strpos($img_path, '/') === 0 || strpos($img_path, '../') === 0) {
+                            // Already a full/relative path
+                            $img = $img_path;
                         } else {
-                            $img = "../product/" . $img_path;
+                            // Just filename - try images/product/ first (admin format), then product/
+                            $img = "../images/product/" . $img_path;
                         }
                         $id = $product['product_id'];
                         $cat_name = isset($product['cat_name']) ? htmlspecialchars($product['cat_name']) : 'N/A';
                         $brand_name = isset($product['brand_name']) ? htmlspecialchars($product['brand_name']) : 'N/A';
+                        // Ensure image path is properly formatted
+                        $img_escaped = htmlspecialchars($img, ENT_QUOTES, 'UTF-8');
+                        $placeholder_escaped = htmlspecialchars("../images/placeholder.jpg", ENT_QUOTES, 'UTF-8');
                         echo "
             <div class='product-card'>
                 <div class='product-image'>
                     <a href='single_product.php?id=$id'>
-                        <img src='$img' alt='" . htmlspecialchars($product['product_title']) . "' onerror=\"this.src='../images/placeholder.jpg'\">
+                        <img src='$img_escaped' alt='" . htmlspecialchars($product['product_title']) . "' onerror=\"if(this.src != '$placeholder_escaped') { this.src = '$placeholder_escaped'; }\">
                     </a>
                 </div>
                 <div class='product-info'>
