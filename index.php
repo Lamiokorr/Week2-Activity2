@@ -29,6 +29,7 @@ if (!session_id()) {
 			margin-bottom: 40px;
 			background: linear-gradient(135deg, #ff6b35, #e91e63);
 			-webkit-background-clip: text;
+			background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
 
@@ -66,6 +67,7 @@ if (!session_id()) {
 			font-size: 40px;
 			background: linear-gradient(135deg, #ff6b35, #e91e63);
 			-webkit-background-clip: text;
+			background-clip: text;
 			-webkit-text-fill-color: transparent;
 			font-weight: 800;
 		}
@@ -85,6 +87,7 @@ if (!session_id()) {
 			font-weight: 800;
 			background: linear-gradient(135deg, #ff6b35, #e91e63);
 			-webkit-background-clip: text;
+			background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
 
